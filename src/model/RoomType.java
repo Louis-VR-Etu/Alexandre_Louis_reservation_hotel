@@ -1,3 +1,5 @@
+package model;
+
 public class RoomType {
     private String typeName;
     private float price;
