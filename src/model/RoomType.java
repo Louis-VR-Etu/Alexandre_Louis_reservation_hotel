@@ -34,4 +34,11 @@ public class RoomType {
     public Integer getSingleBed() {
         return singleBed;
     }
+
+    RoomType(String typeName, Float price, Integer singleBed, Integer doubleBed){
+        this.doubleBed =  doubleBed;
+        this.price = price;
+        this.singleBed = singleBed;
+        this.typeName = typeName;
+    }
 }
