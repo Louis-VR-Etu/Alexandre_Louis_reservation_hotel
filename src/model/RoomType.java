@@ -2,21 +2,43 @@ package model;
 
 public class RoomType {
     private String typeName;
-    private float price;
-    private int singleBed;
-    private int doubleBed;
+    private Float price;
+    private Integer singleBed;
+    private Integer doubleBed;
 
-    void setTypeName(String typeName){
+    public void setTypeName(String typeName){
         this.typeName=typeName;
     }
-    void setPrice(float price){
+    public void setPrice(Float price){
         this.price = price;
     }
-    void setSingleBed(int singleBed){
+    public void setSingleBed(Integer singleBed){
         this.singleBed = singleBed;
     }
-    void setDoubleBed(int doubleBed){
+     public void setDoubleBed(Integer doubleBed){
         this.doubleBed=doubleBed;
     }
 
+    public String getTypeName(){
+        return this.typeName;
+    }
+
+    public Float getPrice() {
+        return price;
+    }
+
+    public Integer getDoubleBed() {
+        return doubleBed;
+    }
+
+    public Integer getSingleBed() {
+        return singleBed;
+    }
+
+    RoomType(String typeName, Float price, Integer singleBed, Integer doubleBed){
+        this.doubleBed =  doubleBed;
+        this.price = price;
+        this.singleBed = singleBed;
+        this.typeName = typeName;
+    }
 }
