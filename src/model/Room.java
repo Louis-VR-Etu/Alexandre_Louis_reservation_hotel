@@ -41,7 +41,7 @@ public class Room {
 
 
 
-    Room(Integer number, Integer floor, String hotelName, String roomType){
+    public Room(Integer number, Integer floor, String hotelName, String roomType){
         this.number=number;
         this.floor=floor;
         this.roomType=roomType;
