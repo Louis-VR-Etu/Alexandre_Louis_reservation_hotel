@@ -12,10 +12,10 @@ public class FormPanel extends JPanel {
 
 
     private JLabel  customerMailLabel, roomNumberLabel, hotelNameLabel, beginningDateLabel, endingDateLabel, allInLabel, peopleAmountLabel, roomTypeLabel, remarksLabel, contactsLabel,couponCodeLabel;
-    private JTextField  remarks,contacts;
+    private JTextField  remarks,contacts, coupon;
     private JCheckBox buttonAllIn;
     private ButtonGroup buttonGroup;
-    private JComboBox hotel, roomType, Room, mail;
+    private JComboBox hotel, roomType, room, mail;
     private JButton validationButton;
     private JSpinner beginDate, endDate,peoples;
     private ArrayList<Hotel> hotels;
@@ -78,17 +78,37 @@ public class FormPanel extends JPanel {
         this.add(remarksLabel);
         remarks = new JTextField();
         this.add(remarks);
+
         contactsLabel = new JLabel("additional contacts");
         this.add(contactsLabel);
         contacts = new JTextField();
         this.add(contacts);
+
         couponCodeLabel = new JLabel("coupon code?");
         this.add(couponCodeLabel);
-        remarks = new JTextField();
-        this.add(remarks);
+        coupon = new JTextField();
+        this.add(coupon);
 
+        roomTypeLabel = new JLabel("room type");
+        this.add(roomTypeLabel);
+        try{
 
+            // get Room types
+            roomType = new JComboBox(roomTypes.toArray());
+            this.add(roomType);
+        }
+        catch (Exception exception){JOptionPane.showMessageDialog(null, exception.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+        roomNumberLabel = new JLabel("room number");
+        this.add(roomNumberLabel);
+        try{
 
+            // get free Rooms
+            room = new JComboBox(freeRooms.toArray());
+            this.add(room);
+        }
+        catch (Exception exception){JOptionPane.showMessageDialog(null, exception.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
 
 
     }
