@@ -45,7 +45,7 @@ public class FormPanel extends JPanel {
             //get hotels
             ArrayList<String> hotelNames;
             //get hotelNames
-           // hotel = new JComboBox(hotelNames.toArray());
+            //hotel = new JComboBox(hotelNames.toArray());
         }
 
         catch (Exception exception){JOptionPane.showMessageDialog(null, exception.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
@@ -56,12 +56,6 @@ public class FormPanel extends JPanel {
         SpinnerDateModel spinMod = new SpinnerDateModel();
         beginDate = new JSpinner(spinMod);
         beginDate.setEditor(new JSpinner.DateEditor(beginDate,"dd.MM.yyyy"));
-        this.add(beginDate);
-        endingDateLabel = new JLabel("Beginning date");
-        this.add(endingDateLabel);
-        SpinnerDateModel spinMod = new SpinnerDateModel();
-        endDate = new JSpinner(spinMod);
-        endDate.setEditor(new JSpinner.DateEditor(endDate,"dd.MM.yyyy"));
 
 
 
