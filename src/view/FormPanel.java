@@ -12,12 +12,12 @@ public class FormPanel extends JPanel {
 
 
     private JLabel  customerMailLabel, roomNumberLabel, hotelNameLabel, beginningDateLabel, endingDateLabel, allInLabel, peopleAmountLabel, roomTypeLabel, remarksLabel, contactsLabel,couponCodeLabel;
-    private JTextField  remarks;
+    private JTextField  remarks,contacts;
     private JCheckBox buttonAllIn;
     private ButtonGroup buttonGroup;
     private JComboBox hotel, roomType, Room, mail;
     private JButton validationButton;
-    private JSpinner beginDate, endDate;
+    private JSpinner beginDate, endDate,peoples;
     private ArrayList<Hotel> hotels;
     private ArrayList<RoomType> roomTypes;
     private ArrayList<Room> freeRooms;
@@ -38,14 +38,14 @@ public class FormPanel extends JPanel {
         }
         catch (Exception exception){JOptionPane.showMessageDialog(null, exception.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         }
-         //*//*
+        //*//*
         try {
             hotelNameLabel = new JLabel("Hotel");
             this.add(hotelNameLabel);
             //get hotels
             ArrayList<String> hotelNames;
             //get hotelNames
-           // hotel = new JComboBox(hotelNames.toArray());
+            // hotel = new JComboBox(hotelNames.toArray());
         }
 
         catch (Exception exception){JOptionPane.showMessageDialog(null, exception.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
@@ -57,11 +57,37 @@ public class FormPanel extends JPanel {
         beginDate = new JSpinner(spinMod);
         beginDate.setEditor(new JSpinner.DateEditor(beginDate,"dd.MM.yyyy"));
         this.add(beginDate);
+
         endingDateLabel = new JLabel("Beginning date");
         this.add(endingDateLabel);
-        SpinnerDateModel spinMod = new SpinnerDateModel();
         endDate = new JSpinner(spinMod);
         endDate.setEditor(new JSpinner.DateEditor(endDate,"dd.MM.yyyy"));
+        this.add(endDate);
+
+        peopleAmountLabel = new JLabel("amount of people");
+        this.add(peopleAmountLabel);
+        peoples = new JSpinner();
+        this.add(peoples);
+
+        allInLabel = new JLabel("All inclusive?");
+        this.add(allInLabel);
+        buttonAllIn = new JCheckBox("All inclusive");
+        this.add(buttonAllIn);
+
+        remarksLabel = new JLabel("Remarks");
+        this.add(remarksLabel);
+        remarks = new JTextField();
+        this.add(remarks);
+        contactsLabel = new JLabel("additional contacts");
+        this.add(contactsLabel);
+        contacts = new JTextField();
+        this.add(contacts);
+        couponCodeLabel = new JLabel("coupon code?");
+        this.add(couponCodeLabel);
+        remarks = new JTextField();
+        this.add(remarks);
+
+
 
 
 
