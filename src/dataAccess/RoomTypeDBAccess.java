@@ -29,7 +29,7 @@ public class RoomTypeDBAccess {
             return roomTypes;
         }
         catch(SQLException exception){
-            throw new RoomAccessException(exception.getMessage());
+            throw new RoomTypeAccessException(exception.getMessage());
 
         }
     }

@@ -26,10 +26,10 @@ public class FormPanel extends JPanel {
     private ArrayList<String> mails;
 
     public FormPanel(){
-        this.setLayout(new GridLayout());
+        this.setLayout(new GridLayout(13,2,5,5));
         customerMailLabel = new JLabel("Usermail");
 
-        /*
+        /*TODO
         mails = new ArrayList<>();
         try{
 
@@ -55,14 +55,16 @@ public class FormPanel extends JPanel {
         //*/
         beginningDateLabel = new JLabel("Beginning date");
         this.add(beginningDateLabel);
-        SpinnerDateModel spinMod = new SpinnerDateModel();
-        beginDate = new JSpinner(spinMod);
+        SpinnerDateModel spinMod1 = new SpinnerDateModel();
+        beginDate = new JSpinner(spinMod1);
         beginDate.setEditor(new JSpinner.DateEditor(beginDate,"dd.MM.yyyy"));
         this.add(beginDate);
 
-        endingDateLabel = new JLabel("Beginning date");
+        endingDateLabel = new JLabel("Ending date");
         this.add(endingDateLabel);
-        endDate = new JSpinner(spinMod);
+        SpinnerDateModel spinMod2 = new SpinnerDateModel();
+
+        endDate = new JSpinner(spinMod2);
         endDate.setEditor(new JSpinner.DateEditor(endDate,"dd.MM.yyyy"));
         this.add(endDate);
 
