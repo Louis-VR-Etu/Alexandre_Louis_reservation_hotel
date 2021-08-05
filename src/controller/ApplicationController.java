@@ -233,12 +233,8 @@ public class ApplicationController {
     public String verifyCustomerMail(String customerMail) throws AddReservationException {
         try {
             return reservationManager.verifyCustomerMail(customerMail);
-        }
-        catch (AddReservationException exception) {
+        } catch (AddReservationException exception) {
             throw exception;
         }
-    }
-
-
     }
 }
