@@ -21,7 +21,7 @@ public class AllReservationsPanel extends JPanel{
         try{
             reservations = applicationController.getReservations();
             allReservationsModel = new AllReservationsModel(reservations);
-            JTable table = new JTable(allReservationsModel);
+            JTable table = new JTable(allReservatiosModel);
             JScrollPane scrollPane = new JScrollPane(table);
             this.add(scrollPane);
         }

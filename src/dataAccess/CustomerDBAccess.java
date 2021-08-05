@@ -1,6 +1,7 @@
 package dataAccess;
 
 
+import exception.CustomerAccessException;
 import model.Customer;
 
 import java.sql.*;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 public class CustomerDBAccess {
     public CustomerDBAccess(){}
 
-    public ArrayList<Customer> getCustomer() throws Exception{
+    public ArrayList<Customer> getCustomers() throws CustomerAccessException {
         try {
             Connection connection = SingletonConnexion.getInstance();
             String sqlInstruction = "select * from customer";
@@ -30,7 +31,7 @@ public class CustomerDBAccess {
             return customers;
         }
         catch(SQLException exception){
-            throw new Exception();
+            throw new CustomerAccessException(exception.getMessage());
 
         }
     }
