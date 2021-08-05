@@ -11,7 +11,7 @@ public class ApplicationController {
     //business
 
     public ApplicationController(){
-
+        //business
     }
 
     public void addMember(Reservation reservation) throws AddReservationException {
@@ -41,7 +41,7 @@ public class ApplicationController {
         }
     }
 
-    public ArrayList<Reservation> getMembers() throws GetReservationException {
+    public ArrayList<Reservation> getReservations() throws GetReservationException {
         try{
             return reservationManager.getMembers();
         }
