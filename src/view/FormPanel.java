@@ -6,6 +6,8 @@ import model.RoomType;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class FormPanel extends JPanel {
@@ -27,7 +29,7 @@ public class FormPanel extends JPanel {
         this.setLayout(new GridLayout());
         customerMailLabel = new JLabel("Usermail");
 
-        //*
+        /*
         mails = new ArrayList<>();
         try{
 
@@ -91,6 +93,7 @@ public class FormPanel extends JPanel {
 
         roomTypeLabel = new JLabel("room type");
         this.add(roomTypeLabel);
+        /*
         try{
 
             // get Room types
@@ -109,7 +112,20 @@ public class FormPanel extends JPanel {
         }
         catch (Exception exception){JOptionPane.showMessageDialog(null, exception.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         }
-
+        //*/
+        validationButton = new JButton("Validation");
+        this.add(validationButton);
+        //  ButtonListener listener = new ButtonListener();
+        //   validationButton.addActionListener(listener);
 
     }
+    //*
+    private class ButtonListener implements ActionListener {
+        public void actionPerformed(ActionEvent event){
+
+        }
+
+    }
+//*/
+
 }
