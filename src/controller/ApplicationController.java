@@ -14,7 +14,7 @@ public class ApplicationController {
         //business
     }
 
-    public void addMember(Reservation reservation) throws AddReservationException {
+    public void addReservation(Reservation reservation) throws AddReservationException {
         try {
             reservationManager.addMember(reservation);
         }
@@ -23,7 +23,7 @@ public class ApplicationController {
         }
     }
 
-    public void deleteMember(Reservation reservation) throws DeleteReservationException {
+    public void deleteReservation(Reservation reservation) throws DeleteReservationException {
         try {
             reservationManager.deleteMember(reservation);
         }
@@ -32,7 +32,7 @@ public class ApplicationController {
         }
     }
 
-    public void updateMember(Reservation reservation, Reservation reservationUpdated) throws UpdateReservationException {
+    public void updateReservation(Reservation reservation, Reservation reservationUpdated) throws UpdateReservationException {
         try {
             reservationManager.updateMember(reservation, reservationUpdated);
         }
