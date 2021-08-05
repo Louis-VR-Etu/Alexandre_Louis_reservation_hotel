@@ -38,7 +38,7 @@ public class ProgramWindow extends JFrame {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             container.removeAll();
-            //container.add(new FormPanel(), BorderLayout.CENTER);
+            container.add(new FormPanel(), BorderLayout.CENTER);
             container.repaint();
             ProgramWindow.this.setVisible(true);
         }
