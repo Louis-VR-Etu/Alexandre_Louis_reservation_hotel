@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ApplicationController {
-    //business
     private CustomerManager customerManager;
     private HotelManager hotelManager;
     private ReservationManager reservationManager;
@@ -17,18 +16,16 @@ public class ApplicationController {
     private RoomTypeManager roomTypeManager;
 
     public ApplicationController(){
-        //business
         customerManager = new CustomerManager();
         hotelManager = new HotelManager();
         reservationManager = new ReservationManager();
         roomManager = new RoomManager();
         roomTypeManager= new RoomTypeManager();
-
     }
 
     public void addReservation(Reservation reservation) throws AddReservationException {
         try {
-            reservationManager.addReservations(reservation);
+            reservationManager.addReservation(reservation);
         }
         catch (AddReservationException exception) {
             throw exception;

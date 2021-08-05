@@ -1,8 +1,11 @@
 package view;
 
+import controller.ApplicationController;
+import exception.CustomerAccessException;
 import model.Hotel;
 import model.Room;
 import model.RoomType;
+import model.Customer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,8 +14,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class FormPanel extends JPanel {
-
-
     private JLabel  customerMailLabel, roomNumberLabel, hotelNameLabel, beginningDateLabel, endingDateLabel, allInLabel, peopleAmountLabel, roomTypeLabel, remarksLabel, contactsLabel,couponCodeLabel;
     private JTextField  remarks,contacts, coupon;
     private JCheckBox buttonAllIn;
@@ -23,24 +24,29 @@ public class FormPanel extends JPanel {
     private ArrayList<Hotel> hotels;
     private ArrayList<RoomType> roomTypes;
     private ArrayList<Room> freeRooms;
-    private ArrayList<String> mails;
+    private ArrayList<Customer> customers;
+
+    private ApplicationController applicationController;
 
     public FormPanel(){
         this.setLayout(new GridLayout(13,2,5,5));
         customerMailLabel = new JLabel("Usermail");
 
-        /*TODO
-        mails = new ArrayList<>();
+        customers = new ArrayList<>();
+        applicationController = new ApplicationController();
+        ArrayList<String> mails;
         try{
-
+            customers = applicationController.getCustomers();
+            mails = applicationController.stringCustomer(customers);
+            customerMailLabel = new JLabel("mails");
             this.add(customerMailLabel);
-            // get Mails
             mail = new JComboBox(mails.toArray());
             this.add(mail);
         }
-        catch (Exception exception){JOptionPane.showMessageDialog(null, exception.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        catch (CustomerAccessException exception){
+            throw exception;
         }
-        //*//*
+ /*
         try {
             hotelNameLabel = new JLabel("Hotel");
             this.add(hotelNameLabel);
