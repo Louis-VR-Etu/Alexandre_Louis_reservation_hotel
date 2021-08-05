@@ -10,7 +10,7 @@ public class HotelManager {
     private HotelDBAccess hotelDB;
     public HotelManager(){hotelDB = new HotelDBAccess();}
 
-    public ArrayList<Hotel> getCustomers() throws HotelAccessException {
+    public ArrayList<Hotel> getHotels() throws HotelAccessException {
         try { return hotelDB.getHotels();}
         catch (HotelAccessException exception) {throw exception;}
 

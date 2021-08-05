@@ -1,5 +1,6 @@
 package dataAccess;
 
+import exception.RoomAccessException;
 import model.Room;
 
 import java.sql.*;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 public class RoomDBAccess {
     public RoomDBAccess(){}
 
-    public ArrayList<Room> getRooms() throws Exception{
+    public ArrayList<Room> getRooms() throws RoomAccessException {
         try {
             Connection connection = SingletonConnexion.getInstance();
             String sqlInstruction = "select * from room";
@@ -27,7 +28,7 @@ public class RoomDBAccess {
             return rooms;
         }
         catch(SQLException exception){
-            throw new Exception();
+            throw new RoomAccessException(exception.getMessage());
 
         }
     }

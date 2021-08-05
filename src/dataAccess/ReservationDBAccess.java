@@ -1,5 +1,6 @@
 package dataAccess;
 
+import exception.ReservationAccessException;
 import model.Reservation;
 
 import java.sql.*;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 public class ReservationDBAccess {
     public ReservationDBAccess(){}
 
-    public ArrayList<Reservation> getReservations() throws Exception{
+    public ArrayList<Reservation> getReservations() throws ReservationAccessException{
         try {
             Connection connection = SingletonConnexion.getInstance();
             String sqlInstruction = "select * from Reservation";
@@ -28,7 +29,7 @@ public class ReservationDBAccess {
             return reservations;
         }
         catch(SQLException exception){
-            throw new Exception();
+            throw new ReservationAccessException(exception.getMessage());
 
         }
     }
