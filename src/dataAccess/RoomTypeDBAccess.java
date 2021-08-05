@@ -1,5 +1,6 @@
 package dataAccess;
 
+import exception.RoomAccessException;
 import model.RoomType;
 import java.sql.*;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class RoomTypeDBAccess {
             return roomTypes;
         }
         catch(SQLException exception){
-            throw new Exception();
+            throw new RoomAccessException(exception.getMessage());
 
         }
     }
