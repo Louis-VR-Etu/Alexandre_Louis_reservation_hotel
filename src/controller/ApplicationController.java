@@ -28,7 +28,7 @@ public class ApplicationController {
 
     public void addReservation(Reservation reservation) throws AddReservationException {
         try {
-            reservationManager.addMember(reservation);
+            reservationManager.addReservations(reservation);
         }
         catch (AddReservationException exception) {
             throw exception;
@@ -37,7 +37,7 @@ public class ApplicationController {
 
     public void deleteReservation(Reservation reservation) throws DeleteReservationException {
         try {
-            reservationManager.deleteMember(reservation);
+            reservationManager.deleteReservation(reservation);
         }
         catch (DeleteReservationException exception) {
             throw exception;
@@ -46,7 +46,7 @@ public class ApplicationController {
 
     public void updateReservation(Reservation reservation, Reservation reservationUpdated) throws UpdateReservationException {
         try {
-            reservationManager.updateMember(reservation, reservationUpdated);
+            reservationManager.updateReservation(reservation, reservationUpdated);
         }
         catch (UpdateReservationException exception) {
             throw exception;
@@ -55,7 +55,7 @@ public class ApplicationController {
 
     public ArrayList<Reservation> getReservations() throws GetReservationException {
         try{
-            return reservationManager.getMembers();
+            return reservationManager.getReservations();
         }
         catch (GetReservationException exception) {
             throw exception;
@@ -93,7 +93,7 @@ public class ApplicationController {
         return cityManager.stringCity(cities);
     }
 */
-    public ArrayList<String> stringReservation(ArrayList<Reservation> reservations) { return reservationManager.stringMember(reservations);}
+    public ArrayList<String> stringReservation(ArrayList<Reservation> reservations) { return reservationManager.stringReservations(reservations);}
 /*
     public ArrayList<String> stringEmployee(ArrayList<Employee> employees) { return employeeManager.stringEmployee(employees);}
 
