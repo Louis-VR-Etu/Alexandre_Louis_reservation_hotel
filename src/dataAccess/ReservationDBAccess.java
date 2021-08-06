@@ -106,16 +106,20 @@ public class ReservationDBAccess {
     public void updateReservation(Reservation reservation, Reservation reservationUpdated) throws UpdateReservationException {
         //TODO verifier avec DB
         try {
+            String pattern = "dd/MM/yyyy";
+            DateFormat df = new SimpleDateFormat(pattern);
             Connection connection = SingletonConnexion.getInstance();
             String sqlInstruction = "update members set  beginningDate=?, roomNumber=?, roomHotelName=?, endingDate=?, allInclusive=?, people=?, remarks=?, additionalContact=?, couponCode=?, customerMail=? where nationalNumber = " + reservation.getBeginningDate()+ " and roomHotelName= '" + reservation.getHotelName() + "' and roomNumber = '" + reservation.getRoomNumber() + ";";
             connection.setAutoCommit(true);
             PreparedStatement preparedStatement = connection.prepareStatement(sqlInstruction);
-            Date beginDate = new Date(reservationUpdated.getBeginningDate().YEAR, reservationUpdated.getBeginningDate().MONTH, reservationUpdated.getBeginningDate().DAY_OF_MONTH);
-            preparedStatement.setDate(1,beginDate);
+            GregorianCalendar beginDate = new GregorianCalendar(reservationUpdated.getBeginningDate().YEAR, reservationUpdated.getBeginningDate().MONTH, reservationUpdated.getBeginningDate().DAY_OF_MONTH);
+            String beginDateStr = df.format(beginDate);
+            preparedStatement.setString(1,beginDateStr);
             preparedStatement.setInt(2, reservationUpdated.getRoomNumber());
             preparedStatement.setString(3, reservationUpdated.getHotelName());
-            Date endDate = new Date(reservationUpdated.getBeginningDate().YEAR, reservationUpdated.getBeginningDate().MONTH, reservationUpdated.getBeginningDate().DAY_OF_MONTH);
-            preparedStatement.setDate(4, endDate);
+            GregorianCalendar endDate = new GregorianCalendar(reservationUpdated.getBeginningDate().YEAR, reservationUpdated.getBeginningDate().MONTH, reservationUpdated.getBeginningDate().DAY_OF_MONTH);
+            String endDateStr = df.format(endDate);
+            preparedStatement.setString(4, endDateStr);
             preparedStatement.setBoolean(5, reservationUpdated.getAllInclusive());
             preparedStatement.setInt(6, reservationUpdated.getPeople());
             preparedStatement.setString(8, reservationUpdated.getTitle());
