@@ -23,9 +23,8 @@ public class ReservationDBAccess {
             ResultSet data = preparedStatement.executeQuery();
             ArrayList<Reservation>reservations = new ArrayList<>();
             Reservation reservation;
-            int iObject=0;
             while (data.next()){
-                reservation = new Reservation(null,data.getInt(""),data.getString(""),null,data.getBoolean(""),data.getInt(""),data.getString(""),data.getString("")); //TODO correct labels
+                reservation = new Reservation(null,data.getInt(""),data.getString(""),null,data.getBoolean(""),data.getInt(""),data.getString(""),data.getString("")); //TODO  correct labels
 
                 reservations.add(reservation);
             }
@@ -46,6 +45,6 @@ public class ReservationDBAccess {
     }
 
     public void updateReservation(Reservation reservation, Reservation reservationUpdated) throws UpdateReservationException {
-//TODO
+        //TODO
     }
 }
