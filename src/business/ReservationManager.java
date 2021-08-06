@@ -25,7 +25,6 @@ public class ReservationManager {
     }
 
     public void addReservation(Reservation reservation) throws AddReservationException {
-        //todo
         try {
             reservationDB.addReservation(reservation);
         } catch (AddReservationException exception) {
@@ -50,7 +49,6 @@ public class ReservationManager {
     }
 
     public ArrayList<String> stringReservations(ArrayList<Reservation> reservations) {
-        //todo
         ArrayList<String> reservationString = new ArrayList<>();
         for (int iReserv = 0; iReserv < reservations.size(); iReserv++) {
             //todo verifier String
@@ -86,38 +84,60 @@ public class ReservationManager {
     }
 
     public Date verifyEndingDate(String day, String month, String year) throws AddReservationException {
-        //todo
-        return null;
+        try {
+            //todo date
+            return new Date(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
+        } catch (NumberFormatException exception) {
+            throw new AddReservationException("wrong ending date");
+        }
     }
 
     public Integer verifyAllInclusive(String allInclusive) throws AddReservationException {
-        //todo
-        return null;
+        try {
+            return verifyNumber(allInclusive);
+        } catch (Exception exception) {
+            throw new AddReservationException("Wrong all in");
+        }
     }
 
     public Integer verifyPeople(String people) throws AddReservationException {
-        //todo
-        return null;
+        try {
+            return verifyNumber(people);
+        } catch (Exception exception) {
+            throw new AddReservationException("Wrong amount of people");
+        }
     }
 
     public String verifyTitle(String title) throws AddReservationException {
-        //todo
-        return null;
+        try {
+            return verifyString(title);
+        } catch (Exception exception) {
+            throw new AddReservationException("wrong title");
+        }
     }
 
     public String verifyAdditionalContact(String additionalContact) throws AddReservationException {
-        //todo
-        return null;
+        try {
+            return verifyString(additionalContact);
+        } catch (Exception exception) {
+            throw new AddReservationException("wrong additional conctacts");
+        }
     }
 
     public Integer verifyCouponCode(String couponCode) throws AddReservationException {
-        //todo
-        return null;
+        try {
+            return verifyNumber(couponCode);
+        } catch (Exception exception) {
+            throw new AddReservationException("Wrong couponCode");
+        }
     }
 
     public String verifyCustomerMail(String customerMail) throws AddReservationException {
-        //todo
-        return null;
+        try {
+            return verifyString(customerMail);
+        } catch (Exception exception) {
+            throw new AddReservationException("wrong customer mail");
+        }
     }
 
     //todo verifier conditions
