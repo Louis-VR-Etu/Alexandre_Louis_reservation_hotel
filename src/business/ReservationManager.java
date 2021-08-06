@@ -29,9 +29,9 @@ public class ReservationManager {
         catch (DeleteReservationException exception){ throw exception;}
     }
 
-    public void updateReservation(Reservation reservation, Reservation reservationUpdated)throws UpdateReservationException {
+    public void updateReservation(Reservation reservation, Reservation reservationUpdated) throws UpdateReservationException {
         try{ reservationDB.updateReservation(reservation, reservationUpdated);}
-        catch (GetReservationException exception){ throw exception;}
+        catch (UpdateReservationException exception){ throw exception;}
     }
 
     public ArrayList<String> stringReservations(ArrayList<Reservation> reservations) {
@@ -103,7 +103,7 @@ public class ReservationManager {
         //todo
         return null;
     }
-}
+
 
 
 //todo verifier conditions
@@ -132,3 +132,7 @@ public class ReservationManager {
             return text;
         }
     }
+
+    public void addReservation(Reservation reservation) throws AddReservationException {
+    }
+}

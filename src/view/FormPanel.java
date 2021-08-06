@@ -28,7 +28,7 @@ public class FormPanel extends JPanel {
 
     private ApplicationController applicationController;
 
-    public FormPanel(){
+    public FormPanel() throws CustomerAccessException {
         this.setLayout(new GridLayout(13,2,5,5));
         customerMailLabel = new JLabel("Usermail");
 

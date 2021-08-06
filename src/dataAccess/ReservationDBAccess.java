@@ -1,6 +1,9 @@
 package dataAccess;
 
+import exception.AddReservationException;
+import exception.DeleteReservationException;
 import exception.GetReservationException;
+import exception.UpdateReservationException;
 import model.Reservation;
 
 import java.sql.*;
@@ -32,5 +35,17 @@ public class ReservationDBAccess {
             throw new GetReservationException(exception.getMessage());
 
         }
+    }
+
+    public void addReservation(Reservation reservation) throws AddReservationException {
+        //TODO
+    }
+
+    public void deleteReservation(Reservation reservation) throws DeleteReservationException {
+        //TODO
+    }
+
+    public void updateReservation(Reservation reservation, Reservation reservationUpdated) throws UpdateReservationException {
+//TODO
     }
 }

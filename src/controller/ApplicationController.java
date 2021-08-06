@@ -246,4 +246,14 @@ public class ApplicationController {
             throw exception;
         }
     }
+
+    public ArrayList<Customer> getCustomers() throws CustomerAccessException{
+        //todo
+        return null;
+    }
+
+    public ArrayList<String> stringCustomer(ArrayList<Customer> customers) {
+        //todo
+        return null;
+    }
 }
