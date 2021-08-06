@@ -7,6 +7,7 @@ import model.Room;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class ReservationManager {
     private ReservationDBAccess reservationDB;
@@ -58,10 +59,10 @@ public class ReservationManager {
         return reservationString;
     }
 
-    public Date verifyBeginningDate(String day, String month, String year) throws AddReservationException {
+    public GregorianCalendar verifyBeginningDate(String day, String month, String year) throws AddReservationException {
         try {
             //todo date
-            return new Date(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
+            return new GregorianCalendar(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
         } catch (NumberFormatException exception) {
             throw new AddReservationException("wrong beginning date");
         }
@@ -83,10 +84,10 @@ public class ReservationManager {
         }
     }
 
-    public Date verifyEndingDate(String day, String month, String year) throws AddReservationException {
+    public GregorianCalendar verifyEndingDate(String day, String month, String year) throws AddReservationException {
         try {
             //todo date
-            return new Date(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
+            return new GregorianCalendar(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
         } catch (NumberFormatException exception) {
             throw new AddReservationException("wrong ending date");
         }

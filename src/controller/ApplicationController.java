@@ -7,6 +7,7 @@ import model.*;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class ApplicationController {
     private CustomerManager customerManager;
@@ -161,7 +162,7 @@ public class ApplicationController {
         }
     }
 */
-    public Date verifyBeginningDate(String day, String month, String year) throws AddReservationException {
+    public GregorianCalendar verifyBeginningDate(String day, String month, String year) throws AddReservationException {
         try {
             return reservationManager.verifyBeginningDate(day, month, year);
         }
@@ -188,7 +189,7 @@ public class ApplicationController {
         }
     }
 
-    public Date verifyEndingDate(String day, String month, String year) throws AddReservationException {
+    public GregorianCalendar verifyEndingDate(String day, String month, String year) throws AddReservationException {
         try {
             return reservationManager.verifyEndingDate(day, month, year);
         }
