@@ -62,18 +62,13 @@ public class ReservationDBAccess {
             String sqlInstruction = "insert into reservation(beginningDate, roomNumber, roomHotelName, endingDate, allInclusive, people, remarks, additionalContact, couponCode, customerMail) values(str_to_date(?,'%d/%m/%Y'),?,?,str_to_date(?,'%d/%m/%Y'),?,?,?,?,?,?)";
             connection.setAutoCommit(true);
             PreparedStatement preparedStatement = connection.prepareStatement(sqlInstruction);
-            GregorianCalendar date = new GregorianCalendar(reservation.getBeginningDate().YEAR, reservation.getBeginningDate().MONTH, reservation.getBeginningDate().DAY_OF_MONTH);
             String pattern = "dd/MM/yyyy";
             DateFormat df = new SimpleDateFormat(pattern);
-            String beginDate = df.format(date);
-            preparedStatement.setString(1,beginDate);
+            preparedStatement.setString(1,df.format(reservation.getBeginningDate()));
             preparedStatement.setInt(2, reservation.getRoomNumber());
             preparedStatement.setString(3, reservation.getHotelName());
-            GregorianCalendar date2 = new GregorianCalendar(reservation.getBeginningDate().YEAR, reservation.getBeginningDate().MONTH, reservation.getBeginningDate().DAY_OF_MONTH);
-            String endDate = df.format(date2);
-            preparedStatement.setString(4, endDate);
+            preparedStatement.setString(4, df.format(reservation.getEndingDate()));
             preparedStatement.setBoolean(5, reservation.getAllInclusive());
-
             preparedStatement.setInt(6, reservation.getPeople());
             preparedStatement.setString(8, reservation.getTitle());
             preparedStatement.setString(9, reservation.getAdditionalContact());
@@ -106,28 +101,22 @@ public class ReservationDBAccess {
     public void updateReservation(Reservation reservation, Reservation reservationUpdated) throws UpdateReservationException {
         //TODO verifier avec DB
         try {
-            String pattern = "dd/MM/yyyy";
-            DateFormat df = new SimpleDateFormat(pattern);
             Connection connection = SingletonConnexion.getInstance();
             String sqlInstruction = "update members set  beginningDate=?, roomNumber=?, roomHotelName=?, endingDate=?, allInclusive=?, people=?, remarks=?, additionalContact=?, couponCode=?, customerMail=? where nationalNumber = " + reservation.getBeginningDate()+ " and roomHotelName= '" + reservation.getHotelName() + "' and roomNumber = '" + reservation.getRoomNumber() + ";";
             connection.setAutoCommit(true);
             PreparedStatement preparedStatement = connection.prepareStatement(sqlInstruction);
-            GregorianCalendar beginDate = new GregorianCalendar(reservationUpdated.getBeginningDate().YEAR, reservationUpdated.getBeginningDate().MONTH, reservationUpdated.getBeginningDate().DAY_OF_MONTH);
-            String beginDateStr = df.format(beginDate);
-            preparedStatement.setString(1,beginDateStr);
+            String pattern = "dd/MM/yyyy";
+            DateFormat df = new SimpleDateFormat(pattern);
+            preparedStatement.setString(1,df.format(reservationUpdated.getBeginningDate()));
             preparedStatement.setInt(2, reservationUpdated.getRoomNumber());
             preparedStatement.setString(3, reservationUpdated.getHotelName());
-            GregorianCalendar endDate = new GregorianCalendar(reservationUpdated.getBeginningDate().YEAR, reservationUpdated.getBeginningDate().MONTH, reservationUpdated.getBeginningDate().DAY_OF_MONTH);
-            String endDateStr = df.format(endDate);
-            preparedStatement.setString(4, endDateStr);
+            preparedStatement.setString(4, df.format(reservationUpdated.getBeginningDate()));
             preparedStatement.setBoolean(5, reservationUpdated.getAllInclusive());
             preparedStatement.setInt(6, reservationUpdated.getPeople());
             preparedStatement.setString(8, reservationUpdated.getTitle());
             preparedStatement.setString(9, reservationUpdated.getAdditionalContact());
             preparedStatement.setString(9, reservationUpdated.getCouponCode());
             preparedStatement.setString(10, reservationUpdated.getCustomerMail());
-
-
             preparedStatement.executeUpdate();
         }
         catch (Exception exception) {
