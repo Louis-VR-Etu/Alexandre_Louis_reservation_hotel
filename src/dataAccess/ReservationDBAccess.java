@@ -27,8 +27,22 @@ public class ReservationDBAccess {
             ArrayList<Reservation>reservations = new ArrayList<>();
             Reservation reservation;
             while (data.next()){
-                reservation = new Reservation(null,data.getInt(""),data.getString(""),null,data.getBoolean(""),data.getInt(""),data.getString(""),data.getString("")); //TODO  correct labels
-
+                reservation = new Reservation(null,
+                        data.getInt(""),
+                        data.getString(""),
+                        null,
+                        data.getBoolean(""),
+                        data.getInt(""),
+                        data.getString(""),
+                        data.getString("")); //TODO  correct label
+                String couponCode = data.getString("couponCode");
+                if(!data.wasNull()){
+                    reservation.setCouponCode(couponCode);
+                }
+                String additionalContact = data.getString("additionalContact");
+                if(!data.wasNull()){
+                    reservation.setAdditionalContact(additionalContact);
+                }
                 reservations.add(reservation);
             }
             return reservations;
@@ -75,10 +89,45 @@ public class ReservationDBAccess {
     }
 
     public void deleteReservation(Reservation reservation) throws DeleteReservationException {
-        //TODO
+        //TODO Verifier avec DB
+        try {
+            Connection connection = SingletonConnexion.getInstance();
+            // todo compare to date
+            String sqlInstruction = "delete from reservation where beginingDate = " + reservation.getBeginningDate() + " and roomHotelName= '" + reservation.getHotelName() + "' and roomNumber = '" + reservation.getRoomNumber() + "';";
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlInstruction);
+            preparedStatement.executeUpdate();
+        }
+        catch (Exception exception) {
+            throw new DeleteReservationException(exception.getMessage());
+        }
+
     }
 
     public void updateReservation(Reservation reservation, Reservation reservationUpdated) throws UpdateReservationException {
-        //TODO
+        //TODO verifier avec DB
+        try {
+            Connection connection = SingletonConnexion.getInstance();
+            String sqlInstruction = "update members set  beginningDate=?, roomNumber=?, roomHotelName=?, endingDate=?, allInclusive=?, people=?, remarks=?, additionalContact=?, couponCode=?, customerMail=? where nationalNumber = " + reservation.getBeginningDate()+ " and roomHotelName= '" + reservation.getHotelName() + "' and roomNumber = '" + reservation.getRoomNumber() + ";";
+            connection.setAutoCommit(true);
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlInstruction);
+            Date beginDate = new Date(reservationUpdated.getBeginningDate().YEAR, reservationUpdated.getBeginningDate().MONTH, reservationUpdated.getBeginningDate().DAY_OF_MONTH);
+            preparedStatement.setDate(1,beginDate);
+            preparedStatement.setInt(2, reservationUpdated.getRoomNumber());
+            preparedStatement.setString(3, reservationUpdated.getHotelName());
+            Date endDate = new Date(reservationUpdated.getBeginningDate().YEAR, reservationUpdated.getBeginningDate().MONTH, reservationUpdated.getBeginningDate().DAY_OF_MONTH);
+            preparedStatement.setDate(4, endDate);
+            preparedStatement.setBoolean(5, reservationUpdated.getAllInclusive());
+            preparedStatement.setInt(6, reservationUpdated.getPeople());
+            preparedStatement.setString(8, reservationUpdated.getTitle());
+            preparedStatement.setString(9, reservationUpdated.getAdditionalContact());
+            preparedStatement.setString(9, reservationUpdated.getCouponCode());
+            preparedStatement.setString(10, reservationUpdated.getCustomerMail());
+
+
+            preparedStatement.executeUpdate();
+        }
+        catch (Exception exception) {
+            throw new UpdateReservationException(exception.getMessage());
+        }
     }
 }
