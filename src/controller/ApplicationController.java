@@ -76,16 +76,16 @@ public class ApplicationController {
             throw exception;
         }
     }
-/*
-    public ArrayList<Station> getStations() throws GetStationException {
+
+    public ArrayList<RoomType> getRoomTypes() throws RoomTypeAccessException {
         try {
-            return stationManager.getStations();
+            return roomTypeManager.getRoomTypes();
         }
-        catch (GetStationException exception) {
+        catch (RoomTypeAccessException exception) {
             throw exception;
         }
     }
-
+/*
     public ArrayList<String> stringCustomer(ArrayList<Customer> customers) {
         return CustomerManager.stringCustomer(customers);
     }
@@ -96,10 +96,9 @@ public class ApplicationController {
     public ArrayList<String> stringReservation(ArrayList<Reservation> reservations) { return reservationManager.stringReservations(reservations);}
 
     public ArrayList<String> stringHotelNames(ArrayList<Hotel> hotels) { return hotelManager.stringHotelNames(hotels);}
+
+    public ArrayList<String> stringRoomTypeNames(ArrayList<RoomType> roomTypeNames) { return roomTypeManager.stringRoomTypeNames(roomTypeNames); }
 /*
-    public ArrayList<String> stringStation(ArrayList<Station> stationsArray) { return stationManager.stringStation(stationsArray); }
-
-
     public City researchCity(String stringCity, ArrayList<City> cities) {
         return cityManager.researchCity(stringCity, cities);
     }

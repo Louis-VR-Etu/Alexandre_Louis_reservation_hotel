@@ -18,7 +18,7 @@ public class FormPanel extends JPanel {
     private JTextField  remarks,contacts, coupon;
     private JCheckBox buttonAllIn;
     private ButtonGroup buttonGroup;
-    private JComboBox hotel, roomType, room, mail, hotelName;
+    private JComboBox hotel, roomType, room, mail, hotelName, roomTypeName;
     private JButton validationButton;
     private JSpinner beginDate, endDate,peoples;
     private ArrayList<Hotel> hotels;
@@ -31,7 +31,6 @@ public class FormPanel extends JPanel {
     public FormPanel() {
         this.setLayout(new GridLayout(13,2,5,5));
 
-        customerMailLabel = new JLabel("Usermail");
         customers = new ArrayList<>();
         applicationController = new ApplicationController();
         ArrayList<String> mails;
@@ -41,6 +40,8 @@ public class FormPanel extends JPanel {
             customerMailLabel = new JLabel("mails");
             this.add(customerMailLabel);
             mail = new JComboBox(mails.toArray());
+            mail.setSelectedItem(0);
+            mail.setMaximumRowCount(5);
             this.add(mail);
         }
         catch (CustomerAccessException exception){
@@ -48,7 +49,6 @@ public class FormPanel extends JPanel {
             System.exit(0);
         }
 
-        hotelNameLabel = new JLabel("hotel");
         hotels = new ArrayList<>();
         applicationController = new ApplicationController();
         ArrayList<String> hotelNames;
@@ -59,6 +59,8 @@ public class FormPanel extends JPanel {
             hotelNameLabel = new JLabel("hotel names");
             this.add(hotelNameLabel);
             hotelName = new JComboBox(hotelNames.toArray());
+            hotelName.setSelectedItem(0);
+            hotelName.setMaximumRowCount(5);
             this.add(hotelName);
         }
 
@@ -119,6 +121,28 @@ public class FormPanel extends JPanel {
         }
         catch (Exception exception){JOptionPane.showMessageDialog(null, exception.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         }
+        */
+        roomTypes = new ArrayList<>();
+        applicationController = new ApplicationController();
+        ArrayList<String> roomTypeNames;
+
+        try {
+            roomTypes = applicationController.getRoomTypes();
+            roomTypeNames = applicationController.stringRoomTypeNames(roomTypes);
+            roomTypeLabel = new JLabel("room type names");
+            this.add(roomTypeLabel);
+            roomTypeName = new JComboBox(roomTypeNames.toArray());
+            roomTypeName.setSelectedItem(0);
+            roomTypeName.setMaximumRowCount(5);
+            this.add(roomTypeName);
+        }
+
+        catch (Exception exception){
+            JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
+        }
+
+        /*
         roomNumberLabel = new JLabel("room number");
         this.add(roomNumberLabel);
         try{

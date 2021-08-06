@@ -15,5 +15,12 @@ public class RoomTypeManager {
         catch (RoomTypeAccessException exception) {throw exception;}
 
     }
+    public ArrayList<String> stringRoomTypeNames(ArrayList<RoomType> roomTypes) {
+        ArrayList<String> roomTypeNames = new ArrayList<>();
 
+        for (int iRoomType = 0 ; iRoomType < roomTypes.size() ; iRoomType++) {
+            roomTypeNames.add(roomTypes.get(iRoomType).getTypeName());
+        }
+        return roomTypeNames;
+    }
 }
