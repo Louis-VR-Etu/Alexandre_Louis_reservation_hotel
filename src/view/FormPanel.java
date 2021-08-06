@@ -18,7 +18,7 @@ public class FormPanel extends JPanel {
     private JTextField  remarks,contacts, coupon;
     private JCheckBox buttonAllIn;
     private ButtonGroup buttonGroup;
-    private JComboBox hotel, roomType, room, mail;
+    private JComboBox hotel, roomType, room, mail, hotelName;
     private JButton validationButton;
     private JSpinner beginDate, endDate,peoples;
     private ArrayList<Hotel> hotels;
@@ -47,17 +47,24 @@ public class FormPanel extends JPanel {
             JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         }
- /*
+
+        hotelNameLabel = new JLabel("hotel");
+        hotels = new ArrayList<>();
+        applicationController = new ApplicationController();
+        ArrayList<String> hotelNames;
+
         try {
-            hotelNameLabel = new JLabel("Hotel");
+            hotels = applicationController.getHotels();
+            hotelNames = applicationController.stringHotelNames(hotels);
+            hotelNameLabel = new JLabel("hotel names");
             this.add(hotelNameLabel);
-            //get hotels
-            ArrayList<String> hotelNames;
-            //get hotelNames
-            // hotel = new JComboBox(hotelNames.toArray());
+            hotelName = new JComboBox(hotelNames.toArray());
+            this.add(hotelName);
         }
 
-        catch (Exception exception){JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        catch (Exception exception){
+            JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
         }
         //*/
 
