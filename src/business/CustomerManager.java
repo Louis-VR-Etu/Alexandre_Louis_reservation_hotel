@@ -15,5 +15,22 @@ public class CustomerManager {
         catch (CustomerAccessException exception) {throw exception;}
 
     }
+/*
+    public ArrayList<String> stringCustomer(ArrayList<Customer> customers) {
+        ArrayList<String> customersName = new ArrayList<>();
 
+        for (int iCustomer = 0 ; iCustomer < customers.size() ; iCustomer++) {
+            customersName.add(customers.get(iCustomer).getName() + ", " + customers.get(iCustomer).getSurname() + ", " + customers.get(iCustomer).getBirthDate() + ", " + customers.get(iCustomer).getMail() + ", " + customers.get(iCustomer).getPhoneNumber());
+        }
+        return customersName;
+    }
+*/
+public ArrayList<String> stringCustomerMail(ArrayList<Customer> customers) {
+    ArrayList<String> customerMails = new ArrayList<>();
+
+    for (int iCustomer = 0 ; iCustomer < customers.size() ; iCustomer++) {
+        customerMails.add(customers.get(iCustomer).getMail());
+    }
+    return customerMails;
+}
 }

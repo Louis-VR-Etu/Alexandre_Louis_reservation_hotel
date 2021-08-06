@@ -58,16 +58,16 @@ public class ApplicationController {
             throw exception;
         }
     }
-/*
-    public ArrayList<City> getCities() throws CitiesAccessException {
+
+    public ArrayList<Customer> getCustomers() throws CustomerAccessException {
         try {
-            return cityManager.getCities();
+            return customerManager.getCustomers();
         }
-        catch (CitiesAccessException exception) {
+        catch (CustomerAccessException exception) {
             throw exception;
         }
     }
-
+/*
     public ArrayList<Employee> getEmployees() throws GetEmployeeException {
         try {
             return employeeManager.getEmployees();
@@ -86,10 +86,13 @@ public class ApplicationController {
         }
     }
 
-    public ArrayList<String> stringCity(ArrayList<City> cities) {
-        return cityManager.stringCity(cities);
+    public ArrayList<String> stringCustomer(ArrayList<Customer> customers) {
+        return CustomerManager.stringCustomer(customers);
     }
 */
+    public ArrayList<String> stringCustomerMail(ArrayList<Customer> customers) {
+        return customerManager.stringCustomerMail(customers);
+    }
     public ArrayList<String> stringReservation(ArrayList<Reservation> reservations) { return reservationManager.stringReservations(reservations);}
 /*
     public ArrayList<String> stringEmployee(ArrayList<Employee> employees) { return employeeManager.stringEmployee(employees);}
@@ -245,15 +248,5 @@ public class ApplicationController {
         } catch (AddReservationException exception) {
             throw exception;
         }
-    }
-
-    public ArrayList<Customer> getCustomers() throws CustomerAccessException{
-        //todo
-        return null;
-    }
-
-    public ArrayList<String> stringCustomer(ArrayList<Customer> customers) {
-        //todo
-        return null;
     }
 }

@@ -30,21 +30,22 @@ public class FormPanel extends JPanel {
 
     public FormPanel() {
         this.setLayout(new GridLayout(13,2,5,5));
-        customerMailLabel = new JLabel("Usermail");
 
+        customerMailLabel = new JLabel("Usermail");
         customers = new ArrayList<>();
         applicationController = new ApplicationController();
         ArrayList<String> mails;
         try{
             customers = applicationController.getCustomers();
-            mails = applicationController.stringCustomer(customers);
+            mails = applicationController.stringCustomerMail(customers);
             customerMailLabel = new JLabel("mails");
             this.add(customerMailLabel);
             mail = new JComboBox(mails.toArray());
             this.add(mail);
         }
         catch (CustomerAccessException exception){
-            throw exception;
+            JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
         }
  /*
         try {
@@ -56,9 +57,10 @@ public class FormPanel extends JPanel {
             // hotel = new JComboBox(hotelNames.toArray());
         }
 
-        catch (Exception exception){JOptionPane.showMessageDialog(null, exception.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        catch (Exception exception){JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         //*/
+
         beginningDateLabel = new JLabel("Beginning date");
         this.add(beginningDateLabel);
         SpinnerDateModel spinMod1 = new SpinnerDateModel();
