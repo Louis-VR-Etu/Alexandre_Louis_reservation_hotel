@@ -29,7 +29,7 @@ public class FormPanel extends JPanel {
     private ApplicationController applicationController;
 
     public FormPanel() {
-        this.setLayout(new GridLayout(13,2,5,5));
+        this.setLayout(new GridLayout(16,2,5,5));
 
         customers = new ArrayList<>();
         applicationController = new ApplicationController();
@@ -110,18 +110,6 @@ public class FormPanel extends JPanel {
         coupon = new JTextField();
         this.add(coupon);
 
-        roomTypeLabel = new JLabel("room type");
-        this.add(roomTypeLabel);
-        /*
-        try{
-
-            // get Room types
-            roomType = new JComboBox(roomTypes.toArray());
-            this.add(roomType);
-        }
-        catch (Exception exception){JOptionPane.showMessageDialog(null, exception.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
-        }
-        */
         roomTypes = new ArrayList<>();
         applicationController = new ApplicationController();
         ArrayList<String> roomTypeNames;
@@ -153,11 +141,13 @@ public class FormPanel extends JPanel {
         }
         catch (Exception exception){JOptionPane.showMessageDialog(null, exception.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         }
+        */
+
         //*/
         validationButton = new JButton("Validation");
         this.add(validationButton);
         //  ButtonListener listener = new ButtonListener();
-        //   validationButton.addActionListener(listener);
+        //  validationButton.addActionListener(listener);
 
     }
     //*
