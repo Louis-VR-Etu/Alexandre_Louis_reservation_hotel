@@ -21,9 +21,8 @@ public class RoomTypeDBAccess {
             ResultSet data = preparedStatement.executeQuery();
             ArrayList<RoomType>roomTypes = new ArrayList<>();
             RoomType roomType;
-            int iObject=0;
             while (data.next()){
-                roomType = new RoomType(data.getString("typename"),data.getFloat("price"),data.getInt("singlebed"),data.getInt("doublebed")); //TODO correct labels
+                roomType = new RoomType(data.getString("typename"),data.getFloat("price/night"),data.getInt("singlebed"),data.getInt("doublebed"));
                 roomTypes.add(roomType);
             }
             return roomTypes;

@@ -23,7 +23,6 @@ public class CustomerDBAccess {
             ResultSet data = preparedStatement.executeQuery();
             ArrayList<Customer>customers = new ArrayList<>();
             Customer customer;
-            int iObject=0;
             while (data.next()){
                 customer = new Customer(data.getString("mail"),data.getString("name"),data.getString("surname"),null/*todo turn data.getDate("") into gregorianCalendar*/,data.getString("phoneNumber"));
                 customers.add(customer);

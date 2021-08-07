@@ -19,9 +19,8 @@ public class HotelDBAccess {
             ResultSet data = preparedStatement.executeQuery();
             ArrayList<Hotel>hotels = new ArrayList<>();
             Hotel hotel;
-            int iObject=0;
             while (data.next()){
-                hotel = new Hotel(data.getString(""),data.getString(""),data.getBoolean(""),data.getFloat("")); //TODO correct labels
+                hotel = new Hotel(data.getString("name"),data.getString("address"),data.getBoolean("animals"),data.getFloat("allInclusivePrice"));
 
                 hotels.add(hotel);
             }

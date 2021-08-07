@@ -28,13 +28,13 @@ public class ReservationDBAccess {
             Reservation reservation;
             while (data.next()){
                 reservation = new Reservation(null,
-                        data.getInt(""),
-                        data.getString(""),
+                        data.getInt("roomNumber"),
+                        data.getString("roomHotelName"),
                         null,
-                        data.getBoolean(""),
-                        data.getInt(""),
-                        data.getString(""),
-                        data.getString("")); //TODO  correct label
+                        data.getBoolean("allInclusive"),
+                        data.getInt("people"),
+                        data.getString("remarks"),
+                        data.getString("customerMail"));
                 String couponCode = data.getString("couponCode");
                 if(!data.wasNull()){
                     reservation.setCouponCode(couponCode);

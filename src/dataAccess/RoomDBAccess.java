@@ -20,9 +20,8 @@ public class RoomDBAccess {
             ResultSet data = preparedStatement.executeQuery();
             ArrayList<Room>rooms = new ArrayList<>();
             Room room;
-            int iObject=0;
             while (data.next()){
-                room = new Room(data.getInt("number"),data.getInt("floor"),data.getString("hotelname"),data.getString("roomType")); //TODO correct labels
+                room = new Room(data.getInt("number"),data.getInt("floor"),data.getString("hotelName"),data.getString("roomTypeName"));
                 rooms.add(room);
             }
             return rooms;
