@@ -25,7 +25,7 @@ public class CustomerDBAccess {
             Customer customer;
             int iObject=0;
             while (data.next()){
-                customer = new Customer(data.getString(""),data.getString(""),data.getString(""),null/*todo turn data.getDate("") into gregorianCalendar*/,data.getString("")); //TODO correct labels
+                customer = new Customer(data.getString("mail"),data.getString("name"),data.getString("surname"),null/*todo turn data.getDate("") into gregorianCalendar*/,data.getString("phoneNumber"));
                 customers.add(customer);
             }
             return customers;
