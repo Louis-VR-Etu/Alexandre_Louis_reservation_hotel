@@ -23,7 +23,7 @@ public class RoomTypeDBAccess {
             RoomType roomType;
             int iObject=0;
             while (data.next()){
-                roomType = new RoomType(data.getString("typename"),data.getFloat("price"),data.getInt("singlebed"),data.getInt("doublebed")); //TODO correct labels
+                roomType = new RoomType(data.getString("typename"),data.getFloat("price/night"),data.getInt("singlebed"),data.getInt("doublebed")); //TODO correct labels
                 roomTypes.add(roomType);
             }
             return roomTypes;
