@@ -17,8 +17,11 @@ public class ReservationManager {
     }
 
     public ArrayList<Reservation> getReservations() throws GetReservationException {
+        System.out.println("reservation manager");
         try {
+            System.out.println(stringReservations(reservationDB.getReservations()));
             return reservationDB.getReservations();
+
         } catch (GetReservationException exception) {
             throw exception;
         }

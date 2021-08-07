@@ -17,9 +17,11 @@ public class ReservationDBAccess {
     public ReservationDBAccess(){}
 
     public ArrayList<Reservation> getReservations() throws GetReservationException {
+        //TODO erreur ici
+        System.out.println("reservation db access");
         try {
             Connection connection = SingletonConnexion.getInstance();
-            String sqlInstruction = "select * from Reservation";
+            String sqlInstruction = "select * from reservation";
 
             PreparedStatement preparedStatement = connection.prepareStatement(sqlInstruction);
 
@@ -45,6 +47,7 @@ public class ReservationDBAccess {
                 }
                 reservations.add(reservation);
             }
+
             return reservations;
         }
         catch(SQLException exception){

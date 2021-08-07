@@ -49,7 +49,7 @@ public class AllReservationsModel extends AbstractTableModel{
         switch (column) {
             case 0:
               //  Date date1 = new java.sql.Date(reservation.getBeginningDate().YEAR, reservation.getBeginningDate().MONTH, reservation.getBeginningDate().DAY_OF_MONTH);
-                String pattern1 = "dd/MM/yyyy";
+                String pattern1 = "yyyy-MM-dd";
                 DateFormat df1 = new SimpleDateFormat(pattern1);
                 String dateString1 = df1.format(reservation.getBeginningDate());
                 return dateString1;
@@ -59,7 +59,7 @@ public class AllReservationsModel extends AbstractTableModel{
                 return reservation.getHotelName();
             case 3:
              //   Date date2 = new java.sql.Date(reservation.getEndingDate().YEAR, reservation.getEndingDate().MONTH, reservation.getEndingDate().DAY_OF_MONTH);
-                String pattern2 = "dd/MM/yyyy";
+                String pattern2 = "yyyy-MM-dd";
                 DateFormat df2 = new SimpleDateFormat(pattern2);
                 String dateString2 = df2.format(reservation.getEndingDate());
                 return dateString2;

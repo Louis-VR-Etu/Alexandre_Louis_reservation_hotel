@@ -52,6 +52,7 @@ public class ApplicationController {
     }
 
     public ArrayList<Reservation> getReservations() throws GetReservationException {
+        System.out.println("aplication controller");
         try{
             return reservationManager.getReservations();
         }

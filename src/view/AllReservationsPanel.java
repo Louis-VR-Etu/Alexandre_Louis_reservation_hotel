@@ -15,10 +15,11 @@ public class AllReservationsPanel extends JPanel{
 
     private ApplicationController applicationController;
 
-    public AllReservationsPanel(){
-        this.setLayout(new GridLayout(13, 2, 5, 5));
+    public AllReservationsPanel(){ //TODO afficher les réservations
+        this.setLayout(new GridLayout(16, 16, 5, 5));
         applicationController = new ApplicationController();
         try{
+            System.out.println("all reservation panel");
             reservations = applicationController.getReservations();
             allReservationsModel = new AllReservationsModel(reservations);
             JTable table = new JTable(allReservationsModel);
