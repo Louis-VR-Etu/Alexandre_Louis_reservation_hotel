@@ -18,7 +18,6 @@ public class ReservationDBAccess {
 
     public ArrayList<Reservation> getReservations() throws GetReservationException {
         //TODO erreur ici
-        System.out.println("reservation db access");
         try {
             Connection connection = SingletonConnexion.getInstance();
             String sqlInstruction = "select * from reservation";
@@ -28,7 +27,7 @@ public class ReservationDBAccess {
             ResultSet data = preparedStatement.executeQuery();
             ArrayList<Reservation>reservations = new ArrayList<>();
             Reservation reservation;
-            while (data.next()){
+            while (data.next()) {
                 reservation = new Reservation(null,
                         data.getInt("roomNumber"),
                         data.getString("roomHotelName"),
@@ -38,16 +37,15 @@ public class ReservationDBAccess {
                         data.getString("remarks"),
                         data.getString("customerMail"));
                 String couponCode = data.getString("couponCode");
-                if(!data.wasNull()){
+                if (!data.wasNull()) {
                     reservation.setCouponCode(couponCode);
                 }
                 String additionalContact = data.getString("additionalContact");
-                if(!data.wasNull()){
+                if (!data.wasNull()) {
                     reservation.setAdditionalContact(additionalContact);
                 }
                 reservations.add(reservation);
             }
-
             return reservations;
         }
         catch(SQLException exception){

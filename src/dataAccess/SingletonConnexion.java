@@ -11,7 +11,7 @@ public class SingletonConnexion {
     public static Connection getInstance() throws SQLException {
         if (connexionUnique == null) {
             try {
-                connexionUnique = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "rootpassword"); //TODO correct database url
+                connexionUnique = DriverManager.getConnection("jdbc:mysql://localhost:3306/projetLouis", "root", "Castle11"); //TODO correct database url
             } catch (SQLException exception) {
                 throw exception;
             }

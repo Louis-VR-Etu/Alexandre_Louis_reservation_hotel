@@ -19,7 +19,6 @@ public class AllReservationsPanel extends JPanel{
         this.setLayout(new GridLayout(16, 16, 5, 5));
         applicationController = new ApplicationController();
         try{
-            System.out.println("all reservation panel");
             reservations = applicationController.getReservations();
             allReservationsModel = new AllReservationsModel(reservations);
             JTable table = new JTable(allReservationsModel);
