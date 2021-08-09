@@ -85,10 +85,8 @@ public class ReservationDBAccess {
     }
 
     public void deleteReservation(Reservation reservation) throws DeleteReservationException {
-        //TODO Verifier avec DB
         try {
             Connection connection = SingletonConnexion.getInstance();
-            // todo compare to date
             String sqlInstruction = "delete from reservation where beginingDate = " + reservation.getBeginningDate() + " and roomHotelName= '" + reservation.getHotelName() + "' and roomNumber = '" + reservation.getRoomNumber() + "';";
             PreparedStatement preparedStatement = connection.prepareStatement(sqlInstruction);
             preparedStatement.executeUpdate();

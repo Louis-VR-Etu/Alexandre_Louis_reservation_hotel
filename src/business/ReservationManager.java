@@ -61,6 +61,16 @@ public class ReservationManager {
         return reservationString;
     }
 
+    public Reservation researchReservation(String reservationString, ArrayList<Reservation> reservations) {
+        boolean isFound = false;
+        int iReservation = 0;
+        while (iReservation < reservations.size() && !isFound) {
+            isFound = reservationString.compareTo(reservations.get(iReservation).getCustomerMail() + ", " + reservations.get(iReservation).getBeginningDate() + ", " + reservations.get(iReservation).getRoomNumber()) == 0;
+            iReservation++;
+        }
+        return reservations.get(iReservation-1);
+    }
+
     public GregorianCalendar verifyBeginningDate(String day, String month, String year) throws AddReservationException {
         try {
             //todo date
@@ -119,7 +129,6 @@ public class ReservationManager {
         }
     }
 
-    /*
     public String verifyAdditionalContact(String additionalContact) throws AddReservationException {
 
         try {
@@ -129,9 +138,9 @@ public class ReservationManager {
         }
     }
 
-    public Integer verifyCouponCode(String couponCode) throws AddReservationException {
+    public String verifyCouponCode(String couponCode) throws AddReservationException {
         try {
-            return verifyNumber(couponCode);
+            return verifyString(couponCode);
         } catch (Exception exception) {
             throw new AddReservationException("Wrong couponCode");
         }

@@ -15,5 +15,13 @@ public class RoomManager {
         catch (RoomAccessException exception) {throw exception;}
 
     }
-
+    public Room researchRoom(String roomString, ArrayList<Room> rooms) {
+        boolean isFound = false;
+        int iRoom = 0;
+        while (iRoom < rooms.size() && !isFound) {
+            isFound = roomString.compareTo(rooms.get(iRoom).getNumber() + ", " + rooms.get(iRoom).getHotelName()) == 0;
+            iRoom++;
+        }
+        return rooms.get(iRoom-1);
+    }
 }

@@ -107,11 +107,15 @@ public class ApplicationController {
     public Station researchStation(String stringStation, ArrayList<Station> stations) {
         return stationManager.researchStation(stringStation, stations);
     }
-
-    public Member researchMember(String memberString, ArrayList<Member> members) {
-        return memberManager.researchMember(memberString, members);
+*/
+    public Reservation researchReservation(String reservationString, ArrayList<Reservation> reservations) {
+        return reservationManager.researchReservation(reservationString, reservations);
     }
 
+    public Room researchRoom(String roomString, ArrayList<Room> rooms){
+        return roomManager.researchRoom(roomString, rooms);
+    }
+/*
     public Employee researchEmployee(String employeeString, ArrayList<Employee> employees) {
         return employeeManager.researchEmployee(employeeString, employees);
     }
@@ -224,7 +228,7 @@ public class ApplicationController {
         }
     }
 
-   /* public String verifyAdditionalContact(String additionalContact) throws AddReservationException {
+      public String verifyAdditionalContact(String additionalContact) throws AddReservationException {
         try {
             return reservationManager.verifyAdditionalContact(additionalContact);
         }
@@ -233,7 +237,7 @@ public class ApplicationController {
         }
     }
 
-    public Integer verifyCouponCode(String couponCode) throws AddReservationException {
+    public String verifyCouponCode(String couponCode) throws AddReservationException {
         try {
             return reservationManager.verifyCouponCode(couponCode);
         }
@@ -241,7 +245,7 @@ public class ApplicationController {
             throw exception;
         }
     }
-*/
+/*
     public String verifyCustomerMail(String customerMail) throws AddReservationException {
         try {
             return reservationManager.verifyCustomerMail(customerMail);
@@ -249,4 +253,5 @@ public class ApplicationController {
             throw exception;
         }
     }
+ */
 }

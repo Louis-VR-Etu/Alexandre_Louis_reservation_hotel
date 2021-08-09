@@ -10,7 +10,7 @@ import java.awt.event.WindowEvent;
 public class ProgramWindow extends JFrame {
     private JMenuBar menuBar;
     private JMenu reservationMenu, researchMenu;
-    private JMenuItem addReservation, listReservations;
+    private JMenuItem addReservation, listReservations, removeReservation;
     private Container container;
 
     public ProgramWindow(){
@@ -27,6 +27,8 @@ public class ProgramWindow extends JFrame {
         addReservation.addActionListener(new FormListener());
         listReservations = new JMenuItem("List Reservations");
         listReservations.addActionListener(new ListListener());
+        removeReservation = new JMenuItem("Remove Member");
+        removeReservation.addActionListener(new RemoveListener());
         reservationMenu.add(addReservation);
         reservationMenu.add(listReservations);
 
@@ -62,4 +64,13 @@ public class ProgramWindow extends JFrame {
         }
     }
 
+    private class RemoveListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            container.removeAll();
+            container.add(new RemovePanel(), BorderLayout.CENTER);
+            container.repaint();
+            ProgramWindow.this.setVisible(true);
+        }
+    }
 }
