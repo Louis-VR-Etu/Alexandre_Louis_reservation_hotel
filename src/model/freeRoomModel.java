@@ -4,20 +4,21 @@ import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 
 public class freeRoomModel extends AbstractTableModel {
-    private ArrayList<Room> contents;
+    private ArrayList<RoomAndBed> contents;
     private ArrayList<String> columnNames;
 
-    public void setContents(ArrayList<Room> contents){
+    public void setContents(ArrayList<RoomAndBed> contents){
         this.contents = contents;
     }
 
-    public freeRoomModel(ArrayList<Room> Rooms){
+    public freeRoomModel(ArrayList<RoomAndBed> Rooms){
         columnNames = new ArrayList<>();
         columnNames.add("hotel name");
         columnNames.add("room number");
         columnNames.add("floor");
         columnNames.add("roomType");
-        //TODO roomtypes beds?
+        columnNames.add("single beds");
+        columnNames.add("double beds");
         setContents(Rooms);
     }
 
@@ -38,12 +39,14 @@ public class freeRoomModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int row, int column) {
-        Room freeRoom = contents.get(row);
+        RoomAndBed freeRoom = contents.get(row);
         switch (column) {
             case 0 : return freeRoom.getHotelName();
             case 1 : return freeRoom.getNumber();
             case 2 : return freeRoom.getFloor();
             case 3 : return freeRoom.getRoomType();
+            case 4 : return freeRoom.getSingleBed();
+            case 5 : return freeRoom.getDoubleBed();
             default : return null;
         }
     }
