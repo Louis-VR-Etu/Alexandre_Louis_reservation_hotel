@@ -119,7 +119,9 @@ public class ReservationManager {
         }
     }
 
+    /*
     public String verifyAdditionalContact(String additionalContact) throws AddReservationException {
+
         try {
             return verifyString(additionalContact);
         } catch (Exception exception) {
@@ -134,6 +136,7 @@ public class ReservationManager {
             throw new AddReservationException("Wrong couponCode");
         }
     }
+    //*/
 
     public String verifyCustomerMail(String customerMail) throws AddReservationException {
         try {

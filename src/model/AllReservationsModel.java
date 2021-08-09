@@ -8,6 +8,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.Objects;
 
 public class AllReservationsModel extends AbstractTableModel{
     private ArrayList<Reservation> contents;
@@ -18,6 +19,7 @@ public class AllReservationsModel extends AbstractTableModel{
     }
 
     public AllReservationsModel(ArrayList<Reservation> reservations){
+
         columnNames = new ArrayList<>();
         columnNames.add("beginningDate");
         columnNames.add("number");
@@ -29,7 +31,9 @@ public class AllReservationsModel extends AbstractTableModel{
         columnNames.add("additionalContact");
         columnNames.add("couponCode");
         columnNames.add("mail");
+
         setContents(reservations);
+        System.out.println("set content");
     }
 
     public int getColumnCount(){
@@ -46,23 +50,26 @@ public class AllReservationsModel extends AbstractTableModel{
 
     public Object getValueAt(int row, int column) {
         Reservation reservation = contents.get(row);
+        //System.out.println("get value");
         switch (column) {
             case 0:
               //  Date date1 = new java.sql.Date(reservation.getBeginningDate().YEAR, reservation.getBeginningDate().MONTH, reservation.getBeginningDate().DAY_OF_MONTH);
+                if(reservation.getBeginningDate()!=null){
                 String pattern1 = "yyyy-MM-dd";
                 DateFormat df1 = new SimpleDateFormat(pattern1);
                 String dateString1 = df1.format(reservation.getBeginningDate());
-                return dateString1;
+                return dateString1;}
             case 1:
                 return reservation.getRoomNumber();
             case 2:
                 return reservation.getHotelName();
             case 3:
              //   Date date2 = new java.sql.Date(reservation.getEndingDate().YEAR, reservation.getEndingDate().MONTH, reservation.getEndingDate().DAY_OF_MONTH);
+                if(reservation.getBeginningDate()!=null){
                 String pattern2 = "yyyy-MM-dd";
                 DateFormat df2 = new SimpleDateFormat(pattern2);
                 String dateString2 = df2.format(reservation.getEndingDate());
-                return dateString2;
+                return dateString2;}
             case 4:
                 return reservation.getAllInclusive();
             case 5:
@@ -84,7 +91,9 @@ public class AllReservationsModel extends AbstractTableModel{
     }
 
         public Class getColumnClass(int column) {
+
             Class c;
+          //  System.out.println("get column class");
             switch (column) {
                 case 0 : c = String.class;
                     break;

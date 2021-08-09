@@ -224,7 +224,7 @@ public class ApplicationController {
         }
     }
 
-    public String verifyAdditionalContact(String additionalContact) throws AddReservationException {
+   /* public String verifyAdditionalContact(String additionalContact) throws AddReservationException {
         try {
             return reservationManager.verifyAdditionalContact(additionalContact);
         }
@@ -241,7 +241,7 @@ public class ApplicationController {
             throw exception;
         }
     }
-
+*/
     public String verifyCustomerMail(String customerMail) throws AddReservationException {
         try {
             return reservationManager.verifyCustomerMail(customerMail);
