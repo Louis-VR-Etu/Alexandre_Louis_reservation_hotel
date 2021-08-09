@@ -3,6 +3,7 @@ package business;
 import dataAccess.CustomerDBAccess;
 import exception.CustomerAccessException;
 import model.Customer;
+import model.Room;
 
 import java.util.ArrayList;
 
@@ -25,12 +26,22 @@ public class CustomerManager {
         return customersName;
     }
 */
-public ArrayList<String> stringCustomerMail(ArrayList<Customer> customers) {
-    ArrayList<String> customerMails = new ArrayList<>();
+    public ArrayList<String> stringCustomerMail(ArrayList<Customer> customers) {
+        ArrayList<String> customerMails = new ArrayList<>();
 
-    for (int iCustomer = 0 ; iCustomer < customers.size() ; iCustomer++) {
-        customerMails.add(customers.get(iCustomer).getMail());
+        for (int iCustomer = 0 ; iCustomer < customers.size() ; iCustomer++) {
+            customerMails.add(customers.get(iCustomer).getMail());
+        }
+        return customerMails;
     }
-    return customerMails;
-}
+
+    public Customer researchCustomer(String customerString, ArrayList<Customer> customers) {
+        boolean isFound = false;
+        int iCustomer = 0;
+        while (iCustomer < customers.size() && !isFound) {
+            isFound = customerString.compareTo(customers.get(iCustomer).getMail()) == 0;
+            iCustomer++;
+        }
+        return customers.get(iCustomer-1);
+    }
 }

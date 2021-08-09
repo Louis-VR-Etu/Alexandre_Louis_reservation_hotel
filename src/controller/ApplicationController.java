@@ -115,6 +115,14 @@ public class ApplicationController {
     public Room researchRoom(String roomString, ArrayList<Room> rooms){
         return roomManager.researchRoom(roomString, rooms);
     }
+
+    public Hotel researchHotel(String hotelString, ArrayList<Hotel> hotels){
+        return hotelManager.researchHotel(hotelString, hotels);
+    }
+
+    public Customer researchCustomer(String customerString, ArrayList<Customer> customers){
+        return customerManager.researchCustomer(customerString, customers);
+    }
 /*
     public Employee researchEmployee(String employeeString, ArrayList<Employee> employees) {
         return employeeManager.researchEmployee(employeeString, employees);
