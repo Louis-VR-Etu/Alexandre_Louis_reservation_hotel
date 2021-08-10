@@ -95,6 +95,7 @@ public class FreeRoomsPanel extends JPanel{
 
 
                 FreeRoomsPanel.this.removeAll();
+                FreeRoomsPanel.this.setLayout(new GridLayout(1,2,5,5));
                 freeRoomsModel = new FreeRoomsModel(rooms);
                 JTable freeRooms = new JTable(freeRoomsModel);
                 JScrollPane scrollPane = new JScrollPane(freeRooms);
