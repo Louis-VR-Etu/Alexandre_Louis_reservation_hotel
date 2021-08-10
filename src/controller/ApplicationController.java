@@ -253,10 +253,18 @@ public class ApplicationController {
         }
     }
 
-    public ArrayList<RoomAndBed> getFreeRooms(String hotelName, Date beginningDate , Date endingDate, int people) throws ResearchFreeRoomsException {
+    public ArrayList<RoomAndBed> getFreeRooms(String hotelName, Date beginningDate , Date endingDate, int people) throws GetFreeRoomsException {
         try{
             return roomManager.getFreeRooms(hotelName,beginningDate,endingDate,people);
-        } catch(ResearchFreeRoomsException exception){
+        } catch(GetFreeRoomsException exception){
+            throw exception;
+        }
+    }
+
+    public ArrayList<CustomerRoom> getCustomersRoom(String hotelSelected) throws GetHotelCustomersException {
+        try{
+            return customerManager.getCustomersRoom(hotelSelected);
+        } catch(GetHotelCustomersException exception){
             throw exception;
         }
     }

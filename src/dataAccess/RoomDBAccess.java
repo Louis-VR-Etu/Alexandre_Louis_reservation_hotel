@@ -1,6 +1,6 @@
 package dataAccess;
 
-import exception.ResearchFreeRoomsException;
+import exception.GetFreeRoomsException;
 import exception.RoomAccessException;
 import model.Room;
 import model.RoomAndBed;
@@ -37,7 +37,7 @@ public class RoomDBAccess {
         }
     }
 
-    public ArrayList<RoomAndBed> getFreeRooms(String hotelName, Date beginningDate, Date endingDate, int people) throws ResearchFreeRoomsException {
+    public ArrayList<RoomAndBed> getFreeRooms(String hotelName, Date beginningDate, Date endingDate, int people) throws GetFreeRoomsException {
         ArrayList<RoomAndBed> freeRooms = new ArrayList<>();
         try{
             Connection connection = SingletonConnexion.getInstance();
@@ -50,17 +50,7 @@ public class RoomDBAccess {
                     "or  (r.endingDate >= str_to_date(?,'%d/%m/%Y') and r.beginningDate < str_to_date(?,'%d/%m/%Y')) " + //ee
                     "or  (r.beginningDate >= str_to_date(?,'%d/%m/%Y') and r.endingDate <= str_to_date(?,'%d/%m/%Y')) ) "+ //be
                     ";";
-               /*     "select ro.*, rt.singleBed, rt.doubleBed "+
-                    "from room ro, reservation r, roomType rt, room oro " +
-                    "    where      ro.roomTypeName = rt.typeName" +
-                    "    and      r.roomHotelName = oro.hotelName and r.roomNumber = oro.number" +
-                    "    and     (ro.hotelName != r.roomHotelName or ro.number != r.roomNumber)" +
-                    "    and not (r.beginningDate < str_to_date(?,'%d/%m/%Y') and r.endingDate > str_to_date(?,'%d/%m/%Y'))" +
-                    "    and not (r.endingDate > str_to_date(?,'%d/%m/%Y') and r.beginningDate < str_to_date(?,'%d/%m/%Y'))" +
-                    "    and not (r.beginningDate > str_to_date(?,'%d/%m/%Y') and r.endingDate < str_to_date(?,'%d/%m/%Y'))" +
-                    "    and rt.singleBed + 2* rt.doubleBed > ?" +
-                    "    and ro.hotelName =?" +
-                    "    ;"; */
+
             PreparedStatement preparedStatement = connection.prepareStatement(sqlInstruction);
             String format ="dd/MM/yyyy";
             DateFormat df = new SimpleDateFormat(format);
@@ -82,7 +72,7 @@ public class RoomDBAccess {
                 freeRooms.add(freeRoom);
             }
         } catch (Exception exception) {
-            throw new ResearchFreeRoomsException(exception.getMessage());
+            throw new GetFreeRoomsException(exception.getMessage());
         }
         return freeRooms;
 
