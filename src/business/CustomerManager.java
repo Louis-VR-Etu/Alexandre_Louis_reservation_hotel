@@ -3,7 +3,6 @@ package business;
 import dataAccess.CustomerDBAccess;
 import exception.CustomerAccessException;
 import model.Customer;
-import model.Room;
 
 import java.util.ArrayList;
 
