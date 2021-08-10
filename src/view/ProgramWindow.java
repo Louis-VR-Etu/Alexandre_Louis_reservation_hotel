@@ -12,12 +12,13 @@ public class ProgramWindow extends JFrame {
     private JMenu reservationMenu, researchMenu;
     private JMenuItem addReservation, listReservations, removeReservation, researchFreeRoom;
     private Container container;
+    private ThreadWindow threadWindow;
 
     public ProgramWindow(){
         super("JavaProject");
         container = this.getContentPane();
         setBounds(550,150,500,500);
-
+        threadWindow = new ThreadWindow();
         menuBar = new JMenuBar();
         setJMenuBar(menuBar);
 
