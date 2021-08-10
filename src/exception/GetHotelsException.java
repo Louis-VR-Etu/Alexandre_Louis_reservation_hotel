@@ -1,8 +1,8 @@
 package exception;
 
-public class HotelAccessException extends Exception {
+public class GetHotelsException extends Exception {
     private String exception;
-    public HotelAccessException(String exception) {
+    public GetHotelsException(String exception) {
         this.exception = exception;
     }
 

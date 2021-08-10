@@ -1,7 +1,7 @@
 package business;
 
 import dataAccess.HotelDBAccess;
-import exception.HotelAccessException;
+import exception.GetHotelsException;
 import model.Hotel;
 import model.Room;
 
@@ -11,9 +11,9 @@ public class HotelManager {
     private HotelDBAccess hotelDB;
     public HotelManager(){hotelDB = new HotelDBAccess();}
 
-    public ArrayList<Hotel> getHotels() throws HotelAccessException {
+    public ArrayList<Hotel> getHotels() throws GetHotelsException {
         try { return hotelDB.getHotels();}
-        catch (HotelAccessException exception) {throw exception;}
+        catch (GetHotelsException exception) {throw exception;}
 
     }
 

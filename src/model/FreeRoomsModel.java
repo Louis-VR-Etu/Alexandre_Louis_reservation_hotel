@@ -3,7 +3,7 @@ package model;
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 
-public class freeRoomModel extends AbstractTableModel {
+public class FreeRoomsModel extends AbstractTableModel {
     private ArrayList<RoomAndBed> contents;
     private ArrayList<String> columnNames;
 
@@ -11,7 +11,7 @@ public class freeRoomModel extends AbstractTableModel {
         this.contents = contents;
     }
 
-    public freeRoomModel(ArrayList<RoomAndBed> Rooms){
+    public FreeRoomsModel(ArrayList<RoomAndBed> Rooms){
         columnNames = new ArrayList<>();
         columnNames.add("hotel name");
         columnNames.add("room number");

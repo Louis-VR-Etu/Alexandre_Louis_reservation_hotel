@@ -1,7 +1,6 @@
 package controller;
 
 import business.*;
-import dataAccess.HotelDBAccess;
 import exception.*;
 import model.*;
 
@@ -69,11 +68,11 @@ public class ApplicationController {
         }
     }
 
-    public ArrayList<Hotel> getHotels() throws HotelAccessException {
+    public ArrayList<Hotel> getHotels() throws GetHotelsException {
         try {
             return hotelManager.getHotels();
         }
-        catch (HotelAccessException exception) {
+        catch (GetHotelsException exception) {
             throw exception;
         }
     }
@@ -252,6 +251,11 @@ public class ApplicationController {
         catch (AddReservationException exception) {
             throw exception;
         }
+    }
+
+    public ArrayList<RoomAndBed> getFreeRooms(String hotelName, Date beginningDate , Date endingDate, int people) throws ResearchFreeRoomsException {
+        //TODO
+        return null;
     }
 /*
     public String verifyCustomerMail(String customerMail) throws AddReservationException {
