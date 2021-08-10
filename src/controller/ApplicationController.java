@@ -254,8 +254,11 @@ public class ApplicationController {
     }
 
     public ArrayList<RoomAndBed> getFreeRooms(String hotelName, Date beginningDate , Date endingDate, int people) throws ResearchFreeRoomsException {
-        //TODO
-        return null;
+        try{
+            return roomManager.getFreeRooms(hotelName,beginningDate,endingDate,people);
+        } catch(ResearchFreeRoomsException exception){
+            throw exception;
+        }
     }
 /*
     public String verifyCustomerMail(String customerMail) throws AddReservationException {
