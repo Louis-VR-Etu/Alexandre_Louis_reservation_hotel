@@ -165,7 +165,7 @@ public class FormPanel extends JPanel {
                 Date endingDate = spinnerDateModelEnd.getDate();
                 GregorianCalendar endingDates = (GregorianCalendar) GregorianCalendar.getInstance();
                 endingDates.setGregorianChange(endingDate);
-                Boolean allInclusive = buttonAllIn.isSelected() ? false : true;
+                Boolean allInclusive = buttonAllIn.isSelected();
                 Integer peopleTemp = spinnerPeopleAmountModel.getNumber().intValue(); //todo verify?
                 String remark = applicationController.verifyTitle(remarks.getText());
                 String additionalContact = applicationController.verifyAdditionalContact(contacts.getText());
