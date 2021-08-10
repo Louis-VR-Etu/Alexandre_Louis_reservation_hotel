@@ -187,7 +187,7 @@ public class UpdatePanel extends JPanel{
                 }
 */
 
-                Boolean allInclusive = buttonAllIn.isSelected() ? false : true;
+                Boolean allInclusive = buttonAllIn.isSelected();
 
                 Integer peopleTemp;
                 if (people.getText().compareTo("") != 0) {
@@ -219,7 +219,7 @@ public class UpdatePanel extends JPanel{
 
                 Customer customerSelected = applicationController.researchCustomer(customer.getSelectedItem().toString(), customers);
 
-                Reservation reservationUpdated = new Reservation(beginningDate, roomSelected.getNumber(), hotelSelected.getName(), endingDates, allInclusive, peopleTemp, remark, additionalContact, couponCode, customerSelected.getMail());
+                Reservation reservationUpdated = new Reservation(beginningDate, roomSelected.getNumber(), hotelSelected.getName(), endingDate, allInclusive, peopleTemp, remark, additionalContact, couponCode, customerSelected.getMail());
 
                 try {
                     applicationController.updateReservation(reservation, reservationUpdated);
