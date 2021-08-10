@@ -1,13 +1,11 @@
 package view;
 
 import controller.ApplicationController;
-import exception.CustomerAccessException;
 import exception.AddReservationException;
-import model.Hotel;
-import model.Room;
-import model.RoomType;
-import model.Customer;
-import model.Reservation;
+import exception.CustomerAccessException;
+import exception.GetReservationException;
+import exception.UpdateReservationException;
+import model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class FormPanel extends JPanel {
+public class UpdatePanel extends JPanel{
     private JLabel customerMailLabel, roomNumberLabel, hotelNameLabel, beginningDateLabel, endingDateLabel, allInLabel, peopleAmountLabel, roomTypeLabel, remarksLabel, contactsLabel, couponCodeLabel;
     private JTextField people, remarks, contacts, coupon;
     private JCheckBox buttonAllIn;
@@ -31,10 +29,12 @@ public class FormPanel extends JPanel {
     private ArrayList<Customer> customers;
     private SpinnerDateModel spinnerDateModelBegin, spinnerDateModelEnd;
     private SpinnerNumberModel spinnerPeopleAmountModel;
+    private JComboBox reservations;
+    private ArrayList<Reservation> arrayReservations;
 
     private ApplicationController applicationController;
 
-    public FormPanel() {
+    public UpdatePanel() {
         this.setLayout(new GridLayout(16, 2, 5, 5));
 
         customers = new ArrayList<>();
@@ -91,7 +91,7 @@ public class FormPanel extends JPanel {
 
         peopleAmountLabel = new JLabel("amount of people");
         this.add(peopleAmountLabel);
-        spinnerPeopleAmountModel = new SpinnerNumberModel(1,1,20,1);
+        spinnerPeopleAmountModel = new SpinnerNumberModel(1, 1, 20, 1);
         peoples = new JSpinner(spinnerPeopleAmountModel);
         this.add(peoples);
 
@@ -149,37 +149,86 @@ public class FormPanel extends JPanel {
         //*/
         validationButton = new JButton("Validation");
         this.add(validationButton);
-        ButtonListener listener = new ButtonListener();
+        UpdatePanel.ButtonListener listener = new UpdatePanel.ButtonListener();
         validationButton.addActionListener(listener);
-
     }
-
     private class ButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent event) {
+            Reservation reservation = applicationController.researchReservation(reservations.getSelectedItem().toString(), arrayReservations);
             try {
-                Date beginningDate = spinnerDateModelBegin.getDate();
-                GregorianCalendar beginningDates = (GregorianCalendar) GregorianCalendar.getInstance();
-                beginningDates.setGregorianChange(beginningDate);
+                /*//TODO a modifier
+                GregorianCalendar beginningDate;
+                if (beginDate.toString().compareTo("DD/MM/YYYY") == 0) {
+                    beginningDate = reservation.getBeginningDate();
+                } else {
+                    String day = beginDate.getText().charAt(0) + "" + beginDate.getText().charAt(1);
+                    String month = beginDate.getText().charAt(3) + "" + beginDate.getText().charAt(4);
+                    String year = beginDate.getText().charAt(6) + "" + beginDate.getText().charAt(7) + beginDate.getText().charAt(8) + "" + beginDate.getText().charAt(9);
+                    Date date = applicationController.verifyBeginningDate(day, month, year);
+
+                    beginningDate = new GregorianCalendar(date.getYear(), date.getMonth(), date.getDay());
+                }
+*/
                 Room roomSelected = applicationController.researchRoom(room.getSelectedItem().toString(), freeRooms);
+
                 Hotel hotelSelected = applicationController.researchHotel(hotel.getSelectedItem().toString(), hotels);
-                Date endingDate = spinnerDateModelEnd.getDate();
-                GregorianCalendar endingDates = (GregorianCalendar) GregorianCalendar.getInstance();
-                endingDates.setGregorianChange(endingDate);
+
+                /*//TODO a modifier
+                GregorianCalendar endingDate;
+                if (endDate.toString().compareTo("DD/MM/YYYY") == 0) {
+                    endingDate = reservation.getEndingDate();
+                } else {
+                    String day = endDate.getText().charAt(0) + "" + endDate.getText().charAt(1);
+                    String month = endDate.getText().charAt(3) + "" + endDate.getText().charAt(4);
+                    String year = endDate.getText().charAt(6) + "" + endDate.getText().charAt(7) + endDate.getText().charAt(8) + "" + endDate.getText().charAt(9);
+                    Date date = applicationController.verifyEndingDate(day, month, year);
+
+                    endingDate = new GregorianCalendar(date.getYear(), date.getMonth(), date.getDay());
+                }
+*/
+
                 Boolean allInclusive = buttonAllIn.isSelected() ? false : true;
-                Integer peopleTemp = spinnerPeopleAmountModel.getNumber().intValue(); //todo verify?
-                String remark = applicationController.verifyTitle(remarks.getText());
-                String additionalContact = applicationController.verifyAdditionalContact(contacts.getText());
-                String couponCode = applicationController.verifyCouponCode(coupon.getText());
+
+                Integer peopleTemp;
+                if (people.getText().compareTo("") != 0) {
+                    peopleTemp = applicationController.verifyPeople(people.getText());
+                } else {
+                    peopleTemp = reservation.getPeople();
+                }
+
+                String remark;
+                if (remarks.getText().compareTo("") != 0) {
+                    remark = applicationController.verifyTitle(remarks.getText());
+                } else {
+                    remark = reservation.getTitle();
+                }
+
+                String additionalContact;
+                if (contacts.getText().compareTo("") != 0) {
+                    additionalContact = applicationController.verifyAdditionalContact(contacts.getText());
+                } else {
+                    additionalContact = reservation.getAdditionalContact();
+                }
+
+                String couponCode;
+                if (coupon.getText().compareTo("") != 0) {
+                    couponCode = applicationController.verifyCouponCode(coupon.getText());
+                } else {
+                    couponCode = reservation.getCouponCode();
+                }
+
                 Customer customerSelected = applicationController.researchCustomer(customer.getSelectedItem().toString(), customers);
 
-                Reservation reservation = new Reservation(beginningDates, roomSelected.getNumber(), hotelSelected.getName(), endingDates, allInclusive, peopleTemp, remark, additionalContact, couponCode, customerSelected.getMail());
+                Reservation reservationUpdated = new Reservation(beginningDate, roomSelected.getNumber(), hotelSelected.getName(), endingDates, allInclusive, peopleTemp, remark, additionalContact, couponCode, customerSelected.getMail());
+
                 try {
-                    applicationController.addReservation(reservation);
-                } catch (AddReservationException exception) {
+                    applicationController.updateReservation(reservation, reservationUpdated);
+                } catch (UpdateReservationException exception) {
                     JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                     System.exit(0);
                 }
-                }catch (AddReservationException exception) {
+            }
+            catch (AddReservationException exception) {
                 JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 System.exit(0);
             }
