@@ -19,7 +19,7 @@ public class RainbowPanel extends JPanel{
     private String currentColorString;
 
     public RainbowPanel() {
-        this.setLayout(new GridLayout(13, 2, 5, 5));
+        this.setLayout(new GridLayout(1, 1, 5, 5));
 
         setColors();
         rainbowWord = new JLabel("Rainbow Word");
