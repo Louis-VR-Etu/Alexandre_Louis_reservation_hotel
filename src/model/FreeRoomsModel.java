@@ -11,7 +11,7 @@ public class FreeRoomsModel extends AbstractTableModel {
         this.contents = contents;
     }
 
-    public FreeRoomsModel(ArrayList<RoomAndBed> Rooms){
+    public FreeRoomsModel(ArrayList<RoomAndBed> rooms){
         columnNames = new ArrayList<>();
         columnNames.add("hotel name");
         columnNames.add("room number");
@@ -19,7 +19,7 @@ public class FreeRoomsModel extends AbstractTableModel {
         columnNames.add("roomType");
         columnNames.add("single beds");
         columnNames.add("double beds");
-        setContents(Rooms);
+        setContents(rooms);
     }
 
     @Override

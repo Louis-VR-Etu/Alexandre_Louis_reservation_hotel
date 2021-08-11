@@ -10,7 +10,7 @@ import java.awt.event.WindowEvent;
 public class ProgramWindow extends JFrame {
     private JMenuBar menuBar;
     private JMenu reservationMenu, researchMenu;
-    private JMenuItem addReservation, listReservations, removeReservation,updateReservation, researchFreeRoom, researchHotelCustomers;
+    private JMenuItem addReservation, listReservations, removeReservation,updateReservation, researchFreeRoom, researchHotelCustomers, researchCustomerReservations;
     private Container container;
     private ThreadWindow threadWindow;
 
@@ -44,6 +44,9 @@ public class ProgramWindow extends JFrame {
         researchHotelCustomers = new JMenuItem("research Hotel Customers");
         researchHotelCustomers.addActionListener(new researchHotelCustomersListener());
         researchMenu.add(researchHotelCustomers);
+        researchCustomerReservations = new JMenuItem("research Customer Hotels");
+        researchCustomerReservations.addActionListener(new researchCustomerReservationsListener());
+        researchMenu.add(researchCustomerReservations);
 
 
         addWindowListener(new WindowAdapter() {
@@ -112,6 +115,16 @@ public class ProgramWindow extends JFrame {
         public void actionPerformed(ActionEvent e) {
             container.removeAll();
             container.add(new HotelCustomersPanel(), BorderLayout.CENTER);
+            container.repaint();
+            ProgramWindow.this.setVisible(true);
+        }
+    }
+    private class researchCustomerReservationsListener implements  ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            container.removeAll();
+            container.add(new CustomerHotelsPanel(), BorderLayout.CENTER);
             container.repaint();
             ProgramWindow.this.setVisible(true);
         }

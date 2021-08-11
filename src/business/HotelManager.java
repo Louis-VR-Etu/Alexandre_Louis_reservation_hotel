@@ -1,9 +1,10 @@
 package business;
 
 import dataAccess.HotelDBAccess;
+import exception.GetCustomerHotelsException;
 import exception.GetHotelsException;
 import model.Hotel;
-import model.Room;
+import model.HotelPrice;
 
 import java.util.ArrayList;
 
@@ -34,6 +35,13 @@ public class HotelManager {
             iHotel++;
         }
         return hotels.get(iHotel-1);
+    }
+
+    public ArrayList<HotelPrice> getCustomerHotels(String customerSelected, int priceMin) throws GetCustomerHotelsException {
+        try{
+            return hotelDB.getCustomerHotels(customerSelected, priceMin);
+        }
+        catch(GetCustomerHotelsException exception){throw exception;}
     }
 }
 

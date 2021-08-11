@@ -3,7 +3,6 @@ package view;
 import controller.ApplicationController;
 import exception.GetHotelCustomersException;
 import exception.GetHotelsException;
-import exception.GetFreeRoomsException;
 import model.*;
 
 import javax.swing.*;
@@ -65,8 +64,8 @@ public class HotelCustomersPanel extends JPanel  {
                 HotelCustomersPanel.this.removeAll();
                 HotelCustomersPanel.this.setLayout(new GridLayout(1,2,5,5));
                 hotelCustomersModel = new HotelCustomersModel(customers);
-                JTable freeRooms = new JTable(hotelCustomersModel);
-                JScrollPane scrollPane = new JScrollPane(freeRooms);
+                JTable hotelCustomers = new JTable(hotelCustomersModel);
+                JScrollPane scrollPane = new JScrollPane(hotelCustomers);
                 HotelCustomersPanel.this.add(scrollPane);
                 HotelCustomersPanel.this.revalidate();
                 HotelCustomersPanel.this.repaint();

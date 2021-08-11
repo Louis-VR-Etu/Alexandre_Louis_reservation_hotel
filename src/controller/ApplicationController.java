@@ -268,6 +268,13 @@ public class ApplicationController {
             throw exception;
         }
     }
+
+    public ArrayList<HotelPrice> getCustomerHotels(String customerSelected, int priceMin) throws GetCustomerHotelsException {
+        try{
+            return hotelManager.getCustomerHotels(customerSelected, priceMin);
+        }
+        catch(GetCustomerHotelsException exception){throw exception;}
+    }
 /*
     public String verifyCustomerMail(String customerMail) throws AddReservationException {
         try {
