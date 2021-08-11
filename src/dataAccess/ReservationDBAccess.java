@@ -112,7 +112,7 @@ public class ReservationDBAccess {
         //TODO verifier avec DB
         try {
             Connection connection = SingletonConnexion.getInstance();
-            String sqlInstruction = "update reservation set  beginningDate=?, roomNumber=?, roomHotelName=?, endingDate=?, allInclusive=?, people=?, remarks=?, additionalContact=?, couponCode=?, customerMail=? where beginningDate = " + reservation.getBeginningDate()+ " and roomHotelName= '" + reservation.getHotelName() + "' and roomNumber = '" + reservation.getRoomNumber() + ";";
+            String sqlInstruction = "update reservation set  beginningDate= str_to_date(?,'%d/%m/%Y'), roomNumber=?, roomHotelName=?, endingDate= str_to_date(?,'%d/%m/%Y'), allInclusive=?, people=?, remarks=?, additionalContact=?, couponCode=?, customerMail=? where beginningDate = str_to_date(?,'%d/%m/%Y') and roomHotelName= ? and roomNumber = ?;";
             connection.setAutoCommit(true);
             PreparedStatement preparedStatement = connection.prepareStatement(sqlInstruction);
             String pattern = "dd/MM/yyyy";
@@ -127,6 +127,9 @@ public class ReservationDBAccess {
             preparedStatement.setString(9, reservationUpdated.getAdditionalContact());
             preparedStatement.setString(9, reservationUpdated.getCouponCode());
             preparedStatement.setString(10, reservationUpdated.getCustomerMail());
+            preparedStatement.setString(11,df.format(reservation.getBeginningDate().getTime()));
+            preparedStatement.setString(12, reservation.getHotelName());
+            preparedStatement.setInt(13, reservation.getRoomNumber());
             preparedStatement.executeUpdate();
         }
         catch (Exception exception) {

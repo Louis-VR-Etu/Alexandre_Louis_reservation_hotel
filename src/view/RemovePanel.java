@@ -17,6 +17,7 @@ public class RemovePanel extends JPanel{
     private JButton validationButton;
     private ArrayList<String> reservationsString;
     private ArrayList<Reservation> arrayReservations;
+    private Container container;
 
     private ApplicationController applicationController;
 
@@ -50,7 +51,13 @@ public class RemovePanel extends JPanel{
             Reservation reservation = applicationController.researchReservation(reservations.getSelectedItem().toString(), arrayReservations);
             try {
                 applicationController.deleteReservation(reservation);
+                JLabel priceLabel = new JLabel("reservation has been removed");
+                RemovePanel.this.removeAll();
+                RemovePanel.this.add(priceLabel);
+                RemovePanel.this.revalidate();
+                RemovePanel.this.repaint();
             }
+
             catch (DeleteReservationException exception) {
                 JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 System.exit(0);
