@@ -1,7 +1,7 @@
 package business;
 
 import dataAccess.RoomDBAccess;
-import exception.ResearchFreeRoomsException;
+import exception.GetFreeRoomsException;
 import exception.RoomAccessException;
 import model.Room;
 import model.RoomAndBed;
@@ -28,11 +28,11 @@ public class RoomManager {
         return rooms.get(iRoom-1);
     }
 
-    public ArrayList<RoomAndBed> getFreeRooms(String hotelName, Date beginningDate, Date endingDate, int people) throws ResearchFreeRoomsException {
+    public ArrayList<RoomAndBed> getFreeRooms(String hotelName, Date beginningDate, Date endingDate, int people) throws GetFreeRoomsException {
         try{
             return roomDB.getFreeRooms(hotelName,beginningDate,endingDate,people);
         }
-        catch(ResearchFreeRoomsException exception){
+        catch(GetFreeRoomsException exception){
             throw exception;
         }
     }

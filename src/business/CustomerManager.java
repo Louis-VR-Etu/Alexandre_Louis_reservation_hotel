@@ -2,7 +2,10 @@ package business;
 
 import dataAccess.CustomerDBAccess;
 import exception.CustomerAccessException;
+import exception.GetFreeRoomsException;
+import exception.GetHotelCustomersException;
 import model.Customer;
+import model.CustomerRoom;
 
 import java.util.ArrayList;
 
@@ -42,5 +45,14 @@ public class CustomerManager {
             iCustomer++;
         }
         return customers.get(iCustomer-1);
+    }
+
+    public ArrayList<CustomerRoom> getCustomersRoom(String hotelSelected) throws GetHotelCustomersException  {
+        try{
+            return customerDB.getCustomersRoom( hotelSelected);
+        }
+        catch(GetHotelCustomersException exception){
+            throw exception;
+        }
     }
 }

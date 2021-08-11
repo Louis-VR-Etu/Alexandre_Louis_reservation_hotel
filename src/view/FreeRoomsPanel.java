@@ -1,8 +1,8 @@
 package view;
 
 import controller.ApplicationController;
+import exception.GetFreeRoomsException;
 import exception.GetHotelsException;
-import exception.ResearchFreeRoomsException;
 import model.Hotel;
 import model.RoomAndBed;
 import model.FreeRoomsModel;
@@ -103,7 +103,7 @@ public class FreeRoomsPanel extends JPanel{
                 FreeRoomsPanel.this.revalidate();
                 FreeRoomsPanel.this.repaint();
             }
-            catch (ResearchFreeRoomsException exception) {
+            catch (GetFreeRoomsException exception) {
                 JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 System.exit(0);
             }
