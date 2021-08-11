@@ -274,7 +274,7 @@ public class FormPanel extends JPanel {
                 RoomAndBed roomSelected = applicationController.researchFreeRoom(roomType.getSelectedItem().toString(), freeRooms);
 
                 GregorianCalendar endingDates = new GregorianCalendar();
-                endingDates.setGregorianChange(endDate);
+                endingDates.setTime(endDate);
                 Boolean allInclusive = buttonAllIn.isSelected();
 
                 String remark = applicationController.verifyTitle(remarks.getText());
@@ -284,7 +284,7 @@ public class FormPanel extends JPanel {
                 Reservation reservation = new Reservation(beginningDates, roomSelected.getNumber(), roomSelected.getHotelName(), endingDates, allInclusive, peopleAmount, remark, additionalContact, couponCode, customerSelected.getMail());
 
                 applicationController.addReservation(reservation);
-                JLabel priceLabel = new JLabel("reservation has been removed");
+                JLabel priceLabel = new JLabel("reservation has been added");
                 FormPanel.this.removeAll();
                 FormPanel.this.add(priceLabel);
                 FormPanel.this.revalidate();
