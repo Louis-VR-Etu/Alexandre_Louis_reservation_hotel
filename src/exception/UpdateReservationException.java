@@ -8,6 +8,6 @@ public class UpdateReservationException extends Exception{
     }
 
     public String getMessage() {
-        return "GetMemberException" + exception;
+        return "UpdateReservationException" + exception;
     }
 }
