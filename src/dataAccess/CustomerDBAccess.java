@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 
 
-public class CustomerDBAccess {
+public class CustomerDBAccess  {
     public CustomerDBAccess(){}
 
     public ArrayList<Customer> getCustomers() throws CustomerAccessException {

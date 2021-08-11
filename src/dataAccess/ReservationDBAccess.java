@@ -89,8 +89,17 @@ public class ReservationDBAccess {
     public void deleteReservation(Reservation reservation) throws DeleteReservationException {
         try {
             Connection connection = SingletonConnexion.getInstance();
-            String sqlInstruction = "delete from reservation where beginningDate = " + reservation.getBeginningDate() + " and roomHotelName= '" + reservation.getHotelName() + "' and roomNumber = '" + reservation.getRoomNumber() + "';";
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            String sqlInstruction = "delete from reservation where beginningDate = str_to_date(?,'%d/%m/%Y') and roomHotelName= ? and roomNumber = ? ;";
+
             PreparedStatement preparedStatement = connection.prepareStatement(sqlInstruction);
+
+            preparedStatement.setString(1,df.format(reservation.getBeginningDate().getTime()));
+
+            preparedStatement.setString(2,reservation.getHotelName());
+
+            preparedStatement.setString(3,""+reservation.getRoomNumber());
+
             preparedStatement.executeUpdate();
         }
         catch (Exception exception) {
