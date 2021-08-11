@@ -68,7 +68,7 @@ public class ProgramWindow extends JFrame {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             container.removeAll();
-            container.add(new FormPanel(), BorderLayout.CENTER);
+            container.add(new FreeRoomsPanel(true), BorderLayout.CENTER);
             container.repaint();
             ProgramWindow.this.setVisible(true);
         }
@@ -110,7 +110,7 @@ public class ProgramWindow extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             container.removeAll();
-            container.add(new FreeRoomsPanel(), BorderLayout.CENTER);
+            container.add(new FreeRoomsPanel(false), BorderLayout.CENTER);
             container.repaint();
             ProgramWindow.this.setVisible(true);
         }

@@ -36,4 +36,23 @@ public class RoomManager {
             throw exception;
         }
     }
+
+    public ArrayList<String> stringFreeRoomType(ArrayList<RoomAndBed> freeRooms) {
+        ArrayList<String> rooms = new ArrayList<>();
+
+        for (int iRoom = 0 ; iRoom < freeRooms.size() ; iRoom++) {
+            rooms.add(freeRooms.get(iRoom).getRoomType()+", "+freeRooms.get(iRoom).getNumber() + ", " + freeRooms.get(iRoom).getHotelName());
+        }
+        return rooms;
+    }
+
+    public RoomAndBed researchFreeRoom(String roomString, ArrayList<RoomAndBed> rooms) {
+        boolean isFound = false;
+        int iRoom = 0;
+        while (iRoom < rooms.size() && !isFound) {
+            isFound = roomString.compareTo(rooms.get(iRoom).getRoomType()+", "+rooms.get(iRoom).getNumber() + ", " + rooms.get(iRoom).getHotelName()) == 0;
+            iRoom++;
+        }
+        return rooms.get(iRoom-1);
+    }
 }

@@ -36,13 +36,11 @@ public class FreeRoomsPanel extends JPanel{
     private JButton validationButton;
 
 
-    public FreeRoomsPanel(){
+    public FreeRoomsPanel(boolean add){
         this.setLayout(new GridLayout(0,2,5,5));
 
         applicationController = new ApplicationController();
 
-        //membersString = new ArrayList<>();
-        //arrayMembers = new ArrayList<>();
         try {
             arrayHotels = applicationController.getHotels();
             hotelStrings = applicationController.stringHotelNames(arrayHotels);
@@ -80,11 +78,19 @@ public class FreeRoomsPanel extends JPanel{
 
         validationButton = new JButton("Validation");
         this.add(validationButton);
-        FreeRoomsPanel.ButtonListener listener = new FreeRoomsPanel.ButtonListener();
-        validationButton.addActionListener(listener);
+        if(add == true){
+            FreeRoomsPanel.AddButtonListener listener = new FreeRoomsPanel.AddButtonListener();
+
+            validationButton.addActionListener(listener);
+        }
+        else {
+            ListButtonListener listener = new ListButtonListener();
+
+            validationButton.addActionListener(listener);
+        }
     }
 
-    private class ButtonListener implements ActionListener {
+    private class ListButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent event) {
             String hotelSelected = hotels.getSelectedItem().toString(); //TODO
             Date beginDate = spinnerDateModelDeb.getDate();
@@ -101,6 +107,30 @@ public class FreeRoomsPanel extends JPanel{
                 JTable freeRooms = new JTable(freeRoomsModel);
                 JScrollPane scrollPane = new JScrollPane(freeRooms);
                 FreeRoomsPanel.this.add(scrollPane);
+                FreeRoomsPanel.this.revalidate();
+                FreeRoomsPanel.this.repaint();
+            }
+            catch (GetFreeRoomsException exception) {
+                JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                System.exit(0);
+            }
+        }
+    }
+    private class AddButtonListener implements ActionListener {
+        public void actionPerformed(ActionEvent event) {
+            String hotelSelected = hotels.getSelectedItem().toString(); //TODO
+            Date beginDate = spinnerDateModelDeb.getDate();
+            Date endDate = spinnerDateModelFin.getDate();
+            Integer peopleAmount = spinnerPeopleAmountModel.getNumber().intValue();
+
+            try {
+                rooms = applicationController.getFreeRooms(hotelSelected,beginDate, endDate, peopleAmount); //TODO
+
+
+                FreeRoomsPanel.this.removeAll();
+                FreeRoomsPanel.this.setLayout(new GridLayout(0,1,5,5));
+                FreeRoomsPanel.this.add(new FormPanel(rooms,beginDate,endDate,peopleAmount), BorderLayout.CENTER);
+
                 FreeRoomsPanel.this.revalidate();
                 FreeRoomsPanel.this.repaint();
             }

@@ -73,8 +73,8 @@ public class ReservationDBAccess {
             preparedStatement.setString(4, df.format(reservation.getEndingDate().getTime()));
             preparedStatement.setBoolean(5, reservation.getAllInclusive());
             preparedStatement.setInt(6, reservation.getPeople());
-            preparedStatement.setString(8, reservation.getTitle());
-            preparedStatement.setString(9, reservation.getAdditionalContact());
+            preparedStatement.setString(7, reservation.getTitle());
+            preparedStatement.setString(8, reservation.getAdditionalContact());
             preparedStatement.setString(9, reservation.getCouponCode());
             preparedStatement.setString(10, reservation.getCustomerMail());
             preparedStatement.executeUpdate();

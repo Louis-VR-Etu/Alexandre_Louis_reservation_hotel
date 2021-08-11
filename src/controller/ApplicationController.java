@@ -100,7 +100,9 @@ public class ApplicationController {
     public ArrayList<String> stringHotelNames(ArrayList<Hotel> hotels) { return hotelManager.stringHotelNames(hotels);}
 
     public ArrayList<String> stringRoomTypeNames(ArrayList<RoomType> roomTypeNames) { return roomTypeManager.stringRoomTypeNames(roomTypeNames); }
-/*
+
+    public ArrayList<String> stringFreeRoomType(ArrayList<RoomAndBed> freeRooms) { return roomManager.stringFreeRoomType(freeRooms);    }
+    /*
     public City researchCity(String stringCity, ArrayList<City> cities) {
         return cityManager.researchCity(stringCity, cities);
     }
@@ -115,6 +117,10 @@ public class ApplicationController {
 
     public Room researchRoom(String roomString, ArrayList<Room> rooms){
         return roomManager.researchRoom(roomString, rooms);
+    }
+
+    public RoomAndBed researchFreeRoom(String roomString, ArrayList<RoomAndBed> rooms){
+        return roomManager.researchFreeRoom(roomString, rooms);
     }
 
     public Hotel researchHotel(String hotelString, ArrayList<Hotel> hotels){
@@ -284,6 +290,8 @@ public class ApplicationController {
         }
         catch(JobTaskReservationPriceException exception){throw exception;}
     }
+
+
 /*
     public String verifyCustomerMail(String customerMail) throws AddReservationException {
         try {
