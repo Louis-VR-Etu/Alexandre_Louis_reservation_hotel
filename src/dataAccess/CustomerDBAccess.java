@@ -19,7 +19,7 @@ public class CustomerDBAccess  {
     public ArrayList<Customer> getCustomers() throws CustomerAccessException {
         try {
             Connection connection = SingletonConnexion.getInstance();
-            String sqlInstruction = "select * from customer";
+            String sqlInstruction = "select * from customer order by mail ";
 
             PreparedStatement preparedStatement = connection.prepareStatement(sqlInstruction);
 

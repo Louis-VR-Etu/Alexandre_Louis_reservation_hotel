@@ -21,7 +21,7 @@ public class ReservationDBAccess {
         //TODO erreur ici
         try {
             Connection connection = SingletonConnexion.getInstance();
-            String sqlInstruction = "select * from reservation";
+            String sqlInstruction = "select * from reservation order by roomHotelName, beginningDate";
 
             PreparedStatement preparedStatement = connection.prepareStatement(sqlInstruction);
 
