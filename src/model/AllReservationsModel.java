@@ -57,7 +57,7 @@ public class AllReservationsModel extends AbstractTableModel{
                 if(reservation.getBeginningDate()!=null){
                 String pattern1 = "yyyy-MM-dd";
                 DateFormat df1 = new SimpleDateFormat(pattern1);
-                String dateString1 = df1.format(reservation.getBeginningDate());
+                String dateString1 = df1.format(reservation.getBeginningDate().getTime());
                 return dateString1;}
             case 1:
                 return reservation.getRoomNumber();
@@ -68,7 +68,7 @@ public class AllReservationsModel extends AbstractTableModel{
                 if(reservation.getBeginningDate()!=null){
                 String pattern2 = "yyyy-MM-dd";
                 DateFormat df2 = new SimpleDateFormat(pattern2);
-                String dateString2 = df2.format(reservation.getEndingDate());
+                String dateString2 = df2.format(reservation.getEndingDate().getTime());
                 return dateString2;}
             case 4:
                 return reservation.getAllInclusive();
