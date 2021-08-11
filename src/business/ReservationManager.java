@@ -18,7 +18,6 @@ public class ReservationManager {
 
     public ArrayList<Reservation> getReservations() throws GetReservationException {
         try {
-            System.out.println(stringReservations(reservationDB.getReservations()));
             return reservationDB.getReservations();
 
         } catch (GetReservationException exception) {
@@ -54,10 +53,8 @@ public class ReservationManager {
     public ArrayList<String> stringReservations(ArrayList<Reservation> reservations) {
         ArrayList<String> reservationString = new ArrayList<>();
         for (int iReserv = 0; iReserv < reservations.size(); iReserv++) {
-            //todo verifier String
             reservationString.add(reservations.get(iReserv).getCustomerMail() + ", Hotel" + reservations.get(iReserv).getHotelName() + "chambre " + reservations.get(iReserv).getRoomNumber() + " du " + reservations.get(iReserv).getBeginningDate() + " au " + reservations.get(iReserv).getEndingDate());
         }
-
         return reservationString;
     }
 
@@ -155,7 +152,6 @@ public class ReservationManager {
         }
     }
 
-    //todo verifier conditions
     public Integer verifyNumber(String number) throws Exception {
         if (number.compareTo("") == 0) {
             throw new Exception("number");
