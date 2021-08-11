@@ -30,10 +30,11 @@ public class ProgramWindow extends JFrame {
         listReservations.addActionListener(new ListListener());
         removeReservation = new JMenuItem("Remove Reservation");
         removeReservation.addActionListener(new RemoveListener());
-        //updateReservation = new JMenuItem("Update Reservation");
-        //updateReservation.addActionListener(new UpdateListener());
-        reservationMenu.add(addReservation);
+        updateReservation = new JMenuItem("Update Reservation");
+        updateReservation.addActionListener(new UpdateListener());
         reservationMenu.add(listReservations);
+        reservationMenu.add(addReservation);
+        reservationMenu.add(updateReservation);
         reservationMenu.add(removeReservation);
 
         researchMenu = new JMenu("Researches");
