@@ -35,7 +35,7 @@ public class FormPanel extends JPanel {
     private ApplicationController applicationController;
 
     public FormPanel() {
-        this.setLayout(new GridLayout(16, 2, 5, 5));
+        this.setLayout(new GridLayout(0, 2, 5, 5));
 
         customers = new ArrayList<>();
         applicationController = new ApplicationController();

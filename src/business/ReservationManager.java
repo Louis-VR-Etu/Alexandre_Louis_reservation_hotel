@@ -5,6 +5,8 @@ import exception.*;
 import model.Reservation;
 import model.Room;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -52,8 +54,12 @@ public class ReservationManager {
 
     public ArrayList<String> stringReservations(ArrayList<Reservation> reservations) {
         ArrayList<String> reservationString = new ArrayList<>();
+        String pattern = "dd/MM/yyyy";
+        DateFormat df = new SimpleDateFormat(pattern);
         for (int iReserv = 0; iReserv < reservations.size(); iReserv++) {
-            reservationString.add(reservations.get(iReserv).getCustomerMail() + ", Hotel" + reservations.get(iReserv).getHotelName() + "chambre " + reservations.get(iReserv).getRoomNumber() + " du " + reservations.get(iReserv).getBeginningDate() + " au " + reservations.get(iReserv).getEndingDate());
+            reservationString.add(reservations.get(iReserv).getCustomerMail() + ", Hotel " +
+                    reservations.get(iReserv).getHotelName() + " chambre " + reservations.get(iReserv).getRoomNumber() +
+                    " du " + df.format(reservations.get(iReserv).getBeginningDate().getTime()) + " au " + df.format(reservations.get(iReserv).getEndingDate().getTime())); //TODO format date
         }
         return reservationString;
     }

@@ -9,8 +9,8 @@ import java.awt.event.WindowEvent;
 
 public class ProgramWindow extends JFrame {
     private JMenuBar menuBar;
-    private JMenu reservationMenu, researchMenu;
-    private JMenuItem addReservation, listReservations, removeReservation,updateReservation, researchFreeRoom, researchHotelCustomers, researchCustomerReservations;
+    private JMenu reservationMenu, researchMenu, taskMenu;
+    private JMenuItem addReservation, listReservations, removeReservation,updateReservation, researchFreeRoom, researchHotelCustomers, researchCustomerReservations, reservationPrice;
     private Container container;
     private ThreadWindow threadWindow;
 
@@ -48,6 +48,11 @@ public class ProgramWindow extends JFrame {
         researchCustomerReservations.addActionListener(new researchCustomerReservationsListener());
         researchMenu.add(researchCustomerReservations);
 
+        taskMenu = new JMenu("Job Tasks");
+        menuBar.add(taskMenu);
+        reservationPrice = new JMenuItem("price of a reservation");
+        reservationPrice.addActionListener(new jobTaskReservationPriceListener());
+        taskMenu.add(reservationPrice);
 
         addWindowListener(new WindowAdapter() {
             @Override
@@ -125,6 +130,16 @@ public class ProgramWindow extends JFrame {
         public void actionPerformed(ActionEvent e) {
             container.removeAll();
             container.add(new CustomerHotelsPanel(), BorderLayout.CENTER);
+            container.repaint();
+            ProgramWindow.this.setVisible(true);
+        }
+    }
+    private class jobTaskReservationPriceListener implements  ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            container.removeAll();
+            container.add(new JobTaskPricePanel(), BorderLayout.CENTER);
             container.repaint();
             ProgramWindow.this.setVisible(true);
         }

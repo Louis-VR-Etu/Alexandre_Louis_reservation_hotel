@@ -30,7 +30,7 @@ public class CustomerHotelsPanel extends JPanel {
 
 
     public CustomerHotelsPanel() {
-        this.setLayout(new GridLayout(13, 2, 5, 5));
+        this.setLayout(new GridLayout(0, 2, 5, 5));
 
         applicationController = new ApplicationController();
 
@@ -76,7 +76,7 @@ public class CustomerHotelsPanel extends JPanel {
 
 
                 CustomerHotelsPanel.this.removeAll();
-                CustomerHotelsPanel.this.setLayout(new GridLayout(1,2,5,5));
+                CustomerHotelsPanel.this.setLayout(new GridLayout(1,1,5,5));
                 customerHotelsModel = new CustomerHotelsModel(hotels);
                 JTable hotelsAndPrice = new JTable(customerHotelsModel);
                 JScrollPane scrollPane = new JScrollPane(hotelsAndPrice);

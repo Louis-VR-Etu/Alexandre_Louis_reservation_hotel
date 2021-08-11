@@ -30,14 +30,14 @@ public class FreeRoomsPanel extends JPanel{
     private ArrayList<Hotel> arrayHotels;
     private ArrayList<String> hotelStrings;
 
-    private JLabel listHotels, dateLabel, peopleAmountLabel;
+    private JLabel listHotels, dateLabel,endingDateLabel, peopleAmountLabel;
     private JComboBox hotels;
 
     private JButton validationButton;
 
 
     public FreeRoomsPanel(){
-        this.setLayout(new GridLayout(13,2,5,5));
+        this.setLayout(new GridLayout(0,2,5,5));
 
         applicationController = new ApplicationController();
 
@@ -58,13 +58,14 @@ public class FreeRoomsPanel extends JPanel{
             System.exit(0);
         }
 
-        dateLabel = new JLabel("Choose 2 dates :");
+        dateLabel = new JLabel("Beginning date :");
         this.add(dateLabel);
         spinnerDateModelDeb = new SpinnerDateModel();
         spinnerDateDeb = new JSpinner(spinnerDateModelDeb);
         spinnerDateDeb.setEditor(new JSpinner.DateEditor(spinnerDateDeb, "dd-MM-yyyy"));
         this.add(spinnerDateDeb);
-
+        endingDateLabel = new JLabel("Ending date :");
+        this.add(endingDateLabel);
         spinnerDateModelFin = new SpinnerDateModel();
         spinnerDateFin = new JSpinner(spinnerDateModelFin);
         spinnerDateFin.setEditor(new JSpinner.DateEditor(spinnerDateFin, "dd-MM-yyyy"));
@@ -95,7 +96,7 @@ public class FreeRoomsPanel extends JPanel{
 
 
                 FreeRoomsPanel.this.removeAll();
-                FreeRoomsPanel.this.setLayout(new GridLayout(1,2,5,5));
+                FreeRoomsPanel.this.setLayout(new GridLayout(0,1,5,5));
                 freeRoomsModel = new FreeRoomsModel(rooms);
                 JTable freeRooms = new JTable(freeRoomsModel);
                 JScrollPane scrollPane = new JScrollPane(freeRooms);

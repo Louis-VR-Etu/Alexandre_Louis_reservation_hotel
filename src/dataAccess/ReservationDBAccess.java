@@ -5,6 +5,7 @@ import exception.DeleteReservationException;
 import exception.GetReservationException;
 import exception.UpdateReservationException;
 import model.Reservation;
+import model.ReservationPrice;
 
 import java.sql.*;
 import java.text.DateFormat;
@@ -28,10 +29,11 @@ public class ReservationDBAccess {
             ArrayList<Reservation>reservations = new ArrayList<>();
             Reservation reservation;
             while (data.next()) {
-                reservation = new Reservation(null,
+
+                reservation = new Reservation(dateToGregorian(data.getDate("beginningDate")), //TODO test
                         data.getInt("roomNumber"),
                         data.getString("roomHotelName"),
-                        null,
+                        dateToGregorian(data.getDate("endingDate")),
                         data.getBoolean("allInclusive"),
                         data.getInt("people"),
                         data.getString("remarks"),
@@ -65,10 +67,10 @@ public class ReservationDBAccess {
             PreparedStatement preparedStatement = connection.prepareStatement(sqlInstruction);
             String pattern = "dd/MM/yyyy";
             DateFormat df = new SimpleDateFormat(pattern);
-            preparedStatement.setString(1,df.format(reservation.getBeginningDate()));
+            preparedStatement.setString(1,df.format(reservation.getBeginningDate().getTime()));
             preparedStatement.setInt(2, reservation.getRoomNumber());
             preparedStatement.setString(3, reservation.getHotelName());
-            preparedStatement.setString(4, df.format(reservation.getEndingDate()));
+            preparedStatement.setString(4, df.format(reservation.getEndingDate().getTime()));
             preparedStatement.setBoolean(5, reservation.getAllInclusive());
             preparedStatement.setInt(6, reservation.getPeople());
             preparedStatement.setString(8, reservation.getTitle());
@@ -87,7 +89,7 @@ public class ReservationDBAccess {
     public void deleteReservation(Reservation reservation) throws DeleteReservationException {
         try {
             Connection connection = SingletonConnexion.getInstance();
-            String sqlInstruction = "delete from reservation where beginingDate = " + reservation.getBeginningDate() + " and roomHotelName= '" + reservation.getHotelName() + "' and roomNumber = '" + reservation.getRoomNumber() + "';";
+            String sqlInstruction = "delete from reservation where beginningDate = " + reservation.getBeginningDate() + " and roomHotelName= '" + reservation.getHotelName() + "' and roomNumber = '" + reservation.getRoomNumber() + "';";
             PreparedStatement preparedStatement = connection.prepareStatement(sqlInstruction);
             preparedStatement.executeUpdate();
         }
@@ -101,15 +103,15 @@ public class ReservationDBAccess {
         //TODO verifier avec DB
         try {
             Connection connection = SingletonConnexion.getInstance();
-            String sqlInstruction = "update members set  beginningDate=?, roomNumber=?, roomHotelName=?, endingDate=?, allInclusive=?, people=?, remarks=?, additionalContact=?, couponCode=?, customerMail=? where nationalNumber = " + reservation.getBeginningDate()+ " and roomHotelName= '" + reservation.getHotelName() + "' and roomNumber = '" + reservation.getRoomNumber() + ";";
+            String sqlInstruction = "update reservation set  beginningDate=?, roomNumber=?, roomHotelName=?, endingDate=?, allInclusive=?, people=?, remarks=?, additionalContact=?, couponCode=?, customerMail=? where beginningDate = " + reservation.getBeginningDate()+ " and roomHotelName= '" + reservation.getHotelName() + "' and roomNumber = '" + reservation.getRoomNumber() + ";";
             connection.setAutoCommit(true);
             PreparedStatement preparedStatement = connection.prepareStatement(sqlInstruction);
             String pattern = "dd/MM/yyyy";
             DateFormat df = new SimpleDateFormat(pattern);
-            preparedStatement.setString(1,df.format(reservationUpdated.getBeginningDate()));
+            preparedStatement.setString(1,df.format(reservationUpdated.getBeginningDate().getTime()));
             preparedStatement.setInt(2, reservationUpdated.getRoomNumber());
             preparedStatement.setString(3, reservationUpdated.getHotelName());
-            preparedStatement.setString(4, df.format(reservationUpdated.getBeginningDate()));
+            preparedStatement.setString(4, df.format(reservationUpdated.getBeginningDate().getTime()));
             preparedStatement.setBoolean(5, reservationUpdated.getAllInclusive());
             preparedStatement.setInt(6, reservationUpdated.getPeople());
             preparedStatement.setString(8, reservationUpdated.getTitle());
@@ -121,5 +123,10 @@ public class ReservationDBAccess {
         catch (Exception exception) {
             throw new UpdateReservationException(exception.getMessage());
         }
+    }
+    public GregorianCalendar dateToGregorian(Date date){ //todo correct class?
+        GregorianCalendar correctDate= new GregorianCalendar();
+        correctDate.setTime(date);
+        return correctDate;
     }
 }

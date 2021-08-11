@@ -14,6 +14,7 @@ public class ApplicationController {
     private ReservationManager reservationManager;
     private RoomManager roomManager;
     private RoomTypeManager roomTypeManager;
+    private JobTaskManager jobTaskManager;
 
     public ApplicationController(){
         customerManager = new CustomerManager();
@@ -21,6 +22,7 @@ public class ApplicationController {
         reservationManager = new ReservationManager();
         roomManager = new RoomManager();
         roomTypeManager= new RoomTypeManager();
+        jobTaskManager = new JobTaskManager();
     }
 
     public void addReservation(Reservation reservation) throws AddReservationException {
@@ -156,7 +158,7 @@ public class ApplicationController {
 
     public String jobTaskBikeCity(City city, Date beginDate, Date enDate) throws JobTaskCityException{
         try {
-            return jobTaskManager.jobTaskBikeCity(city, beginDate, enDate);
+            return JobTaskManager.jobTaskBikeCity(city, beginDate, enDate);
         }
         catch (JobTaskCityException exception) {
             throw exception;
@@ -165,7 +167,7 @@ public class ApplicationController {
 
     public String jobTaskBikeStation(Station station, Date beginDate, Date enDate) throws JobTaskStationException{
         try {
-            return jobTaskManager.jobTaskBikeStation(station, beginDate, enDate);
+            return JobTaskManager.jobTaskBikeStation(station, beginDate, enDate);
         }
         catch (JobTaskStationException exception) {
             throw exception;
@@ -274,6 +276,13 @@ public class ApplicationController {
             return hotelManager.getCustomerHotels(customerSelected, priceMin);
         }
         catch(GetCustomerHotelsException exception){throw exception;}
+    }
+
+    public String jobTaskReservationPrice(Reservation reservation) throws JobTaskReservationPriceException {
+        try{
+            return jobTaskManager.jobTaskReservationPrice(reservation);
+        }
+        catch(JobTaskReservationPriceException exception){throw exception;}
     }
 /*
     public String verifyCustomerMail(String customerMail) throws AddReservationException {

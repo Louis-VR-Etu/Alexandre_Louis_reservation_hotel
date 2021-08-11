@@ -16,7 +16,7 @@ public class AllReservationsPanel extends JPanel{
     private ApplicationController applicationController;
 
     public AllReservationsPanel(){ //TODO afficher les réservations
-        this.setLayout(new GridLayout(1, 1, 5, 5));
+        this.setLayout(new GridLayout(0, 1, 5, 5));
         applicationController = new ApplicationController();
         try{
             reservations = applicationController.getReservations();
