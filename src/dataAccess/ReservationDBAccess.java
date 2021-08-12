@@ -175,7 +175,7 @@ public class ReservationDBAccess {
 
     }
 
-    public GregorianCalendar dateToGregorian(Date date){ //todo correct class?
+    public GregorianCalendar dateToGregorian(Date date){
         GregorianCalendar correctDate= new GregorianCalendar();
         correctDate.setTime(date);
         return correctDate;
