@@ -48,7 +48,7 @@ public class UpdatePanel extends JPanel{
 
     private class ButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent event) {
-            //TODO appeler une 2eme fenetre
+            //TODO appeler UpdatePanel2
             /*
             Reservation reservation = applicationController.researchReservation(reservations.getSelectedItem().toString(), arrayReservations);
             try {

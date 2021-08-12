@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Calendar;
 
 public class UpdatePanel2 extends JPanel{
     private Reservation reservation;
@@ -32,21 +34,24 @@ public class UpdatePanel2 extends JPanel{
 
         dateLabel = new JLabel("Beginning date :");
         this.add(dateLabel);
-        spinnerDateModelDeb = new SpinnerDateModel();
+        Date beginningDate = reservation.getBeginningDate().getTime();
+        spinnerDateModelDeb = new SpinnerDateModel(beginningDate,null,null,Calendar.DAY_OF_MONTH);
         spinnerDateDeb = new JSpinner(spinnerDateModelDeb);
         spinnerDateDeb.setEditor(new JSpinner.DateEditor(spinnerDateDeb, "dd-MM-yyyy"));
         this.add(spinnerDateDeb);
 
         endingDateLabel = new JLabel("Ending date :");
         this.add(endingDateLabel);
-        spinnerDateModelFin = new SpinnerDateModel();
+        Date endingDate = reservation.getEndingDate().getTime();
+        spinnerDateModelFin = new SpinnerDateModel(endingDate,null,null,Calendar.DAY_OF_MONTH);
         spinnerDateFin = new JSpinner(spinnerDateModelFin);
         spinnerDateFin.setEditor(new JSpinner.DateEditor(spinnerDateFin, "dd-MM-yyyy"));
         this.add(spinnerDateFin);
 
         peopleAmountLabel = new JLabel("amount of people");
         this.add(peopleAmountLabel);
-        spinnerPeopleAmountModel = new SpinnerNumberModel(1,1,20,1);
+        int people = reservation.getPeople();
+        spinnerPeopleAmountModel = new SpinnerNumberModel(people,1,20,1);
         spinnerPeopleAmount = new JSpinner(spinnerPeopleAmountModel);
         this.add(spinnerPeopleAmount);
 
