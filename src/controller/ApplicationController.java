@@ -224,4 +224,8 @@ public class ApplicationController {
     public ReservationManager getReservationManager() {
         return this.reservationManager;
     }
+
+    public Boolean verifyDates(Date beginningDate, Date endingDate){
+        return beginningDate.compareTo(endingDate) < 0;
+    }
 }
