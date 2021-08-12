@@ -19,8 +19,8 @@ public class CustomerManager {
 
     public ArrayList<String> stringCustomerMail(ArrayList<Customer> customers) {
         ArrayList<String> customerMails = new ArrayList<>();
-        for (int iCustomer = 0 ; iCustomer < customers.size() ; iCustomer++) {
-            customerMails.add(customers.get(iCustomer).getMail());
+        for (Customer customer : customers) {
+            customerMails.add(customer.getMail());
         }
         return customerMails;
     }

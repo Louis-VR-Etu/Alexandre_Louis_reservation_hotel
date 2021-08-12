@@ -16,8 +16,8 @@ public class RoomTypeManager {
     }
     public ArrayList<String> stringRoomTypeNames(ArrayList<RoomType> roomTypes) {
         ArrayList<String> roomTypeNames = new ArrayList<>();
-        for (int iRoomType = 0 ; iRoomType < roomTypes.size() ; iRoomType++) {
-            roomTypeNames.add(roomTypes.get(iRoomType).getTypeName());
+        for (RoomType roomType : roomTypes) {
+            roomTypeNames.add(roomType.getTypeName());
         }
         return roomTypeNames;
     }

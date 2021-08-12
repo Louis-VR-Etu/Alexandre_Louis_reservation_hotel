@@ -3,13 +3,11 @@ package view;
 import model.RainbowThread;
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import static java.awt.Color.*;
 
 public class RainbowPanel extends JPanel{
     private JLabel rainbowWord;
     private RainbowThread rainbowThread;
-    private ArrayList<Color> colors;
     private Color currentColor;
     private String currentColorString;
 
@@ -23,43 +21,44 @@ public class RainbowPanel extends JPanel{
     }
 
     public void setColors() {
-        colors = new ArrayList<>();
-        colors.add(RED);
-        colors.add(ORANGE);
-        colors.add(YELLOW);
-        colors.add(GREEN);
-        colors.add(BLUE);
-        colors.add(new Color (102, 0, 153));
         currentColor = BLACK;
         currentColorString = "BLACK";
     }
 
     public void changeColor() {
         switch (currentColorString) {
-            case "BLACK": currentColor = RED;
+            case "BLACK" -> {
+                currentColor = RED;
                 currentColorString = "RED";
-                break;
-            case "RED": currentColor = ORANGE;
+            }
+            case "RED" -> {
+                currentColor = ORANGE;
                 currentColorString = "ORANGE";
-                break;
-            case "ORANGE": currentColor = YELLOW;
+            }
+            case "ORANGE" -> {
+                currentColor = YELLOW;
                 currentColorString = "YELLOW";
-                break;
-            case "YELLOW": currentColor = GREEN;
+            }
+            case "YELLOW" -> {
+                currentColor = GREEN;
                 currentColorString = "GREEN";
-                break;
-            case "GREEN": currentColor = BLUE;
+            }
+            case "GREEN" -> {
+                currentColor = BLUE;
                 currentColorString = "BLUE";
-                break;
-            case "BLUE": currentColor = new Color (102, 0, 153);
+            }
+            case "BLUE" -> {
+                currentColor = new Color(102, 0, 153);
                 currentColorString = "PURPLE";
-                break;
-            case "PURPLE": currentColor = RED;
+            }
+            case "PURPLE" -> {
+                currentColor = BLACK;
+                currentColorString = "BLACK";
+            }
+            default -> {
+                currentColor = RED;
                 currentColorString = "RED";
-                break;
-            default: currentColor = RED;
-                currentColorString = "RED";
-                break;
+            }
         }
         rainbowWord.setForeground(currentColor);
         RainbowPanel.this.removeAll();

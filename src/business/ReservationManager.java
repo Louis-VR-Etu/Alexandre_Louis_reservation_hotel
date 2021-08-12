@@ -60,10 +60,7 @@ public class ReservationManager {
         try {
             ArrayList<Reservation> conflicting = reservationDB.conflictingReservations(reservationUpdated);
             if(conflicting.size()==0){ return true;}
-            if(conflicting.size()==1 && reservation.getBeginningDate().compareTo(conflicting.get(0).getBeginningDate())==0){
-                return true;
-            }
-            return false;
+            return conflicting.size() == 1 && reservation.getBeginningDate().compareTo(conflicting.get(0).getBeginningDate()) == 0;
         } catch (UpdateReservationException exception) {
                 throw exception;
         }
@@ -73,10 +70,10 @@ public class ReservationManager {
         ArrayList<String> reservationString = new ArrayList<>();
         String pattern = "dd/MM/yyyy";
         DateFormat df = new SimpleDateFormat(pattern);
-        for (int iReserve = 0; iReserve < reservations.size(); iReserve++) {
-            reservationString.add(reservations.get(iReserve).getCustomerMail() + ", Hotel " +
-                    reservations.get(iReserve).getHotelName() + " room " + reservations.get(iReserve).getRoomNumber() +
-                    " from " + df.format(reservations.get(iReserve).getBeginningDate().getTime()) + " to " + df.format(reservations.get(iReserve).getEndingDate().getTime()));
+        for (Reservation reservation : reservations) {
+            reservationString.add(reservation.getCustomerMail() + ", Hotel " +
+                    reservation.getHotelName() + " room " + reservation.getRoomNumber() +
+                    " from " + df.format(reservation.getBeginningDate().getTime()) + " to " + df.format(reservation.getEndingDate().getTime()));
         }
         return reservationString;
     }

@@ -69,7 +69,7 @@ public class FreeRoomsPanel extends JPanel{
 
         validationButton = new JButton("Validation");
         this.add(validationButton);
-        if(add == true){
+        if(add){
             FreeRoomsPanel.AddButtonListener listener = new FreeRoomsPanel.AddButtonListener();
             validationButton.addActionListener(listener);
         }
@@ -84,7 +84,7 @@ public class FreeRoomsPanel extends JPanel{
             String hotelSelected = hotels.getSelectedItem().toString();
             Date beginDate = spinnerDateModelDeb.getDate();
             Date endDate = spinnerDateModelFin.getDate();
-            Integer peopleAmount = spinnerPeopleAmountModel.getNumber().intValue();
+            int peopleAmount = spinnerPeopleAmountModel.getNumber().intValue();
             try {
 if(applicationController.verifyDates(beginDate,endDate)) {
     rooms = applicationController.getFreeRooms(hotelSelected, beginDate, endDate, peopleAmount); //TODO
@@ -113,7 +113,7 @@ else {
             String hotelSelected = hotels.getSelectedItem().toString();
             Date beginDate = spinnerDateModelDeb.getDate();
             Date endDate = spinnerDateModelFin.getDate();
-            Integer peopleAmount = spinnerPeopleAmountModel.getNumber().intValue();
+            int peopleAmount = spinnerPeopleAmountModel.getNumber().intValue();
             try {
                 if(applicationController.verifyDates(beginDate,endDate)) {
                     rooms = applicationController.getFreeRooms(hotelSelected, beginDate, endDate, peopleAmount);

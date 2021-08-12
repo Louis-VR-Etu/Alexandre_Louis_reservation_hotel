@@ -40,14 +40,14 @@ public class FreeRoomsModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int row, int column) {
         RoomAndBed freeRoom = contents.get(row);
-        switch (column) {
-            case 0 : return freeRoom.getHotelName();
-            case 1 : return freeRoom.getNumber();
-            case 2 : return freeRoom.getFloor();
-            case 3 : return freeRoom.getRoomType();
-            case 4 : return freeRoom.getSingleBed();
-            case 5 : return freeRoom.getDoubleBed();
-            default : return null;
-        }
+        return switch (column) {
+            case 0 -> freeRoom.getHotelName();
+            case 1 -> freeRoom.getNumber();
+            case 2 -> freeRoom.getFloor();
+            case 3 -> freeRoom.getRoomType();
+            case 4 -> freeRoom.getSingleBed();
+            case 5 -> freeRoom.getDoubleBed();
+            default -> null;
+        };
     }
 }

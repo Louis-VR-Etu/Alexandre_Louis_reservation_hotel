@@ -47,8 +47,7 @@ public class AllReservationsModel extends AbstractTableModel{
                 if(reservation.getBeginningDate()!=null){
                 String pattern1 = "dd/MM/yyyy";
                 DateFormat df1 = new SimpleDateFormat(pattern1);
-                String dateString1 = df1.format(reservation.getBeginningDate().getTime());
-                return dateString1;}
+                    return df1.format(reservation.getBeginningDate().getTime());}
             case 1:
                 return reservation.getRoomNumber();
             case 2:
@@ -57,8 +56,7 @@ public class AllReservationsModel extends AbstractTableModel{
                 if(reservation.getBeginningDate()!=null){
                 String pattern2 = "dd/MM/yyyy";
                 DateFormat df2 = new SimpleDateFormat(pattern2);
-                String dateString2 = df2.format(reservation.getEndingDate().getTime());
-                return dateString2;}
+                    return df2.format(reservation.getEndingDate().getTime());}
             case 4:
                 return reservation.getAllInclusive();
             case 5:
@@ -79,32 +77,19 @@ public class AllReservationsModel extends AbstractTableModel{
     }
 
     public Class getColumnClass(int column) {
-        Class c;
-        switch (column) {
-            case 0 : c = String.class;
-                break;
-            case 1 : c = Integer.class;
-                break;
-            case 2 : c = String.class;
-                break;
-            case 3 : c = String.class;
-                break;
-            case 4 : c = Integer.class;
-                break;
-            case 5 : c = Integer.class;
-                break;
-            case 6 : c = String.class;
-                break;
-            case 7 : c = String.class;
-                break;
-            case 8 : c = Integer.class;
-                break;
-            case 9 : c = String.class;
-                break;
-            case 10 : c = String.class;
-                break;
-            default : c = String.class;
-        }
-        return c;
+        return switch (column) {
+            case 0 -> String.class;
+            case 1 -> Integer.class;
+            case 2 -> String.class;
+            case 3 -> String.class;
+            case 4 -> Integer.class;
+            case 5 -> Integer.class;
+            case 6 -> String.class;
+            case 7 -> String.class;
+            case 8 -> Integer.class;
+            case 9 -> String.class;
+            case 10 -> String.class;
+            default -> String.class;
+        };
     }
 }

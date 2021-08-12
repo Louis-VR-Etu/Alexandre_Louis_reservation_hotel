@@ -41,7 +41,7 @@ public class CustomerHotelsPanel extends JPanel {
             System.exit(0);
         }
 
-        priceMinLabel = new JLabel("mininum price paid");
+        priceMinLabel = new JLabel("minimum price paid");
         this.add(priceMinLabel);
         spinnerPriceMinModel = new SpinnerNumberModel(0,0,Integer.MAX_VALUE,1);
         spinnerPriceMin = new JSpinner(spinnerPriceMinModel);
@@ -56,7 +56,7 @@ public class CustomerHotelsPanel extends JPanel {
     public class ButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent event) {
             String customerSelected = customers.getSelectedItem().toString();
-            Integer priceMin = spinnerPriceMinModel.getNumber().intValue();
+            int priceMin = spinnerPriceMinModel.getNumber().intValue();
             try {
                 hotels = applicationController.getCustomerHotels(customerSelected,priceMin);
                 CustomerHotelsPanel.this.removeAll();

@@ -19,8 +19,8 @@ public class HotelManager {
 
     public ArrayList<String> stringHotelNames(ArrayList<Hotel> hotels) {
         ArrayList<String> hotelNames = new ArrayList<>();
-        for (int iHotel = 0 ; iHotel < hotels.size() ; iHotel++) {
-            hotelNames.add(hotels.get(iHotel).getName());
+        for (Hotel hotel : hotels) {
+            hotelNames.add(hotel.getName());
         }
         return hotelNames;
     }

@@ -38,8 +38,8 @@ public class RoomManager {
 
     public ArrayList<String> stringFreeRoomType(ArrayList<RoomAndBed> freeRooms) {
         ArrayList<String> rooms = new ArrayList<>();
-        for (int iRoom = 0 ; iRoom < freeRooms.size() ; iRoom++) {
-            rooms.add(freeRooms.get(iRoom).getRoomType()+", "+freeRooms.get(iRoom).getNumber() + ", " + freeRooms.get(iRoom).getHotelName());
+        for (RoomAndBed freeRoom : freeRooms) {
+            rooms.add(freeRoom.getRoomType() + ", " + freeRoom.getNumber() + ", " + freeRoom.getHotelName());
         }
         return rooms;
     }

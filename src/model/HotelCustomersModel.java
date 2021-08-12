@@ -38,17 +38,12 @@ public class HotelCustomersModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int row, int column) {
         CustomerRoom customerRoom = contents.get(row);
-        switch (column) {
-            case 0:
-                return customerRoom.getMail();
-            case 1:
-                return customerRoom.getName();
-            case 2:
-                return customerRoom.getSurname();
-            case 3:
-                return customerRoom.getRoomType();
-            default:
-                return null;
-        }
+        return switch (column) {
+            case 0 -> customerRoom.getMail();
+            case 1 -> customerRoom.getName();
+            case 2 -> customerRoom.getSurname();
+            case 3 -> customerRoom.getRoomType();
+            default -> null;
+        };
     }
 }

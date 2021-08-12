@@ -17,7 +17,7 @@ public class RainbowThread extends Thread{
                 rainbowPanel.changeColor();
             }
             catch (Exception exception) {
-                JOptionPane.showMessageDialog(null, exception.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

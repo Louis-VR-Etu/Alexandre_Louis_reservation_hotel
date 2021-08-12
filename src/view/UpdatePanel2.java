@@ -65,7 +65,7 @@ public class UpdatePanel2 extends JPanel{
             String hotelSelected = reservation.getHotelName();
             Date beginDate = spinnerDateModelDeb.getDate();
             Date endDate = spinnerDateModelFin.getDate();
-            Integer peopleAmount = spinnerPeopleAmountModel.getNumber().intValue();
+            int peopleAmount = spinnerPeopleAmountModel.getNumber().intValue();
             try {
                 if(applicationController.verifyDates(beginDate,endDate)) {
                     rooms = applicationController.getFreeRooms(hotelSelected, beginDate, endDate, peopleAmount);
