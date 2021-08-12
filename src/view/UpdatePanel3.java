@@ -22,35 +22,36 @@ public class UpdatePanel3 extends JPanel {
     private Date beginDate, endDate;
     private int peopleAmount;
     private Reservation reservation;
-    private ArrayList<RoomAndBed> rooms;
 
     public UpdatePanel3(Reservation reservation,ArrayList<RoomAndBed> rooms, Date beginningDate, Date endingDate, int peopleAmount) {
         this.reservation = reservation;
         this.beginDate = beginningDate;
         this.endDate = endingDate;
         this.peopleAmount = peopleAmount;
-        this.rooms = rooms;
         applicationController = new ApplicationController();
         this.setLayout(new GridLayout(0, 2, 5, 5));
 
         freeRooms = rooms;
-        ArrayList<String> roomTypes;
-        roomTypes = applicationController.stringFreeRoomType(freeRooms);
-        roomTypeLabel = new JLabel("Rooms");
-        this.add(roomTypeLabel);
-        roomType = new JComboBox(roomTypes.toArray());
-        roomType.setSelectedItem(0);
-        roomType.setMaximumRowCount(10);
-        this.add(roomType);
-        if(reservation.getPeople() == peopleAmount){
-            conserveRoomLabel = new JLabel("Conserve the former room: n°"+ reservation.getRoomNumber()+"?");
-            this.add(conserveRoomLabel);
-            buttonConserve = new JCheckBox("Conserve the former room");
-            this.add(buttonConserve);
+        if(freeRooms.size()!=0) {
+            ArrayList<String> roomTypes;
+            roomTypes = applicationController.stringFreeRoomType(freeRooms);
+            roomTypeLabel = new JLabel("Rooms");
+            this.add(roomTypeLabel);
+            roomType = new JComboBox(roomTypes.toArray());
+            roomType.setSelectedItem(0);
+            roomType.setMaximumRowCount(10);
+            this.add(roomType);
+            if (reservation.getPeople() == peopleAmount) {
+                conserveRoomLabel = new JLabel("or conserve the former room: n°" + reservation.getRoomNumber() + "?");
+                this.add(conserveRoomLabel);
+                buttonConserve = new JCheckBox("Conserve the former room");
+                this.add(buttonConserve);
+            }
         }
+
         allInLabel = new JLabel("All inclusive?");
         this.add(allInLabel);
-        buttonAllIn = new JCheckBox("All inclusive");
+        buttonAllIn = new JCheckBox("All inclusive",reservation.getAllInclusive());
         this.add(buttonAllIn);
 
         remarksLabel = new JLabel("Remarks");
@@ -81,7 +82,7 @@ public class UpdatePanel3 extends JPanel {
                 beginningDates.setTime(beginDate);
                 int roomNumberSelected;
                 String roomHotelSelected;
-                if(buttonConserve.isSelected() || rooms.size()==0){
+                if(  freeRooms.size()==0 || buttonConserve.isSelected()){
                     roomHotelSelected = UpdatePanel3.this.reservation.getHotelName();
                     roomNumberSelected = UpdatePanel3.this.reservation.getRoomNumber();
                 }else{
