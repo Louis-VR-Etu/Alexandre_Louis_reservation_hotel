@@ -1,7 +1,6 @@
 package model;
 
 public class Room {
-
     private Integer number;
     private String hotelName;
     private Integer floor;
@@ -38,8 +37,6 @@ public class Room {
     public void setNumber(Integer number) {
         this.number = number;
     }
-
-
 
     public Room(Integer number, Integer floor, String hotelName, String roomType){
         this.number=number;

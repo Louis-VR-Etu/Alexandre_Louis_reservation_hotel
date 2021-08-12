@@ -50,5 +50,4 @@ public class FreeRoomsModel extends AbstractTableModel {
             default : return null;
         }
     }
-
 }

@@ -2,7 +2,6 @@ package model;
 
 import java.sql.Date;
 import java.time.temporal.ChronoUnit;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class ReservationPrice {
@@ -34,7 +33,6 @@ public class ReservationPrice {
 
     public long getDuration() {
         return ChronoUnit.DAYS.between(beginningDate.toZonedDateTime(),endingDate.toZonedDateTime());
-
     }
 
     public int getPeople() {
@@ -52,5 +50,4 @@ public class ReservationPrice {
     public int getAllInPrice() {
         return allInPrice;
     }
-
 }

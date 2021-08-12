@@ -46,5 +46,4 @@ public class CustomerHotelsModel extends AbstractTableModel {
             default : return null;
         }
     }
-
 }

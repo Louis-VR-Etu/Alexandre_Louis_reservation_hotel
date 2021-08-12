@@ -3,7 +3,6 @@ package view;
 import controller.ApplicationController;
 import exception.CustomerAccessException;
 import exception.AddReservationException;
-import exception.GetFreeRoomsException;
 import model.*;
 
 import javax.swing.*;

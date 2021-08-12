@@ -1,7 +1,6 @@
 package model;
 
 import view.RainbowPanel;
-
 import javax.swing.*;
 
 public class RainbowThread extends Thread{
@@ -12,7 +11,6 @@ public class RainbowThread extends Thread{
     }
 
     public void run() {
-
         while(true) {
             try {
                 Thread.sleep(3000);

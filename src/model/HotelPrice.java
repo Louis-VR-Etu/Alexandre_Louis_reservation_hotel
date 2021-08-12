@@ -1,7 +1,6 @@
 package model;
 
 public class HotelPrice {
-    //TODO
     private String hotelName;
     private String address;
     private String roomType;

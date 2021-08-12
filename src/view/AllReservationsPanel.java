@@ -13,7 +13,7 @@ public class AllReservationsPanel extends JPanel{
     private ArrayList<Reservation> reservations;
     private ApplicationController applicationController;
 
-    public AllReservationsPanel(){ //TODO afficher les réservations
+    public AllReservationsPanel(){
         this.setLayout(new GridLayout(0, 1, 5, 5));
         applicationController = new ApplicationController();
         try{
