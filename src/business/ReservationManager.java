@@ -187,7 +187,7 @@ public class ReservationManager {
 
     public String verifyString(String text) throws Exception {
         if (text.compareTo("") == 0) {
-            throw new Exception("string vide");
+            throw new Exception("Empty string");
         } else {
             return text;
         }
