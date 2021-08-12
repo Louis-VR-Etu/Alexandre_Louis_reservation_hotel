@@ -22,12 +22,14 @@ public class UpdatePanel3 extends JPanel {
     private Date beginDate, endDate;
     private int peopleAmount;
     private Reservation reservation;
+    private ArrayList<RoomAndBed> rooms;
 
     public UpdatePanel3(Reservation reservation,ArrayList<RoomAndBed> rooms, Date beginningDate, Date endingDate, int peopleAmount) {
         this.reservation = reservation;
         this.beginDate = beginningDate;
         this.endDate = endingDate;
         this.peopleAmount = peopleAmount;
+        this.rooms = rooms;
         applicationController = new ApplicationController();
         this.setLayout(new GridLayout(0, 2, 5, 5));
 
@@ -41,7 +43,7 @@ public class UpdatePanel3 extends JPanel {
         roomType.setMaximumRowCount(10);
         this.add(roomType);
         if(reservation.getPeople() == peopleAmount){
-            conserveRoomLabel = new JLabel("Conserve the former room"+ reservation.getRoomNumber()+"?");
+            conserveRoomLabel = new JLabel("Conserve the former room: n°"+ reservation.getRoomNumber()+"?");
             this.add(conserveRoomLabel);
             buttonConserve = new JCheckBox("Conserve the former room");
             this.add(buttonConserve);
@@ -79,7 +81,7 @@ public class UpdatePanel3 extends JPanel {
                 beginningDates.setTime(beginDate);
                 int roomNumberSelected;
                 String roomHotelSelected;
-                if(buttonConserve.isSelected()){
+                if(buttonConserve.isSelected() || rooms.size()==0){
                     roomHotelSelected = UpdatePanel3.this.reservation.getHotelName();
                     roomNumberSelected = UpdatePanel3.this.reservation.getRoomNumber();
                 }else{
