@@ -1,5 +1,5 @@
 CREATE DATABASE `hotelmanager`;
-CREATE TABLE `customer` (
+CREATE TABLE `hotelmanager`.`customer` (
                             `mail` varchar(255)  NOT NULL,
                             `name` varchar(45) NOT NULL,
                             `surname` varchar(45) NOT NULL,
@@ -8,7 +8,7 @@ CREATE TABLE `customer` (
                             PRIMARY KEY (`mail`),
                             UNIQUE KEY `mail_UNIQUE` (`mail`)
 );
-CREATE TABLE `hotel` (
+CREATE TABLE `hotelmanager`.`hotel` (
                          `name` varchar(255)  NOT NULL,
                          `address` varchar(255) NOT NULL,
                          `animals` bit(1) NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE `hotel` (
                          UNIQUE KEY `name_UNIQUE` (`name`),
                          CONSTRAINT `positive_price` check(`allInclusivePrice`>=0)
 );
-CREATE TABLE `roomtype` (
+CREATE TABLE `hotelmanager`.`roomtype` (
                             `typeName` varchar(255) NOT NULL,
                             `price/night` float NOT NULL ,
                             `singleBed` int NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE `roomtype` (
                             CONSTRAINT `sdb_amount_pos` check(`doubleBed`>=0),
                             CONSTRAINT `pn_pos` check(`price/night`>0)
 );
-CREATE TABLE `room` (
+CREATE TABLE `hotelmanager`.`room` (
                         `number` int NOT NULL,
                         `hotelName` varchar(255) NOT NULL,
                         `floor` int NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE `room` (
                         CONSTRAINT `roomTypename` FOREIGN KEY (`roomTypeName`) REFERENCES `roomtype` (`typeName`),
                         CONSTRAINT `number_pos` check(number>0)
 );
-CREATE TABLE `reservation` (
+CREATE TABLE `hotelmanager`.`reservation` (
                                `beginningDate` date NOT NULL,
                                `roomNumber` int NOT NULL,
                                `roomHotelName` varchar(255) NOT NULL,
