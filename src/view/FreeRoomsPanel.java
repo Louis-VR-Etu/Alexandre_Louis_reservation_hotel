@@ -86,15 +86,20 @@ public class FreeRoomsPanel extends JPanel{
             Date endDate = spinnerDateModelFin.getDate();
             Integer peopleAmount = spinnerPeopleAmountModel.getNumber().intValue();
             try {
-                rooms = applicationController.getFreeRooms(hotelSelected,beginDate, endDate, peopleAmount); //TODO
-                FreeRoomsPanel.this.removeAll();
-                FreeRoomsPanel.this.setLayout(new GridLayout(0,1,5,5));
-                freeRoomsModel = new FreeRoomsModel(rooms);
-                JTable freeRooms = new JTable(freeRoomsModel);
-                JScrollPane scrollPane = new JScrollPane(freeRooms);
-                FreeRoomsPanel.this.add(scrollPane);
-                FreeRoomsPanel.this.revalidate();
-                FreeRoomsPanel.this.repaint();
+if(applicationController.verifyDates(beginDate,endDate)) {
+    rooms = applicationController.getFreeRooms(hotelSelected, beginDate, endDate, peopleAmount); //TODO
+    FreeRoomsPanel.this.removeAll();
+    FreeRoomsPanel.this.setLayout(new GridLayout(0, 1, 5, 5));
+    freeRoomsModel = new FreeRoomsModel(rooms);
+    JTable freeRooms = new JTable(freeRoomsModel);
+    JScrollPane scrollPane = new JScrollPane(freeRooms);
+    FreeRoomsPanel.this.add(scrollPane);
+    FreeRoomsPanel.this.revalidate();
+    FreeRoomsPanel.this.repaint();
+}
+else {
+    JOptionPane.showMessageDialog(null, "beginning date must be before ending date", "Warning", JOptionPane.WARNING_MESSAGE);
+}
             }
             catch (GetFreeRoomsException exception) {
                 JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -110,11 +115,16 @@ public class FreeRoomsPanel extends JPanel{
             Date endDate = spinnerDateModelFin.getDate();
             Integer peopleAmount = spinnerPeopleAmountModel.getNumber().intValue();
             try {
-                rooms = applicationController.getFreeRooms(hotelSelected,beginDate, endDate, peopleAmount);
-                FreeRoomsPanel.this.removeAll();
-                FreeRoomsPanel.this.add(new FormPanel(rooms,beginDate,endDate,peopleAmount), BorderLayout.CENTER);
-                FreeRoomsPanel.this.revalidate();
-                FreeRoomsPanel.this.repaint();
+                if(applicationController.verifyDates(beginDate,endDate)) {
+                    rooms = applicationController.getFreeRooms(hotelSelected, beginDate, endDate, peopleAmount);
+                    FreeRoomsPanel.this.removeAll();
+                    FreeRoomsPanel.this.add(new FormPanel(rooms, beginDate, endDate, peopleAmount), BorderLayout.CENTER);
+                    FreeRoomsPanel.this.revalidate();
+                    FreeRoomsPanel.this.repaint();
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "beginning date must be before ending date", "Warning", JOptionPane.WARNING_MESSAGE);
+                }
             }
             catch (GetFreeRoomsException exception) {
                 JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
