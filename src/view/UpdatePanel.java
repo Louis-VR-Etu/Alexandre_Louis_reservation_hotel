@@ -8,8 +8,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 public class UpdatePanel extends JPanel{
 
@@ -18,12 +16,10 @@ public class UpdatePanel extends JPanel{
     private JButton validationButton;
     private JComboBox reservations;
     private ArrayList<Reservation> arrayReservations;
-
     private ApplicationController applicationController;
 
     public UpdatePanel() {
         this.setLayout(new GridLayout(13,2,5,5));
-
         applicationController = new ApplicationController();
         reservationsString = new ArrayList<>();
         arrayReservations = new ArrayList<>();
@@ -48,19 +44,12 @@ public class UpdatePanel extends JPanel{
 
     private class ButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent event) {
-            //TODO appeler UpdatePanel2
-
             Reservation reservation = applicationController.researchReservation(reservations.getSelectedItem().toString(), arrayReservations);
-
-
-                UpdatePanel.this.removeAll();
-                UpdatePanel.this.setLayout(new GridLayout(0,1,5,5));
-                UpdatePanel.this.add(new UpdatePanel2(reservation), BorderLayout.CENTER);
-                UpdatePanel.this.revalidate();
-                UpdatePanel.this.repaint();
-
-
-
+            UpdatePanel.this.removeAll();
+            UpdatePanel.this.setLayout(new GridLayout(0,1,5,5));
+            UpdatePanel.this.add(new UpdatePanel2(reservation), BorderLayout.CENTER);
+            UpdatePanel.this.revalidate();
+            UpdatePanel.this.repaint();
         }
     }
 }

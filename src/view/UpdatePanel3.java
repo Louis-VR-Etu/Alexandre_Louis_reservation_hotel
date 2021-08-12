@@ -1,13 +1,8 @@
 package view;
 
 import controller.ApplicationController;
-import exception.AddReservationException;
-import exception.CustomerAccessException;
-import exception.UpdateReservationException;
-import model.Customer;
 import model.Reservation;
 import model.RoomAndBed;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -20,10 +15,9 @@ public class UpdatePanel3 extends JPanel {
     private JLabel conserveRoomLabel, allInLabel, roomTypeLabel, remarksLabel, contactsLabel, couponCodeLabel;
     private JTextField remarks, contacts, coupon;
     private JCheckBox buttonAllIn, buttonConserve;
-    private JComboBox roomType, mail;
+    private JComboBox roomType;
     private JButton validationButton;
     private ArrayList<RoomAndBed> freeRooms;
-    private ArrayList<Customer> customers;
     private ApplicationController applicationController;
     private Date beginDate, endDate;
     private int peopleAmount;
@@ -51,10 +45,7 @@ public class UpdatePanel3 extends JPanel {
             this.add(conserveRoomLabel);
             buttonConserve = new JCheckBox("Conserve the former room");
             this.add(buttonConserve);
-
         }
-
-
         allInLabel = new JLabel("All inclusive?");
         this.add(allInLabel);
         buttonAllIn = new JCheckBox("All inclusive");
@@ -93,13 +84,12 @@ public class UpdatePanel3 extends JPanel {
                     roomNumberSelected = UpdatePanel3.this.reservation.getRoomNumber();
                 }else{
                     RoomAndBed roomSelected = applicationController.researchFreeRoom(roomType.getSelectedItem().toString(), freeRooms);
-                roomNumberSelected=roomSelected.getNumber();
-                roomHotelSelected = roomSelected.getHotelName();
+                    roomNumberSelected=roomSelected.getNumber();
+                    roomHotelSelected = roomSelected.getHotelName();
                 }
                 GregorianCalendar endingDates = new GregorianCalendar();
                 endingDates.setTime(endDate);
                 Boolean allInclusive = buttonAllIn.isSelected();
-
                 String remark = applicationController.getReservationManager().verifyString(remarks.getText());
                 String additionalContact = contacts.getText();
                 String couponCode = coupon.getText();
