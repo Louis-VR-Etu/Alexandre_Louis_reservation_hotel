@@ -220,4 +220,8 @@ public class ApplicationController {
             throw exception;
         }
     }
+
+    public ReservationManager getReservationManager() {
+        return this.reservationManager;
+    }
 }

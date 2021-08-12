@@ -49,22 +49,18 @@ public class UpdatePanel extends JPanel{
     private class ButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent event) {
             //TODO appeler UpdatePanel2
-            /*
+
             Reservation reservation = applicationController.researchReservation(reservations.getSelectedItem().toString(), arrayReservations);
-            try {
-                applicationController.deleteReservation(reservation);
-                JLabel priceLabel = new JLabel("reservation has been removed");
+
+
                 UpdatePanel.this.removeAll();
-                UpdatePanel.this.add(priceLabel);
+                UpdatePanel.this.setLayout(new GridLayout(0,1,5,5));
+                UpdatePanel.this.add(new UpdatePanel2(reservation), BorderLayout.CENTER);
                 UpdatePanel.this.revalidate();
                 UpdatePanel.this.repaint();
-            }
 
-            catch (DeleteReservationException exception) {
-                JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                System.exit(0);
-            }
-            */
+
+
         }
     }
 }
