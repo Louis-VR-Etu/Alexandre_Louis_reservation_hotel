@@ -48,6 +48,8 @@ public class UpdatePanel extends JPanel{
 
     private class ButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent event) {
+            //TODO appeler une 2eme fenetre
+            /*
             Reservation reservation = applicationController.researchReservation(reservations.getSelectedItem().toString(), arrayReservations);
             try {
                 applicationController.deleteReservation(reservation);
@@ -62,6 +64,7 @@ public class UpdatePanel extends JPanel{
                 JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 System.exit(0);
             }
+            */
         }
     }
 }
