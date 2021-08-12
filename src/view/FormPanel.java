@@ -99,8 +99,8 @@ public class FormPanel extends JPanel {
                 String remark = applicationController.verifyTitle(remarks.getText());
                 String additionalContact = contacts.getText();
                 String couponCode = coupon.getText();
-                Customer customerSelected = applicationController.researchCustomer(mail.getSelectedItem().toString(), customers);
-                Reservation reservation = new Reservation(beginningDates, roomSelected.getNumber(), roomSelected.getHotelName(), endingDates, allInclusive, peopleAmount, remark, additionalContact, couponCode, customerSelected.getMail());
+                String customerSelected = mail.getSelectedItem().toString();
+                Reservation reservation = new Reservation(beginningDates, roomSelected.getNumber(), roomSelected.getHotelName(), endingDates, allInclusive, peopleAmount, remark, additionalContact, couponCode, customerSelected);
 
                 applicationController.addReservation(reservation);
                 JLabel priceLabel = new JLabel("reservation has been added");

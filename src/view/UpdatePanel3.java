@@ -97,7 +97,7 @@ public class UpdatePanel3 extends JPanel {
                 Reservation reservationUpdated = new Reservation(beginningDates, roomNumberSelected, roomHotelSelected, endingDates, allInclusive, peopleAmount, remark, additionalContact, couponCode, customerSelected);
 
                 applicationController.updateReservation(reservation,reservationUpdated);
-                JLabel priceLabel = new JLabel("reservation has been Updated");
+                JLabel priceLabel = new JLabel("Update has been processed");
                 UpdatePanel3.this.removeAll();
                 UpdatePanel3.this.add(priceLabel);
                 UpdatePanel3.this.revalidate();
