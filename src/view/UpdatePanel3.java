@@ -3,6 +3,7 @@ package view;
 import controller.ApplicationController;
 import exception.AddReservationException;
 import exception.CustomerAccessException;
+import exception.UpdateReservationException;
 import model.Customer;
 import model.Reservation;
 import model.RoomAndBed;
@@ -33,6 +34,7 @@ public class UpdatePanel3 extends JPanel {
         this.beginDate = beginningDate;
         this.endDate = endingDate;
         this.peopleAmount = peopleAmount;
+        applicationController = new ApplicationController();
         this.setLayout(new GridLayout(0, 2, 5, 5));
 
         freeRooms = rooms;
@@ -45,9 +47,9 @@ public class UpdatePanel3 extends JPanel {
         roomType.setMaximumRowCount(10);
         this.add(roomType);
         if(reservation.getPeople() == peopleAmount){
-            conserveRoomLabel = new JLabel("All inclusive?");
+            conserveRoomLabel = new JLabel("Conserve the former room"+ reservation.getRoomNumber()+"?");
             this.add(conserveRoomLabel);
-            buttonConserve = new JCheckBox("All inclusive");
+            buttonConserve = new JCheckBox("Conserve the former room");
             this.add(buttonConserve);
 
         }
@@ -60,17 +62,17 @@ public class UpdatePanel3 extends JPanel {
 
         remarksLabel = new JLabel("Remarks");
         this.add(remarksLabel);
-        remarks = new JTextField();
+        remarks = new JTextField(reservation.getTitle());
         this.add(remarks);
 
         contactsLabel = new JLabel("additional contacts");
         this.add(contactsLabel);
-        contacts = new JTextField();
+        contacts = new JTextField(reservation.getAdditionalContact());
         this.add(contacts);
 
         couponCodeLabel = new JLabel("coupon code?");
         this.add(couponCodeLabel);
-        coupon = new JTextField();
+        coupon = new JTextField(reservation.getCouponCode());
         this.add(coupon);
 
         validationButton = new JButton("Validation");
@@ -98,19 +100,19 @@ public class UpdatePanel3 extends JPanel {
                 endingDates.setTime(endDate);
                 Boolean allInclusive = buttonAllIn.isSelected();
 
-                String remark = applicationController.verifyTitle(remarks.getText());
+                String remark = applicationController.getReservationManager().verifyString(remarks.getText());
                 String additionalContact = contacts.getText();
                 String couponCode = coupon.getText();
-                Customer customerSelected = applicationController.researchCustomer(mail.getSelectedItem().toString(), customers);
-                Reservation reservation = new Reservation(beginningDates, roomNumberSelected, roomHotelSelected, endingDates, allInclusive, peopleAmount, remark, additionalContact, couponCode, customerSelected.getMail());
+                String customerSelected = reservation.getCustomerMail();
+                Reservation reservationUpdated = new Reservation(beginningDates, roomNumberSelected, roomHotelSelected, endingDates, allInclusive, peopleAmount, remark, additionalContact, couponCode, customerSelected);
 
-                applicationController.addReservation(reservation);
-                JLabel priceLabel = new JLabel("reservation has been added");
+                applicationController.updateReservation(reservation,reservationUpdated);
+                JLabel priceLabel = new JLabel("reservation has been Updated");
                 UpdatePanel3.this.removeAll();
                 UpdatePanel3.this.add(priceLabel);
                 UpdatePanel3.this.revalidate();
                 UpdatePanel3.this.repaint();
-            } catch (AddReservationException exception) {
+            } catch (Exception exception) {
                 JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }

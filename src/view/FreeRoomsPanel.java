@@ -112,7 +112,6 @@ public class FreeRoomsPanel extends JPanel{
             try {
                 rooms = applicationController.getFreeRooms(hotelSelected,beginDate, endDate, peopleAmount);
                 FreeRoomsPanel.this.removeAll();
-                FreeRoomsPanel.this.setLayout(new GridLayout(0,1,5,5));
                 FreeRoomsPanel.this.add(new FormPanel(rooms,beginDate,endDate,peopleAmount), BorderLayout.CENTER);
                 FreeRoomsPanel.this.revalidate();
                 FreeRoomsPanel.this.repaint();
