@@ -3,7 +3,6 @@ package controller;
 import business.*;
 import exception.*;
 import model.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -87,14 +86,9 @@ public class ApplicationController {
             throw exception;
         }
     }
-/*
-    public ArrayList<String> stringCustomer(ArrayList<Customer> customers) {
-        return CustomerManager.stringCustomer(customers);
-    }
-*/
-    public ArrayList<String> stringCustomerMail(ArrayList<Customer> customers) {
-        return customerManager.stringCustomerMail(customers);
-    }
+
+    public ArrayList<String> stringCustomerMail(ArrayList<Customer> customers) { return customerManager.stringCustomerMail(customers); }
+
     public ArrayList<String> stringReservation(ArrayList<Reservation> reservations) { return reservationManager.stringReservations(reservations);}
 
     public ArrayList<String> stringHotelNames(ArrayList<Hotel> hotels) { return hotelManager.stringHotelNames(hotels);}
@@ -102,84 +96,17 @@ public class ApplicationController {
     public ArrayList<String> stringRoomTypeNames(ArrayList<RoomType> roomTypeNames) { return roomTypeManager.stringRoomTypeNames(roomTypeNames); }
 
     public ArrayList<String> stringFreeRoomType(ArrayList<RoomAndBed> freeRooms) { return roomManager.stringFreeRoomType(freeRooms);    }
-    /*
-    public City researchCity(String stringCity, ArrayList<City> cities) {
-        return cityManager.researchCity(stringCity, cities);
-    }
 
-    public Station researchStation(String stringStation, ArrayList<Station> stations) {
-        return stationManager.researchStation(stringStation, stations);
-    }
-*/
-    public Reservation researchReservation(String reservationString, ArrayList<Reservation> reservations) {
-        return reservationManager.researchReservation(reservationString, reservations);
-    }
+    public Reservation researchReservation(String reservationString, ArrayList<Reservation> reservations) { return reservationManager.researchReservation(reservationString, reservations); }
 
-    public Room researchRoom(String roomString, ArrayList<Room> rooms){
-        return roomManager.researchRoom(roomString, rooms);
-    }
+    public Room researchRoom(String roomString, ArrayList<Room> rooms){ return roomManager.researchRoom(roomString, rooms); }
 
-    public RoomAndBed researchFreeRoom(String roomString, ArrayList<RoomAndBed> rooms){
-        return roomManager.researchFreeRoom(roomString, rooms);
-    }
+    public RoomAndBed researchFreeRoom(String roomString, ArrayList<RoomAndBed> rooms){ return roomManager.researchFreeRoom(roomString, rooms); }
 
-    public Hotel researchHotel(String hotelString, ArrayList<Hotel> hotels){
-        return hotelManager.researchHotel(hotelString, hotels);
-    }
+    public Hotel researchHotel(String hotelString, ArrayList<Hotel> hotels){ return hotelManager.researchHotel(hotelString, hotels); }
 
-    public Customer researchCustomer(String customerString, ArrayList<Customer> customers){
-        return customerManager.researchCustomer(customerString, customers);
-    }
-/*
-    public Employee researchEmployee(String employeeString, ArrayList<Employee> employees) {
-        return employeeManager.researchEmployee(employeeString, employees);
-    }
+    public Customer researchCustomer(String customerString, ArrayList<Customer> customers){ return customerManager.researchCustomer(customerString, customers); }
 
-    public ArrayList<SubscriptionInfo> researchSubscription(Employee employee, Date dateDeb, Date dateFin) throws ResearchSubscriptionException{
-        try {
-            return employeeManager.researchSubscription(employee, dateDeb, dateFin);
-        }
-        catch (ResearchSubscriptionException exception) {
-            throw exception;
-        }
-    }
-
-    public ArrayList<MemberBikeInfo> researchMemberBike(String typeBikeChoosed) throws ResearchMemberBikeException{
-        try {
-            return memberManager.researchMemberBike(typeBikeChoosed);
-        }
-        catch (ResearchMemberBikeException exception) {
-            throw exception;
-        }
-    }
-
-    public ArrayList<RentingInfo> researchRenting(Member member, Date beginDate, Date enDate) throws ResearchRentingException{
-        try {
-            return rentingManager.researchRenting(member, beginDate, enDate);
-        }
-        catch (ResearchRentingException exception) {
-            throw exception;
-        }
-    }
-
-    public String jobTaskBikeCity(City city, Date beginDate, Date enDate) throws JobTaskCityException{
-        try {
-            return JobTaskManager.jobTaskBikeCity(city, beginDate, enDate);
-        }
-        catch (JobTaskCityException exception) {
-            throw exception;
-        }
-    }
-
-    public String jobTaskBikeStation(Station station, Date beginDate, Date enDate) throws JobTaskStationException{
-        try {
-            return JobTaskManager.jobTaskBikeStation(station, beginDate, enDate);
-        }
-        catch (JobTaskStationException exception) {
-            throw exception;
-        }
-    }
-*/
     public GregorianCalendar verifyBeginningDate(String day, String month, String year) throws AddReservationException {
         try {
             return reservationManager.verifyBeginningDate(day, month, year);
@@ -280,25 +207,17 @@ public class ApplicationController {
     public ArrayList<HotelPrice> getCustomerHotels(String customerSelected, int priceMin) throws GetCustomerHotelsException {
         try{
             return hotelManager.getCustomerHotels(customerSelected, priceMin);
+        } catch(GetCustomerHotelsException exception){
+            throw exception;
         }
-        catch(GetCustomerHotelsException exception){throw exception;}
     }
 
     public String jobTaskReservationPrice(Reservation reservation) throws JobTaskReservationPriceException {
         try{
             return jobTaskManager.jobTaskReservationPrice(reservation);
         }
-        catch(JobTaskReservationPriceException exception){throw exception;}
-    }
-
-
-/*
-    public String verifyCustomerMail(String customerMail) throws AddReservationException {
-        try {
-            return reservationManager.verifyCustomerMail(customerMail);
-        } catch (AddReservationException exception) {
+        catch(JobTaskReservationPriceException exception){
             throw exception;
         }
     }
- */
 }

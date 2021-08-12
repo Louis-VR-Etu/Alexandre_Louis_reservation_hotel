@@ -5,18 +5,17 @@ import exception.GetFreeRoomsException;
 import exception.RoomAccessException;
 import model.Room;
 import model.RoomAndBed;
-
 import java.util.ArrayList;
 import java.util.Date;
 
 public class RoomManager {
     private RoomDBAccess roomDB;
+
     public RoomManager(){roomDB = new RoomDBAccess();}
 
     public ArrayList<Room> getRooms() throws RoomAccessException {
         try { return roomDB.getRooms();}
         catch (RoomAccessException exception) {throw exception;}
-
     }
     public Room researchRoom(String roomString, ArrayList<Room> rooms) {
         boolean isFound = false;
@@ -39,7 +38,6 @@ public class RoomManager {
 
     public ArrayList<String> stringFreeRoomType(ArrayList<RoomAndBed> freeRooms) {
         ArrayList<String> rooms = new ArrayList<>();
-
         for (int iRoom = 0 ; iRoom < freeRooms.size() ; iRoom++) {
             rooms.add(freeRooms.get(iRoom).getRoomType()+", "+freeRooms.get(iRoom).getNumber() + ", " + freeRooms.get(iRoom).getHotelName());
         }

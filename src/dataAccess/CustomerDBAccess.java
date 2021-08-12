@@ -5,13 +5,8 @@ import exception.CustomerAccessException;
 import exception.GetHotelCustomersException;
 import model.Customer;
 import model.CustomerRoom;
-import model.RoomAndBed;
-
 import java.sql.*;
 import java.util.ArrayList;
-
-
-
 
 public class CustomerDBAccess  {
     public CustomerDBAccess(){}
@@ -20,9 +15,7 @@ public class CustomerDBAccess  {
         try {
             Connection connection = SingletonConnexion.getInstance();
             String sqlInstruction = "select * from customer order by mail ";
-
             PreparedStatement preparedStatement = connection.prepareStatement(sqlInstruction);
-
             ResultSet data = preparedStatement.executeQuery();
             ArrayList<Customer>customers = new ArrayList<>();
             Customer customer;
@@ -34,7 +27,6 @@ public class CustomerDBAccess  {
         }
         catch(SQLException exception){
             throw new CustomerAccessException(exception.getMessage());
-
         }
     }
 
@@ -49,14 +41,11 @@ public class CustomerDBAccess  {
             PreparedStatement preparedStatement = connection.prepareStatement(sqlInstruction);
             preparedStatement.setString(1,hotelSelected);
             ResultSet data = preparedStatement.executeQuery();
-
             CustomerRoom customerRoom;
-
             while(data.next()){
                 customerRoom = new CustomerRoom(data.getString("mail"),data.getString("name"),data.getString("surname"),data.getString("roomType"));
                 customerRooms.add(customerRoom);
             }
-
         }
         catch(SQLException exception){
             throw new GetHotelCustomersException(exception.getMessage());
@@ -64,4 +53,3 @@ public class CustomerDBAccess  {
         return customerRooms;
     }
 }
-//*/

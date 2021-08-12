@@ -4,7 +4,6 @@ import controller.ApplicationController;
 import exception.DeleteReservationException;
 import exception.GetReservationException;
 import model.Reservation;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,13 +16,10 @@ public class RemovePanel extends JPanel{
     private JButton validationButton;
     private ArrayList<String> reservationsString;
     private ArrayList<Reservation> arrayReservations;
-    private Container container;
-
     private ApplicationController applicationController;
 
     public RemovePanel() {
         this.setLayout(new GridLayout(13,2,5,5));
-
         applicationController = new ApplicationController();
         reservationsString = new ArrayList<>();
         arrayReservations = new ArrayList<>();
@@ -57,7 +53,6 @@ public class RemovePanel extends JPanel{
                 RemovePanel.this.revalidate();
                 RemovePanel.this.repaint();
             }
-
             catch (DeleteReservationException exception) {
                 JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 System.exit(0);

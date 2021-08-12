@@ -4,7 +4,6 @@ import controller.ApplicationController;
 import exception.GetReservationException;
 import model.AllReservationsModel;
 import model.Reservation;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 public class AllReservationsPanel extends JPanel{
     private AllReservationsModel allReservationsModel;
     private ArrayList<Reservation> reservations;
-
     private ApplicationController applicationController;
 
     public AllReservationsPanel(){ //TODO afficher les réservations

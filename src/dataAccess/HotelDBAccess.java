@@ -1,15 +1,11 @@
 package dataAccess;
 
 import exception.GetCustomerHotelsException;
-import exception.GetHotelCustomersException;
 import exception.GetHotelsException;
-import model.CustomerRoom;
 import model.Hotel;
 import model.HotelPrice;
-
 import java.sql.*;
 import java.util.ArrayList;
-
 
 public class HotelDBAccess {
     public HotelDBAccess(){}

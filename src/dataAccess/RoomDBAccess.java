@@ -4,13 +4,11 @@ import exception.GetFreeRoomsException;
 import exception.RoomAccessException;
 import model.Room;
 import model.RoomAndBed;
-
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
 
 public class RoomDBAccess {
     public RoomDBAccess(){}
@@ -19,9 +17,7 @@ public class RoomDBAccess {
         try {
             Connection connection = SingletonConnexion.getInstance();
             String sqlInstruction = "select * from room";
-
             PreparedStatement preparedStatement = connection.prepareStatement(sqlInstruction);
-
             ResultSet data = preparedStatement.executeQuery();
             ArrayList<Room>rooms = new ArrayList<>();
             Room room;
@@ -33,7 +29,6 @@ public class RoomDBAccess {
         }
         catch(SQLException exception){
             throw new RoomAccessException(exception.getMessage());
-
         }
     }
 
@@ -50,7 +45,6 @@ public class RoomDBAccess {
                     "or  (r.endingDate >= str_to_date(?,'%d/%m/%Y') and r.beginningDate < str_to_date(?,'%d/%m/%Y')) " + //ee
                     "or  (r.beginningDate >= str_to_date(?,'%d/%m/%Y') and r.endingDate <= str_to_date(?,'%d/%m/%Y')) ) "+ //be
                     ";";
-
             PreparedStatement preparedStatement = connection.prepareStatement(sqlInstruction);
             String format ="dd/MM/yyyy";
             DateFormat df = new SimpleDateFormat(format);
@@ -66,7 +60,6 @@ public class RoomDBAccess {
             preparedStatement.setString(2,hotelName);
             ResultSet data = preparedStatement.executeQuery();
             RoomAndBed freeRoom;
-
             while(data.next()){
                 freeRoom = new RoomAndBed(data.getInt("number"),data.getInt("floor"),data.getString("hotelName"), data.getString("roomTypeName"),data.getInt("singleBed") ,data.getInt("doubleBed"));
                 freeRooms.add(freeRoom);
@@ -75,6 +68,5 @@ public class RoomDBAccess {
             throw new GetFreeRoomsException(exception.getMessage());
         }
         return freeRooms;
-
     }
 }

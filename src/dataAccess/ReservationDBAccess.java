@@ -5,31 +5,24 @@ import exception.DeleteReservationException;
 import exception.GetReservationException;
 import exception.UpdateReservationException;
 import model.Reservation;
-import model.ReservationPrice;
-
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
-
 public class ReservationDBAccess {
     public ReservationDBAccess(){}
 
     public ArrayList<Reservation> getReservations() throws GetReservationException {
-        //TODO erreur ici
         try {
             Connection connection = SingletonConnexion.getInstance();
             String sqlInstruction = "select * from reservation order by roomHotelName, beginningDate";
-
             PreparedStatement preparedStatement = connection.prepareStatement(sqlInstruction);
-
             ResultSet data = preparedStatement.executeQuery();
             ArrayList<Reservation>reservations = new ArrayList<>();
             Reservation reservation;
             while (data.next()) {
-
                 reservation = new Reservation(dateToGregorian(data.getDate("beginningDate")), //TODO test
                         data.getInt("roomNumber"),
                         data.getString("roomHotelName"),
@@ -52,14 +45,10 @@ public class ReservationDBAccess {
         }
         catch(SQLException exception){
             throw new GetReservationException(exception.getMessage());
-
         }
     }
 
     public void addReservation(Reservation reservation) throws AddReservationException {
-        //TODO verifier avec DB
-
-//*
         try {
             Connection connection = SingletonConnexion.getInstance();
             String sqlInstruction = "insert into reservation(beginningDate, roomNumber, roomHotelName, endingDate, allInclusive, people, remarks, additionalContact, couponCode, customerMail) values(str_to_date(?,'%d/%m/%Y'),?,?,str_to_date(?,'%d/%m/%Y'),?,?,?,?,?,?)";
@@ -83,7 +72,6 @@ public class ReservationDBAccess {
         catch (SQLException exception) {
             throw new AddReservationException(exception.getMessage());
         }
-        //*/
     }
 
     public void deleteReservation(Reservation reservation) throws DeleteReservationException {
@@ -91,25 +79,18 @@ public class ReservationDBAccess {
             Connection connection = SingletonConnexion.getInstance();
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             String sqlInstruction = "delete from reservation where beginningDate = str_to_date(?,'%d/%m/%Y') and roomHotelName= ? and roomNumber = ? ;";
-
             PreparedStatement preparedStatement = connection.prepareStatement(sqlInstruction);
-
             preparedStatement.setString(1,df.format(reservation.getBeginningDate().getTime()));
-
             preparedStatement.setString(2,reservation.getHotelName());
-
             preparedStatement.setString(3,""+reservation.getRoomNumber());
-
             preparedStatement.executeUpdate();
         }
         catch (Exception exception) {
             throw new DeleteReservationException(exception.getMessage());
         }
-
     }
 
     public void updateReservation(Reservation reservation, Reservation reservationUpdated) throws UpdateReservationException {
-        //TODO verifier avec DB
         try {
             Connection connection = SingletonConnexion.getInstance();
             String sqlInstruction = "update reservation set  beginningDate= str_to_date(?,'%d/%m/%Y'), roomNumber=?, roomHotelName=?, endingDate= str_to_date(?,'%d/%m/%Y'), allInclusive=?, people=?, remarks=?, additionalContact=?, couponCode=?, customerMail=? where beginningDate = str_to_date(?,'%d/%m/%Y') and roomHotelName= ? and roomNumber = ?;";

@@ -3,12 +3,9 @@ package business;
 import dataAccess.ReservationDBAccess;
 import exception.*;
 import model.Reservation;
-import model.Room;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class ReservationManager {
@@ -21,11 +18,9 @@ public class ReservationManager {
     public ArrayList<Reservation> getReservations() throws GetReservationException {
         try {
             return reservationDB.getReservations();
-
         } catch (GetReservationException exception) {
             throw exception;
         }
-
     }
 
     public void addReservation(Reservation reservation) throws AddReservationException {
@@ -76,7 +71,6 @@ public class ReservationManager {
 
     public GregorianCalendar verifyBeginningDate(String day, String month, String year) throws AddReservationException {
         try {
-            //todo date
             return new GregorianCalendar(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
         } catch (NumberFormatException exception) {
             throw new AddReservationException("wrong beginning date");
@@ -101,7 +95,6 @@ public class ReservationManager {
 
     public GregorianCalendar verifyEndingDate(String day, String month, String year) throws AddReservationException {
         try {
-            //todo date
             return new GregorianCalendar(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
         } catch (NumberFormatException exception) {
             throw new AddReservationException("wrong ending date");
@@ -133,7 +126,6 @@ public class ReservationManager {
     }
 
     public String verifyAdditionalContact(String additionalContact) throws AddReservationException {
-
         try {
             return verifyString(additionalContact);
         } catch (Exception exception) {
@@ -146,15 +138,6 @@ public class ReservationManager {
             return verifyString(couponCode);
         } catch (Exception exception) {
             throw new AddReservationException("Wrong couponCode");
-        }
-    }
-    //*/
-
-    public String verifyCustomerMail(String customerMail) throws AddReservationException {
-        try {
-            return verifyString(customerMail);
-        } catch (Exception exception) {
-            throw new AddReservationException("wrong customer mail");
         }
     }
 

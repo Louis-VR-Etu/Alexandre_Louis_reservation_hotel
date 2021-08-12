@@ -1,11 +1,9 @@
 package business;
 
-import controller.ApplicationController;
 import dataAccess.JobTaskDBAccess;
 import exception.JobTaskReservationPriceException;
 import model.Reservation;
 import model.ReservationPrice;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -14,15 +12,11 @@ public class JobTaskManager {
 
     public JobTaskManager() {this.jobTaskDB = new JobTaskDBAccess();}
 
-
-
-    //*
    public String jobTaskReservationPrice(Reservation reservation) throws JobTaskReservationPriceException {
     String reservationPrice ="";
        ReservationPrice data;
         try{
-                data = jobTaskDB.getPriceData(reservation);
-
+            data = jobTaskDB.getPriceData(reservation);
             long duration = data.getDuration();
             int people = data.getPeople();
             int allIn=0;
@@ -39,5 +33,4 @@ public class JobTaskManager {
         catch(JobTaskReservationPriceException exception){throw exception;}
         return reservationPrice;
     }
-
 }

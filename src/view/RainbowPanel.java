@@ -1,18 +1,13 @@
 package view;
 
 import model.RainbowThread;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import static java.awt.Color.*;
 
 public class RainbowPanel extends JPanel{
     private JLabel rainbowWord;
-    private JButton validationButton;
     private RainbowThread rainbowThread;
     private ArrayList<Color> colors;
     private Color currentColor;
@@ -20,7 +15,6 @@ public class RainbowPanel extends JPanel{
 
     public RainbowPanel() {
         this.setLayout(new GridLayout(0, 1, 5, 5));
-
         setColors();
         rainbowWord = new JLabel("Rainbow Word");
         this.add(rainbowWord);

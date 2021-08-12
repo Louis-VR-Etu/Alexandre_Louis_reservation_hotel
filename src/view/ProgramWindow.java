@@ -106,7 +106,6 @@ public class ProgramWindow extends JFrame {
 
 
     private class researchFreeRoomsListener implements  ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e) {
             container.removeAll();
@@ -116,7 +115,6 @@ public class ProgramWindow extends JFrame {
         }
     }
     private class researchHotelCustomersListener implements  ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e) {
             container.removeAll();
@@ -126,7 +124,6 @@ public class ProgramWindow extends JFrame {
         }
     }
     private class researchCustomerReservationsListener implements  ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e) {
             container.removeAll();
@@ -136,7 +133,6 @@ public class ProgramWindow extends JFrame {
         }
     }
     private class jobTaskReservationPriceListener implements  ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e) {
             container.removeAll();
