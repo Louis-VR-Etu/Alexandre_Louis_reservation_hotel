@@ -17,7 +17,7 @@ public class RoomTypeDBAccess {
             ArrayList<RoomType>roomTypes = new ArrayList<>();
             RoomType roomType;
             while (data.next()){
-                roomType = new RoomType(data.getString("typename"),data.getFloat("price/night"),data.getInt("singlebed"),data.getInt("doublebed"));
+                roomType = new RoomType(data.getString("typename"),data.getFloat("price/night"),data.getInt("singleBed"),data.getInt("doubleBed"));
                 roomTypes.add(roomType);
             }
             return roomTypes;

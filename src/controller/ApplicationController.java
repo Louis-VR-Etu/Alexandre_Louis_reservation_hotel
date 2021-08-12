@@ -161,9 +161,9 @@ public class ApplicationController {
         }
     }
 
-    public String verifyTitle(String title) throws AddReservationException {
+    public String verifyRemarks(String remarks) throws AddReservationException {
         try {
-            return reservationManager.verifyTitle(title);
+            return reservationManager.verifyRemarks(remarks);
         }
         catch (AddReservationException exception) {
             throw exception;

@@ -95,7 +95,7 @@ public class FormPanel extends JPanel {
                 endingDates.setTime(endDate);
                 Boolean allInclusive = buttonAllIn.isSelected();
 
-                String remark = applicationController.verifyTitle(remarks.getText());
+                String remark = applicationController.verifyRemarks(remarks.getText());
                 String additionalContact = contacts.getText();
                 String couponCode = coupon.getText();
                 String customerSelected = mail.getSelectedItem().toString();

@@ -8,7 +8,6 @@ import javax.swing.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class ReservationManager {
@@ -61,8 +60,8 @@ public class ReservationManager {
         try {
             ArrayList<Reservation> conflicting = reservationDB.conflictingReservations(reservationUpdated);
             if(conflicting.size()==0){ return true;}
-            if(conflicting.size()==1){
-                if(reservation.getBeginningDate().compareTo(conflicting.get(0).getBeginningDate())==0) return true;
+            if(conflicting.size()==1 && reservation.getBeginningDate().compareTo(conflicting.get(0).getBeginningDate())==0){
+                return true;
             }
             return false;
         } catch (UpdateReservationException exception) {
@@ -74,25 +73,25 @@ public class ReservationManager {
         ArrayList<String> reservationString = new ArrayList<>();
         String pattern = "dd/MM/yyyy";
         DateFormat df = new SimpleDateFormat(pattern);
-        for (int iReserv = 0; iReserv < reservations.size(); iReserv++) {
-            reservationString.add(reservations.get(iReserv).getCustomerMail() + ", Hotel " +
-                    reservations.get(iReserv).getHotelName() + " chambre " + reservations.get(iReserv).getRoomNumber() +
-                    " du " + df.format(reservations.get(iReserv).getBeginningDate().getTime()) + " au " + df.format(reservations.get(iReserv).getEndingDate().getTime())); //TODO format date
+        for (int iReserve = 0; iReserve < reservations.size(); iReserve++) {
+            reservationString.add(reservations.get(iReserve).getCustomerMail() + ", Hotel " +
+                    reservations.get(iReserve).getHotelName() + " room " + reservations.get(iReserve).getRoomNumber() +
+                    " from " + df.format(reservations.get(iReserve).getBeginningDate().getTime()) + " to " + df.format(reservations.get(iReserve).getEndingDate().getTime()));
         }
         return reservationString;
     }
 
     public Reservation researchReservation(String reservationString, ArrayList<Reservation> reservations) {
         boolean isFound = false;
-        int iReserv = 0;
+        int iReserve = 0;
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        while (iReserv < reservations.size() && !isFound) {
-            isFound = reservationString.compareTo(reservations.get(iReserv).getCustomerMail() + ", Hotel " +
-                    reservations.get(iReserv).getHotelName() + " chambre " + reservations.get(iReserv).getRoomNumber() +
-                    " du " + df.format(reservations.get(iReserv).getBeginningDate().getTime()) + " au " + df.format(reservations.get(iReserv).getEndingDate().getTime())) == 0;
-            iReserv++;
+        while (iReserve < reservations.size() && !isFound) {
+            isFound = reservationString.compareTo(reservations.get(iReserve).getCustomerMail() + ", Hotel " +
+                    reservations.get(iReserve).getHotelName() + " room " + reservations.get(iReserve).getRoomNumber() +
+                    " from " + df.format(reservations.get(iReserve).getBeginningDate().getTime()) + " to " + df.format(reservations.get(iReserve).getEndingDate().getTime())) == 0;
+            iReserve++;
         }
-        return reservations.get(iReserv-1);
+        return reservations.get(iReserve-1);
     }
 
     public GregorianCalendar verifyBeginningDate(String day, String month, String year) throws AddReservationException {
@@ -143,11 +142,11 @@ public class ReservationManager {
         }
     }
 
-    public String verifyTitle(String title) throws AddReservationException {
+    public String verifyRemarks(String remarks) throws AddReservationException {
         try {
-            return verifyString(title);
+            return verifyString(remarks);
         } catch (Exception exception) {
-            throw new AddReservationException("wrong title");
+            throw new AddReservationException(": Remarks cannot be empty");
         }
     }
 
@@ -155,7 +154,7 @@ public class ReservationManager {
         try {
             return verifyString(additionalContact);
         } catch (Exception exception) {
-            throw new AddReservationException("wrong additional conctacts");
+            throw new AddReservationException("wrong additional contacts");
         }
     }
 
