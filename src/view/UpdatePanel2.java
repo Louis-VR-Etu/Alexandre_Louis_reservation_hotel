@@ -67,12 +67,17 @@ public class UpdatePanel2 extends JPanel{
             Date endDate = spinnerDateModelFin.getDate();
             Integer peopleAmount = spinnerPeopleAmountModel.getNumber().intValue();
             try {
-                rooms = applicationController.getFreeRooms(hotelSelected,beginDate, endDate, peopleAmount);
-                UpdatePanel2.this.removeAll();
-                UpdatePanel2.this.setLayout(new GridLayout(0,1,5,5));
-                UpdatePanel2.this.add(new UpdatePanel3(reservation, rooms, beginDate, endDate, peopleAmount), BorderLayout.CENTER);
-                UpdatePanel2.this.revalidate();
-                UpdatePanel2.this.repaint();
+                if(applicationController.verifyDates(beginDate,endDate)) {
+                    rooms = applicationController.getFreeRooms(hotelSelected, beginDate, endDate, peopleAmount);
+                    UpdatePanel2.this.removeAll();
+                    UpdatePanel2.this.setLayout(new GridLayout(0, 1, 5, 5));
+                    UpdatePanel2.this.add(new UpdatePanel3(reservation, rooms, beginDate, endDate, peopleAmount), BorderLayout.CENTER);
+                    UpdatePanel2.this.revalidate();
+                    UpdatePanel2.this.repaint();
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "beginning date must be before ending date", "Warning", JOptionPane.WARNING_MESSAGE);
+                }
             }
             catch (GetFreeRoomsException exception) {
                 JOptionPane.showMessageDialog(null, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
