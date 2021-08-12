@@ -61,12 +61,15 @@ public class ReservationManager {
 
     public Reservation researchReservation(String reservationString, ArrayList<Reservation> reservations) {
         boolean isFound = false;
-        int iReservation = 0;
-        while (iReservation < reservations.size() && !isFound) {
-            isFound = reservationString.compareTo(reservations.get(iReservation).getCustomerMail() + ", " + reservations.get(iReservation).getBeginningDate() + ", " + reservations.get(iReservation).getRoomNumber()) == 0;
-            iReservation++;
+        int iReserv = 0;
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        while (iReserv < reservations.size() && !isFound) {
+            isFound = reservationString.compareTo(reservations.get(iReserv).getCustomerMail() + ", Hotel " +
+                    reservations.get(iReserv).getHotelName() + " chambre " + reservations.get(iReserv).getRoomNumber() +
+                    " du " + df.format(reservations.get(iReserv).getBeginningDate().getTime()) + " au " + df.format(reservations.get(iReserv).getEndingDate().getTime())) == 0;
+            iReserv++;
         }
-        return reservations.get(iReservation-1);
+        return reservations.get(iReserv-1);
     }
 
     public GregorianCalendar verifyBeginningDate(String day, String month, String year) throws AddReservationException {
