@@ -3,6 +3,8 @@ package business;
 import dataAccess.ReservationDBAccess;
 import exception.*;
 import model.Reservation;
+
+import javax.swing.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,9 +43,29 @@ public class ReservationManager {
 
     public void updateReservation(Reservation reservation, Reservation reservationUpdated) throws UpdateReservationException {
         try {
-            reservationDB.updateReservation(reservation, reservationUpdated);
-        } catch (UpdateReservationException exception) {
+            if(freeToUpdate(reservation,reservationUpdated)) {
+                reservationDB.updateReservation(reservation, reservationUpdated);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "this room is already occupied on these dates", "Occupied", JOptionPane.ERROR_MESSAGE);
+
+            }
+        }
+        catch (UpdateReservationException exception) {
             throw exception;
+        }
+    }
+
+    public boolean freeToUpdate(Reservation reservation, Reservation reservationUpdated) throws UpdateReservationException {
+        try {
+            ArrayList<Reservation> conflicting = reservationDB.conflictingReservations(reservationUpdated);
+            if(conflicting.size()==0){ return true;}
+            if(conflicting.size()==1){
+                if(reservation.getBeginningDate().compareTo(conflicting.get(0).getBeginningDate())==0) return true;
+            }
+            return false;
+        } catch (UpdateReservationException exception) {
+                throw exception;
         }
     }
 

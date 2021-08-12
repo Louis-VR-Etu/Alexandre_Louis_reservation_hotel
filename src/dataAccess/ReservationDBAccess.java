@@ -101,7 +101,7 @@ public class ReservationDBAccess {
             preparedStatement.setString(1,df.format(reservationUpdated.getBeginningDate().getTime()));
             preparedStatement.setInt(2, reservationUpdated.getRoomNumber());
             preparedStatement.setString(3, reservationUpdated.getHotelName());
-            preparedStatement.setString(4, df.format(reservationUpdated.getBeginningDate().getTime()));
+            preparedStatement.setString(4, df.format(reservationUpdated.getEndingDate().getTime()));
             preparedStatement.setBoolean(5, reservationUpdated.getAllInclusive());
             preparedStatement.setInt(6, reservationUpdated.getPeople());
             preparedStatement.setString(8, reservationUpdated.getTitle());
@@ -117,6 +117,64 @@ public class ReservationDBAccess {
             throw new UpdateReservationException(exception.getMessage());
         }
     }
+
+    public ArrayList<Reservation> conflictingReservations(Reservation reservation) throws UpdateReservationException {
+        try {
+            Connection connection = SingletonConnexion.getInstance();
+            String sqlInstruction = "select distinct r.* from reservation r where " +
+                    "    ((r.beginningDate <= str_to_date(?,'%d/%m/%Y') and r.endingDate > str_to_date(?,'%d/%m/%Y')) " +
+                    "    or  (r.endingDate >= str_to_date(?,'%d/%m/%Y') and r.beginningDate < str_to_date(?,'%d/%m/%Y'))" +
+                    "    or  (r.beginningDate >= str_to_date(?,'%d/%m/%Y') and r.endingDate <= str_to_date(?,'%d/%m/%Y')))" +
+                    "    and r.roomNumber = ? and r.roomHotelName = ? "+
+                    "    ;";
+            String pattern = "dd/MM/yyyy";
+            DateFormat df = new SimpleDateFormat(pattern);
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlInstruction);
+
+            preparedStatement.setString(1,df.format(reservation.getBeginningDate().getTime()));
+            preparedStatement.setString(2,df.format(reservation.getBeginningDate().getTime()));
+
+            preparedStatement.setString(3,df.format(reservation.getEndingDate().getTime()));
+            preparedStatement.setString(4,df.format(reservation.getEndingDate().getTime()));
+
+            preparedStatement.setString(5,df.format(reservation.getBeginningDate().getTime()));
+            preparedStatement.setString(6,df.format(reservation.getEndingDate().getTime()));
+
+            preparedStatement.setInt(7, reservation.getRoomNumber());
+            preparedStatement.setString(8, reservation.getHotelName());
+
+            ResultSet data = preparedStatement.executeQuery();
+            ArrayList<Reservation>reservations = new ArrayList<>();
+            Reservation conflictingReservation;
+            while (data.next()) {
+
+                conflictingReservation = new Reservation(dateToGregorian(data.getDate("beginningDate")), //TODO test
+                        data.getInt("roomNumber"),
+                        data.getString("roomHotelName"),
+                        dateToGregorian(data.getDate("endingDate")),
+                        data.getBoolean("allInclusive"),
+                        data.getInt("people"),
+                        data.getString("remarks"),
+                        data.getString("customerMail"));
+                String couponCode = data.getString("couponCode");
+                if (!data.wasNull()) {
+                    conflictingReservation.setCouponCode(couponCode);
+                }
+                String additionalContact = data.getString("additionalContact");
+                if (!data.wasNull()) {
+                    conflictingReservation.setAdditionalContact(additionalContact);
+                }
+                reservations.add(conflictingReservation);
+            }
+            return reservations;
+        }
+        catch(SQLException exception){
+            throw new UpdateReservationException(exception.getMessage());
+
+        }
+
+    }
+
     public GregorianCalendar dateToGregorian(Date date){ //todo correct class?
         GregorianCalendar correctDate= new GregorianCalendar();
         correctDate.setTime(date);
