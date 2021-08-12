@@ -81,7 +81,7 @@ public class FreeRoomsPanel extends JPanel{
 
     private class ListButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent event) {
-            String hotelSelected = hotels.getSelectedItem().toString(); //TODO
+            String hotelSelected = hotels.getSelectedItem().toString();
             Date beginDate = spinnerDateModelDeb.getDate();
             Date endDate = spinnerDateModelFin.getDate();
             Integer peopleAmount = spinnerPeopleAmountModel.getNumber().intValue();
